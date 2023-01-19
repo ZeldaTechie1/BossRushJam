@@ -58,3 +58,20 @@ BossRushJam/*.unitypackage
 # Crashlytics generated file
 BossRushJam/crashlytics-build.properties
 
+# Never ignore DLLs in the FMOD subfolder.
+!BossRushJam/[Aa]ssets/Plugins/FMOD/**/lib/*
+
+# Don't ignore images and gizmos used by FMOD in the Unity Editor.
+!BossRushJam/[Aa]ssets/Gizmos/FMOD/*
+!BossRushJam/[Aa]ssets/Editor Default Resources/FMOD/*
+                    
+# Ignore the Cache folder since it is updated locally.
+BossRushJam/[Aa]ssets/Plugins/FMOD/Cache/*
+                    
+# Ignore bank files in the StreamingAssets folder.
+BossRushJam/[Aa]ssets/StreamingAssets/**/*.bank
+BossRushJam/[Aa]ssets/StreamingAssets/**/*.bank.meta
+                    
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+BossRushJam/fmod_editor.log
