@@ -9,7 +9,7 @@ BossRushJam/[Bb]uild/
 BossRushJam/[Bb]uilds/
 BossRushJam/[Ll]ogs/
 BossRushJam/[Mm]emoryCaptures/
-BossRushJam/[Tt]est[Ss]cenes/
+BossRushJam/[Aa]ssets/[Ss]cenes/[Tt]est[Ss]cenes/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !BossRushJam/[Aa]ssets/**/*.meta
