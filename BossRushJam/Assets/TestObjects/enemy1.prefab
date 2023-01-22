@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2069084429959013974}
   - component: {fileID: -4124318416323480688}
   - component: {fileID: -2754503476559272504}
+  - component: {fileID: 8102830644669982734}
+  - component: {fileID: 7276356344433463276}
   m_Layer: 0
   m_Name: enemy1
   m_TagString: Untagged
@@ -133,3 +135,32 @@ MonoBehaviour:
   _attackDistance: 3
   HurtPlayer: {fileID: 11400000, guid: 161e7a8b8b409ba48889a45acd6ddd45, type: 2}
   _attackDistanceBuffer: 1
+--- !u!114 &8102830644669982734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424017788988673523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bf8bfaac472f54282793aee095dbac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _deathEvent: {fileID: 11400000, guid: 3fa6f5b56f87ddf428d2b89c4621c6a0, type: 2}
+  _health: 0
+--- !u!114 &7276356344433463276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424017788988673523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa18c441bd8d504aac8d1cb1987d1f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvents: []
+  responses: []

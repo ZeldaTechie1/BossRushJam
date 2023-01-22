@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4791130530795536890}
   - component: {fileID: 1603977612642010769}
   - component: {fileID: 4371947337581437446}
+  - component: {fileID: -6453160979185147230}
   m_Layer: 0
   m_Name: enemy3
   m_TagString: Untagged
@@ -134,3 +135,17 @@ MonoBehaviour:
   _attackDistance: 3
   HurtPlayer: {fileID: 11400000, guid: 161e7a8b8b409ba48889a45acd6ddd45, type: 2}
   _attackDistanceBuffer: 1
+--- !u!114 &-6453160979185147230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183688375628025413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bf8bfaac472f54282793aee095dbac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _deathEvent: {fileID: 11400000, guid: 3fa6f5b56f87ddf428d2b89c4621c6a0, type: 2}

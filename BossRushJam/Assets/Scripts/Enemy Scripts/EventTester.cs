@@ -20,8 +20,9 @@ public class EventTester : MonoBehaviour
         }
     }
 
-    public void PlayerHurt()
+    public void PlayerDied()
     {
-        Debug.Log("Player hurt!");
+        Debug.Log("Player Died");
+        Destroy(this.gameObject);
     }
 }

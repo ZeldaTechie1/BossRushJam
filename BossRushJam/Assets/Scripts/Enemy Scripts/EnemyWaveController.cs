@@ -13,10 +13,19 @@ public class EnemyWaveController : MonoBehaviour
     [SerializeField]private float _maxIntervalDeviation;
     [SerializeField]private GameObject _player;//change this to take a Player object instead of Gameobject
 
+    [SerializeField] private List<GameObject> enemies;
     private int _currentEnemiesAlive;
     private int _currentWave;
     private bool _stopSpawning;
     private bool _waveActive;
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            HurtRandomEnemy();
+        }
+    }
 
     public void StartWave()
     {
@@ -32,6 +41,7 @@ public class EnemyWaveController : MonoBehaviour
     
     private void FinishedWave()
     {
+        Debug.Log("Wave finished!");
         _currentWave++;
         _stopSpawning = false;
         _waveActive = false;
@@ -45,6 +55,8 @@ public class EnemyWaveController : MonoBehaviour
         }
         if(_stopSpawning)
             return;
+        if (_player == null)
+            return;
 
         int randEnemy = Random.Range(0, _enemiesToSpawn.Count);
         int randSpawnPoint = Random.Range(0,_spawnPoints.Count);
@@ -53,18 +65,30 @@ public class EnemyWaveController : MonoBehaviour
         {
             throw new System.Exception("Player is null! Waduhek");
         }
+        enemies.Add(spawnedEnemy);//testing for emotional damage
         spawnedEnemy.GetComponent<Enemy>().SetPlayer(_player);
         _currentEnemiesAlive++;
     }
 
-    public void EnemyDied()
+    public void EnemyDied(Component sender, object data)
     {
         if (!_waveActive)
             return;
+        enemies.RemoveAt(enemies.IndexOf(sender.gameObject));
+        Destroy(sender.gameObject);
+        Debug.Log("Enemy Died!");
         _currentEnemiesAlive--;
         if (_currentEnemiesAlive == 0)
         {
             FinishedWave();
         }
+    }
+
+    //TESTING PURPOSES PLEASE DO NOT USE, K THX!
+    public void HurtRandomEnemy()
+    {
+        Debug.Log("hurting random enemy");
+        int randEnemy = Random.Range(0,enemies.Count);
+        enemies[randEnemy].GetComponent<Health>()?.TakeDamage(5);
     }
 }
