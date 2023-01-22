@@ -11,7 +11,7 @@ public class EnemyWaveController : MonoBehaviour
     [SerializeField]private List<int> _enemyCountPerWave;
     [SerializeField]private float _enemySpawnInterval;
     [SerializeField]private float _maxIntervalDeviation;
-    [SerializeField]private GameObject player;
+    [SerializeField]private GameObject _player;//change this to take a Player object instead of Gameobject
 
     private int _currentEnemiesAlive;
     private int _currentWave;
@@ -49,6 +49,11 @@ public class EnemyWaveController : MonoBehaviour
         int randEnemy = Random.Range(0, _enemiesToSpawn.Count);
         int randSpawnPoint = Random.Range(0,_spawnPoints.Count);
         GameObject spawnedEnemy = Instantiate(_enemiesToSpawn[randEnemy], _spawnPoints[randSpawnPoint].position, Quaternion.identity,this.transform);
+        if(_player == null)
+        {
+            throw new System.Exception("Player is null! Waduhek");
+        }
+        spawnedEnemy.GetComponent<Enemy>().SetPlayer(_player);
         _currentEnemiesAlive++;
     }
 

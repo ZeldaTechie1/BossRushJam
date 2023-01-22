@@ -19,4 +19,9 @@ public class EventTester : MonoBehaviour
             EnemyDiedEvent.Invoke();
         }
     }
+
+    public void PlayerHurt()
+    {
+        Debug.Log("Player hurt!");
+    }
 }
