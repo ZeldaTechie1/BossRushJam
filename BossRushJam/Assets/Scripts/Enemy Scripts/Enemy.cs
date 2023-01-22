@@ -8,10 +8,11 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField]private float _enemySpeed;
-    [SerializeField]private float _attackTime;
+    [SerializeField]private float _attackLength;
     [SerializeField]private float _attackHurtCheck;//eh idk about this but it's something
     [SerializeField]private float _attackDistance;
     [SerializeField]private GameEvent HurtPlayer;
+    [SerializeField]private float _attackDistanceBuffer;
 
     private Rigidbody _rb;
     private GameObject _player;
@@ -39,35 +40,40 @@ public class Enemy : MonoBehaviour
         {
             throw new System.Exception("Player does not exist! What is my purpose?");
         }
-        if(_isAttacking)
+        _playerPosition = _player.transform.position;
+        _playerPosition.y = this.transform.position.y;//this ensures that there are no height discrepancies between the player and enemy
+        if (_isAttacking)
         {
             return;
         }
+        if (Vector3.Distance(_playerPosition, this.transform.position) <= (_attackDistance - _attackDistanceBuffer))
+        {
+            Attack();
+            return;
+        }
         //move towards player
-        _playerPosition = _player.transform.position;
-        _playerPosition.y = this.transform.position.y;//this ensures that there are no height discrepancies between the player and enemy
+        this.GetComponent<Renderer>().material.color = Color.white;
         Vector3 directionToMove = _player.transform.position - this.transform.position;//c = b-a
         directionToMove.Normalize();
         _rb.velocity = directionToMove.normalized * _enemySpeed;
-        if(Vector3.Distance(_playerPosition,this.transform.position) <= _attackDistance)
-        {
-            //Attack();
-        }
     }
 
     private void Attack()
     {
         _isAttacking = true;
+        this.GetComponent<Renderer>().material.color = Color.yellow;
         //check if the player is still in range after a certain amount of time
         //TODO: this could definitely be done better but I just want it to work lol
         DOTween.Sequence().InsertCallback(_attackHurtCheck, () =>
         {
-            if(Vector3.Distance(_playerPosition, this.transform.position) <= _attackDistance)//if the player is still in range when this happens then we can hurt the player
+            this.GetComponent<Renderer>().material.color = Color.red;
+            Vector3 instancedPlayerPosition = _playerPosition;
+            if(Vector3.Distance(instancedPlayerPosition, this.transform.position) <= _attackDistance)//if the player is still in range when this happens then we can hurt the player
             {
                 HurtPlayer.Invoke();
             }
         });
-        DOTween.Sequence().InsertCallback(_attackTime, () => _isAttacking = false);//might be a better way to do this but not worth looking into just yet
+        DOTween.Sequence().InsertCallback(_attackLength, () => _isAttacking = false);//might be a better way to do this but not worth looking into just yet
     }
 
     public void SetPlayer(GameObject player)
