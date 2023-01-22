@@ -13,7 +13,7 @@ public class GameEventListener : MonoBehaviour
     public List<GameEvent> gameEvents;
 
     [Tooltip("Response to invoke when Event with GameData is raised.")]
-    public List<UnityEvent> responses;
+    public List<UnityEvent<Component,object>> responses;
 
     private void OnEnable() {
         foreach(GameEvent gameEvent in gameEvents)
@@ -31,7 +31,7 @@ public class GameEventListener : MonoBehaviour
 
     public void OnEventRaised(Component sender, object data, GameEvent gameEvent) {
         int gameEventIndex = gameEvents.IndexOf(gameEvent);
-        responses[gameEventIndex].Invoke();
+        responses[gameEventIndex].Invoke(sender,data);
     }
 
 }
