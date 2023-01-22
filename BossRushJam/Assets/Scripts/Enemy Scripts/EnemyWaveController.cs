@@ -11,6 +11,7 @@ public class EnemyWaveController : MonoBehaviour
     [SerializeField]private List<int> _enemyCountPerWave;
     [SerializeField]private float _enemySpawnInterval;
     [SerializeField]private float _maxIntervalDeviation;
+    [SerializeField]private GameObject player;
 
     private int _currentEnemiesAlive;
     private int _currentWave;
