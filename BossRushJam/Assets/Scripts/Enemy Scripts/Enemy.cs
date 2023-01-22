@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     {
         if(_player == null)
         {
-            throw new System.Exception("Player does not exist! What is my purpose?");
+            return;
         }
         _playerPosition = _player.transform.position;
         _playerPosition.y = this.transform.position.y;//this ensures that there are no height discrepancies between the player and enemy
