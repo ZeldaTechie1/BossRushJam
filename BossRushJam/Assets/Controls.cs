@@ -35,6 +35,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Slide"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8856e5b-911b-448c-a6f2-f11ee4989391"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +112,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Locomotion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e94500e8-9500-4281-8934-5122fdf9f461"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c80ebab8-148e-4484-a260-aa0b10e3d1e8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -112,6 +143,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Player Action Map
         m_PlayerActionMap = asset.FindActionMap("Player Action Map", throwIfNotFound: true);
         m_PlayerActionMap_Locomotion = m_PlayerActionMap.FindAction("Locomotion", throwIfNotFound: true);
+        m_PlayerActionMap_Slide = m_PlayerActionMap.FindAction("Slide", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -172,11 +204,13 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerActionMap;
     private IPlayerActionMapActions m_PlayerActionMapActionsCallbackInterface;
     private readonly InputAction m_PlayerActionMap_Locomotion;
+    private readonly InputAction m_PlayerActionMap_Slide;
     public struct PlayerActionMapActions
     {
         private @Controls m_Wrapper;
         public PlayerActionMapActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Locomotion => m_Wrapper.m_PlayerActionMap_Locomotion;
+        public InputAction @Slide => m_Wrapper.m_PlayerActionMap_Slide;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +223,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Locomotion.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLocomotion;
                 @Locomotion.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLocomotion;
                 @Locomotion.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLocomotion;
+                @Slide.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSlide;
+                @Slide.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSlide;
+                @Slide.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSlide;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -196,6 +233,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Locomotion.started += instance.OnLocomotion;
                 @Locomotion.performed += instance.OnLocomotion;
                 @Locomotion.canceled += instance.OnLocomotion;
+                @Slide.started += instance.OnSlide;
+                @Slide.performed += instance.OnSlide;
+                @Slide.canceled += instance.OnSlide;
             }
         }
     }
@@ -203,5 +243,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IPlayerActionMapActions
     {
         void OnLocomotion(InputAction.CallbackContext context);
+        void OnSlide(InputAction.CallbackContext context);
     }
 }
