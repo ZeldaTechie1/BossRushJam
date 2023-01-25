@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _slideLength;
     [SerializeField]private float _slideSpeed;
     [SerializeField]private float _slideCoolDown;
+    [SerializeField]private float _invincibilityLength;
+    [SerializeField]private GameEvent PlayerIsInvulnerable;
+    [SerializeField]private GameEvent PlayerIsVulnerable;
 
     private Rigidbody _rb;
     private Vector3 _movementDirection;
@@ -40,8 +43,10 @@ public class PlayerController : MonoBehaviour
     {
         if(!_canSlide)
             return;
+        PlayerIsInvulnerable.Invoke();
         _isSliding = true;
         _canSlide = false;
+        DOTween.Sequence().InsertCallback(_invincibilityLength, PlayerIsVulnerable.Invoke);
         DOTween.Sequence()
             .InsertCallback(_slideLength, () => _isSliding = false)//stopping the slide
             .AppendInterval(_slideCoolDown)
