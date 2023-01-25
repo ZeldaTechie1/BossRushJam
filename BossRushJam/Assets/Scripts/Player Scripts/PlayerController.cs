@@ -15,12 +15,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _movementSpeed;
     [SerializeField]private float _slideLength;
     [SerializeField]private float _slideSpeed;
+    [SerializeField]private float _slideCoolDown;
 
     private Rigidbody _rb;
     private Vector3 _movementDirection;
     private Vector3 _cardinalDirection;
     private Vector2 _movementInput;
     private bool _isSliding;
+    private bool _canSlide = true;
 
     private void Start()
     {
@@ -36,16 +38,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnSlide()
     {
+        if(!_canSlide)
+            return;
         _isSliding = true;
-        DOTween.Sequence().InsertCallback(_slideLength, () => _isSliding = false);
-        if(_rb.velocity.magnitude > 0)
-        {
-            _rb.AddForce(_rb.velocity.normalized * _slideSpeed,ForceMode.Impulse);
-        }
-        else
-        {
-
-        }
+        _canSlide = false;
+        DOTween.Sequence()
+            .InsertCallback(_slideLength, () => _isSliding = false)//stopping the slide
+            .AppendInterval(_slideCoolDown)
+            .AppendCallback(() => _canSlide = true);//allows to slide again
+        //adds an impulse force either in the current movement direction or if standing still, in the direction they are facing
+        _rb.AddForce((_rb.velocity.magnitude > 0? _rb.velocity.normalized : _cardinalDirection.normalized) * _slideSpeed, ForceMode.Impulse);
     }
 
     private void FixedUpdate()
