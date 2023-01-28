@@ -22,7 +22,6 @@ public class Health : MonoBehaviour
         {
             return;
         }
-        Debug.Log($"Ow! x {damage}");
         _health -= damage;
         if(_health < 0)
         {
@@ -43,7 +42,6 @@ public class Health : MonoBehaviour
     
     public void SetVulnerability(bool isVulnerable)
     {
-        Debug.Log($"setting vulenerability {isVulnerable}");
         _isVulnerable = isVulnerable;
     }
 }
