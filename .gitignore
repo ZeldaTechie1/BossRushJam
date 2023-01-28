@@ -10,6 +10,7 @@ BossRushJam/[Bb]uilds/
 BossRushJam/[Ll]ogs/
 BossRushJam/[Mm]emoryCaptures/
 BossRushJam/[Aa]ssets/[Ss]cenes/[Tt]est[Ss]cenes/
+BossRushJam/UserSettings/Layout/*.dwlt
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !BossRushJam/[Aa]ssets/**/*.meta
@@ -76,3 +77,4 @@ BossRushJam/[Aa]ssets/StreamingAssets/**/*.bank.meta
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
 BossRushJam/fmod_editor.log
+BossRushJam/UserSettings
