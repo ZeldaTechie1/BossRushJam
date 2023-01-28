@@ -61,6 +61,10 @@ public class PlayerController : MonoBehaviour
         currentOrientation.y = 0;
         currentOrientation.Normalize();
         _movementDirection = (this.transform.forward * _movementInput.y) + (this.transform.right * _movementInput.x);
+        if(_movementDirection.magnitude > 1)
+        {
+            _movementDirection.Normalize();
+        }
         this.transform.forward = currentOrientation;
         if(!_isSliding)
         {
