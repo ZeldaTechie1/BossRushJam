@@ -89,6 +89,6 @@ public class EnemyWaveController : MonoBehaviour
     {
         Debug.Log("hurting random enemy");
         int randEnemy = Random.Range(0,enemies.Count);
-        enemies[randEnemy].GetComponent<Health>()?.TakeDamage(5);
+        enemies[randEnemy].GetComponent<Health>()?.AffectHealth(null, data: 5f);
     }
 }
