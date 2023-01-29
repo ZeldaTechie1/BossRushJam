@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _slideSpeed;
     [SerializeField]private float _slideCoolDown;
     [SerializeField]private float _invincibilityLength;
-    [SerializeField]private GameEvent PlayerIsInvulnerable;
-    [SerializeField]private GameEvent PlayerIsVulnerable;
+    [SerializeField]private GameEvent PlayerCanTakeDamage;
 
     private Rigidbody _rb;
     private Vector3 _movementDirection;
@@ -43,11 +42,11 @@ public class PlayerController : MonoBehaviour
     {
         if(!_canSlide)
             return;
-        PlayerIsInvulnerable.Invoke();
+        PlayerCanTakeDamage.Invoke(data: false);
         _isSliding = true;
         _canSlide = false;
         DOTween.Sequence()
-            .InsertCallback(_invincibilityLength, PlayerIsVulnerable.Invoke)
+            .InsertCallback(_invincibilityLength, () => PlayerCanTakeDamage.Invoke(data: true))
             .InsertCallback(_slideLength, () => _isSliding = false)//stopping the slide
             .AppendInterval(_slideCoolDown)
             .AppendCallback(() => _canSlide = true);//allows to slide again

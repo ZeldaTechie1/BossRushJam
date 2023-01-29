@@ -44,6 +44,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CraftingSelectUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""8205680f-ced2-4776-9223-7e7cb57c7ac2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CraftingSelectDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""677caf10-4f8e-4811-84d3-00b2f360cdd5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +152,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Slide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45f3a5fd-b2a3-4fff-95cd-6fcbcf14155d"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CraftingSelectUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3bd6297-54af-43fe-9de6-ea976113d142"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CraftingSelectUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5c21d6c-0ca1-495c-b10e-760ba96ee26d"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CraftingSelectDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -144,6 +195,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_PlayerActionMap = asset.FindActionMap("Player Action Map", throwIfNotFound: true);
         m_PlayerActionMap_Locomotion = m_PlayerActionMap.FindAction("Locomotion", throwIfNotFound: true);
         m_PlayerActionMap_Slide = m_PlayerActionMap.FindAction("Slide", throwIfNotFound: true);
+        m_PlayerActionMap_CraftingSelectUp = m_PlayerActionMap.FindAction("CraftingSelectUp", throwIfNotFound: true);
+        m_PlayerActionMap_CraftingSelectDown = m_PlayerActionMap.FindAction("CraftingSelectDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,12 +258,16 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IPlayerActionMapActions m_PlayerActionMapActionsCallbackInterface;
     private readonly InputAction m_PlayerActionMap_Locomotion;
     private readonly InputAction m_PlayerActionMap_Slide;
+    private readonly InputAction m_PlayerActionMap_CraftingSelectUp;
+    private readonly InputAction m_PlayerActionMap_CraftingSelectDown;
     public struct PlayerActionMapActions
     {
         private @Controls m_Wrapper;
         public PlayerActionMapActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Locomotion => m_Wrapper.m_PlayerActionMap_Locomotion;
         public InputAction @Slide => m_Wrapper.m_PlayerActionMap_Slide;
+        public InputAction @CraftingSelectUp => m_Wrapper.m_PlayerActionMap_CraftingSelectUp;
+        public InputAction @CraftingSelectDown => m_Wrapper.m_PlayerActionMap_CraftingSelectDown;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -226,6 +283,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Slide.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSlide;
                 @Slide.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSlide;
                 @Slide.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSlide;
+                @CraftingSelectUp.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectUp;
+                @CraftingSelectUp.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectUp;
+                @CraftingSelectUp.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectUp;
+                @CraftingSelectDown.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
+                @CraftingSelectDown.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
+                @CraftingSelectDown.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -236,6 +299,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Slide.started += instance.OnSlide;
                 @Slide.performed += instance.OnSlide;
                 @Slide.canceled += instance.OnSlide;
+                @CraftingSelectUp.started += instance.OnCraftingSelectUp;
+                @CraftingSelectUp.performed += instance.OnCraftingSelectUp;
+                @CraftingSelectUp.canceled += instance.OnCraftingSelectUp;
+                @CraftingSelectDown.started += instance.OnCraftingSelectDown;
+                @CraftingSelectDown.performed += instance.OnCraftingSelectDown;
+                @CraftingSelectDown.canceled += instance.OnCraftingSelectDown;
             }
         }
     }
@@ -244,5 +313,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnLocomotion(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
+        void OnCraftingSelectUp(InputAction.CallbackContext context);
+        void OnCraftingSelectDown(InputAction.CallbackContext context);
     }
 }

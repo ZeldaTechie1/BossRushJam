@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField]private float _enemySpeed;
+    [SerializeField]private float _attackPower;
     [SerializeField]private float _attackLength;
     [SerializeField]private float _attackHurtCheck;//eh idk about this but it's something
     [SerializeField]private float _attackDistance;
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
             Vector3 instancedPlayerPosition = _playerPosition;
             if(Vector3.Distance(instancedPlayerPosition, this.transform.position) <= _attackDistance)//if the player is still in range when this happens then we can hurt the player
             {
-                HurtPlayer.Invoke();
+                HurtPlayer.Invoke(data: -_attackPower);
             }
         });
         DOTween.Sequence().InsertCallback(_attackLength, () => _isAttacking = false);//might be a better way to do this but not worth looking into just yet

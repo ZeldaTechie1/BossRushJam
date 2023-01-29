@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySpeed: 5
+  _attackPower: 10
   _attackLength: 1
   _attackHurtCheck: 0.5
   _attackDistance: 3
@@ -101,7 +102,7 @@ MonoBehaviour:
   _maxHealth: 100
   _deathEvent: {fileID: 11400000, guid: 3fa6f5b56f87ddf428d2b89c4621c6a0, type: 2}
   _health: 0
-  _isVulnerable: 0
+  _canTakeDamage: 1
 --- !u!114 &7276356344433463276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvents: []
-  responses: []
 --- !u!114 &5876966971958611839
 MonoBehaviour:
   m_ObjectHideFlags: 0
