@@ -1,37 +1,54 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
-[System.Serializable]
-public class CustomGameEvent : UnityEvent<Component, object> {}
 
 public class GameEventListener : MonoBehaviour
 {
 
     [Tooltip("Event to register with.")]
-    public List<GameEvent> gameEvents;
+    public List<CustomGameEvent> gameEvents;
 
     [Tooltip("Response to invoke when Event with GameData is raised.")]
-    public List<UnityEvent<Component,object>> responses;
 
     private void OnEnable() {
-        foreach(GameEvent gameEvent in gameEvents)
+        for(int count = 0; count < gameEvents.Count; count++)
         {
-            gameEvent.RegisterListener(this);
+            gameEvents[count].gameEvent.RegisterListener(this);
         }
     }
 
     private void OnDisable() {
-        foreach (GameEvent gameEvent in gameEvents)
+        for (int count = 0; count < gameEvents.Count; count++)
         {
-            gameEvent.UnregisterListener(this);
+            gameEvents[count].gameEvent.UnregisterListener(this);
         }
     }
 
     public void OnEventRaised(Component sender, object data, GameEvent gameEvent) {
-        int gameEventIndex = gameEvents.IndexOf(gameEvent);
-        responses[gameEventIndex].Invoke(sender,data);
+        int gameEventIndex = -1;
+        for(int count = 0; count < gameEvents.Count; count++)
+        {
+            if (gameEvents[count].gameEvent == gameEvent)
+            {
+                gameEventIndex = count;
+                break;
+            }
+        }
+        if(gameEventIndex == -1)
+        {
+            Debug.LogWarning("Could not find event!");
+            return;
+        }
+        gameEvents[gameEventIndex].response.Invoke(sender,data);
     }
 
+}
+
+[Serializable]
+public class CustomGameEvent
+{
+    public GameEvent gameEvent;
+    public UnityEvent<Component, object> response;
 }
