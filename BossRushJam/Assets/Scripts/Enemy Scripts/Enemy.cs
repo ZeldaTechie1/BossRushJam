@@ -8,11 +8,13 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField]private float _enemySpeed;
+    [SerializeField]private float _attackPower;
     [SerializeField]private float _attackLength;
     [SerializeField]private float _attackHurtCheck;//eh idk about this but it's something
     [SerializeField]private float _attackDistance;
     [SerializeField]private GameEvent HurtPlayer;
     [SerializeField]private float _attackDistanceBuffer;
+    [SerializeField]private Renderer _renderer;
 
     private Rigidbody _rb;
     private GameObject _player;
@@ -22,6 +24,10 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _rb = this.GetComponent<Rigidbody>();
+        if(_renderer == null)
+        {
+            _renderer = GetComponent<Renderer>();
+        }
         _rb.freezeRotation = true;
         if(_enemySpeed == 0)
         {
@@ -52,7 +58,7 @@ public class Enemy : MonoBehaviour
             return;
         }
         //move towards player
-        this.GetComponent<Renderer>().material.color = Color.white;
+        _renderer.material.color = Color.white;
         Vector3 directionToMove = _player.transform.position - this.transform.position;//c = b-a
         directionToMove.Normalize();
         _rb.velocity = directionToMove.normalized * _enemySpeed;
@@ -61,16 +67,16 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         _isAttacking = true;
-        this.GetComponent<Renderer>().material.color = Color.yellow;
+        _renderer.material.color = Color.yellow;
         //check if the player is still in range after a certain amount of time
         //TODO: this could definitely be done better but I just want it to work lol
         DOTween.Sequence().InsertCallback(_attackHurtCheck, () =>
         {
-            this.GetComponent<Renderer>().material.color = Color.red;
+            _renderer.material.color = Color.red;
             Vector3 instancedPlayerPosition = _playerPosition;
             if(Vector3.Distance(instancedPlayerPosition, this.transform.position) <= _attackDistance)//if the player is still in range when this happens then we can hurt the player
             {
-                HurtPlayer.Invoke();
+                HurtPlayer.Invoke(data: -_attackPower);
             }
         });
         DOTween.Sequence().InsertCallback(_attackLength, () => _isAttacking = false);//might be a better way to do this but not worth looking into just yet

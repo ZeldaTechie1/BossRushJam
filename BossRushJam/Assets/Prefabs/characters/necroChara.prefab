@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4322321603482537024}
   - component: {fileID: 4322321603482537025}
   - component: {fileID: 4322321603482537026}
+  - component: {fileID: -5631886084618897424}
+  - component: {fileID: 4512727017083485150}
   m_Layer: 0
   m_Name: necroChara
   m_TagString: Untagged
@@ -105,3 +107,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &-5631886084618897424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322321603482537027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9658f87eb4254094ead19371b3cda7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+--- !u!114 &4512727017083485150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322321603482537027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1222be2502a380743a0dbabb01847f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteAnimator: {fileID: 0}

@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _slideSpeed;
     [SerializeField]private float _slideCoolDown;
     [SerializeField]private float _invincibilityLength;
-    [SerializeField]private GameEvent PlayerIsInvulnerable;
-    [SerializeField]private GameEvent PlayerIsVulnerable;
+    [SerializeField]private GameEvent PlayerCanTakeDamage;
 
     private Rigidbody _rb;
     private Vector3 _movementDirection;
@@ -43,11 +42,11 @@ public class PlayerController : MonoBehaviour
     {
         if(!_canSlide)
             return;
-        PlayerIsInvulnerable.Invoke();
+        PlayerCanTakeDamage.Invoke(data: false);
         _isSliding = true;
         _canSlide = false;
-        DOTween.Sequence().InsertCallback(_invincibilityLength, PlayerIsVulnerable.Invoke);
         DOTween.Sequence()
+            .InsertCallback(_invincibilityLength, () => PlayerCanTakeDamage.Invoke(data: true))
             .InsertCallback(_slideLength, () => _isSliding = false)//stopping the slide
             .AppendInterval(_slideCoolDown)
             .AppendCallback(() => _canSlide = true);//allows to slide again
@@ -61,6 +60,10 @@ public class PlayerController : MonoBehaviour
         currentOrientation.y = 0;
         currentOrientation.Normalize();
         _movementDirection = (this.transform.forward * _movementInput.y) + (this.transform.right * _movementInput.x);
+        if(_movementDirection.magnitude > 1)
+        {
+            _movementDirection.Normalize();
+        }
         this.transform.forward = currentOrientation;
         if(!_isSliding)
         {
@@ -68,26 +71,7 @@ public class PlayerController : MonoBehaviour
         }
         if(_rb.velocity.magnitude != 0)
         {
-            GetCardinalDirection();
-        }
-        
-    }
-
-    private void GetCardinalDirection()
-    {
-        Vector3[] directions = new Vector3[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
-
-        float maxDot = -Mathf.Infinity;
-        _cardinalDirection = Vector3.zero;
-
-        foreach(Vector3 direction in directions)
-        {
-            float dotProduct = Vector3.Dot(_rb.velocity, direction);
-            if (dotProduct > maxDot)
-            {
-                maxDot = dotProduct;
-                _cardinalDirection = direction;
-            }
+            _cardinalDirection = HelperFunctions.CardinalizeVector(_rb.velocity);
         }
     }
 

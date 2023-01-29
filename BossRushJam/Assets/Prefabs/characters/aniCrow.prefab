@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 792524632021976723}
   - component: {fileID: 3812489226039739814}
   - component: {fileID: 1942297108288864126}
+  - component: {fileID: -8425918375454160297}
   m_Layer: 0
   m_Name: aniCrow
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &-8425918375454160297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7079417590419011372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9658f87eb4254094ead19371b3cda7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
