@@ -77,3 +77,4 @@ BossRushJam/[Aa]ssets/StreamingAssets/**/*.bank.meta
 # Log files can be ignored.
 BossRushJam/fmod_editor.log
 BossRushJam/UserSettings/Layouts/default-2021.dwlt
+*.dwlt
