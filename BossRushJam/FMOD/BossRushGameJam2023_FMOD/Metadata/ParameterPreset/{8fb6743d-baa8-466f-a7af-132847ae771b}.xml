@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{8fb6743d-baa8-466f-a7af-132847ae771b}">
+		<property name="name">
+			<value>BossMusicPhase</value>
+		</property>
+		<relationship name="folder">
+			<destination>{84a72a85-3d0f-45e3-aa4a-623209ddee10}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0d34d3e5-4bd0-4f09-bed3-356cf0478e95}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0d34d3e5-4bd0-4f09-bed3-356cf0478e95}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>4</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
