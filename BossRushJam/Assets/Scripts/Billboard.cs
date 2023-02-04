@@ -7,7 +7,7 @@ public class Billboard : MonoBehaviour
 
     [SerializeField]private Camera mainCamera;
 
-    private void Start()
+    private void Awake()
     {
         if(mainCamera == null)
         {
