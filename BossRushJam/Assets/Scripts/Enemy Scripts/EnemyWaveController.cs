@@ -21,9 +21,9 @@ public class EnemyWaveController : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.End))
         {
-            HurtRandomEnemy();
+            StartWave();
         }
     }
 
