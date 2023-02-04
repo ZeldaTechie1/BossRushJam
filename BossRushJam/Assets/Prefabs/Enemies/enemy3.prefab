@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5729616021901557009}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -6453160979185147230}
   - component: {fileID: 6717408306350223367}
   - component: {fileID: 7431659037185856672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,10 @@ PrefabInstance:
     - target: {fileID: 2008422156238769821, guid: b7eac950d8230f1439457da207c10dde, type: 3}
       propertyPath: m_Name
       value: npcGhost00
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008422156238769821, guid: b7eac950d8230f1439457da207c10dde, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8623696106751517601, guid: b7eac950d8230f1439457da207c10dde, type: 3}
