@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8102830644669982734}
   - component: {fileID: 7276356344433463276}
   - component: {fileID: 5876966971958611839}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7463718457135600431}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +236,10 @@ PrefabInstance:
     - target: {fileID: 8860536528485997999, guid: 7e6acf3d6fe0b674bb543ef803fd8ac4, type: 3}
       propertyPath: m_Name
       value: ncpZombie00
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860536528485997999, guid: 7e6acf3d6fe0b674bb543ef803fd8ac4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -9086539446669686255, guid: 7e6acf3d6fe0b674bb543ef803fd8ac4, type: 3}
