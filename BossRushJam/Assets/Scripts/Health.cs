@@ -19,6 +19,11 @@ public class Health : MonoBehaviour
         _canTakeDamage = true;
     }
 
+    public float GetHealthPercentage()
+    {
+        return _health / _maxHealth;
+    }
+
     public void AffectHealth(Component objectToDamage, object data)
     {
         if(isDead)
@@ -29,8 +34,10 @@ public class Health : MonoBehaviour
         {
             throw new System.Exception($"Wrong data when calling this function! Expecting float and received {data.GetType()}");
         }
+        
         float healthDelta = (float)data;
-        if((float)data < 0 && !_canTakeDamage)
+        Debug.Log($"Doing the health thingy {healthDelta}");
+        if (!_canTakeDamage)
         {
             return;
         }
@@ -38,9 +45,9 @@ public class Health : MonoBehaviour
         {
             return;
         }
-        _health -= healthDelta;
+        _health += healthDelta;
         _health = Mathf.Clamp(_health, 0, _maxHealth);
-        if (_health < 0)
+        if (_health <= 0)
         {
             _deathEvent.Invoke(this);
             isDead = true;
