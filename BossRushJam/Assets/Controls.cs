@@ -62,6 +62,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c09a6762-6039-43f4-a66c-ac027bd60482"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""051ce51a-6ff6-450d-8b4c-c0c7221960b9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -156,7 +174,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""45f3a5fd-b2a3-4fff-95cd-6fcbcf14155d"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -178,13 +196,90 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c5c21d6c-0ca1-495c-b10e-760ba96ee26d"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CraftingSelectDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af6a2f9c-62e1-42db-8507-17f8b0afb570"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47f941f2-fce7-4850-a61b-19af2d7a507d"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""0e49bb28-82f1-4437-97b4-6ef9ec749b71"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8aa06f54-ed5b-4def-82b0-8b576c060f77"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cc316f4b-d2a5-4547-aeb4-d49aa759f5b6"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""3f37f2d8-aede-4ed4-83b3-dadcb0b86800"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cd9eb985-f735-4314-b159-293a3664f938"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -197,6 +292,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_PlayerActionMap_Slide = m_PlayerActionMap.FindAction("Slide", throwIfNotFound: true);
         m_PlayerActionMap_CraftingSelectUp = m_PlayerActionMap.FindAction("CraftingSelectUp", throwIfNotFound: true);
         m_PlayerActionMap_CraftingSelectDown = m_PlayerActionMap.FindAction("CraftingSelectDown", throwIfNotFound: true);
+        m_PlayerActionMap_Attack = m_PlayerActionMap.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerActionMap_Look = m_PlayerActionMap.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +357,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_Slide;
     private readonly InputAction m_PlayerActionMap_CraftingSelectUp;
     private readonly InputAction m_PlayerActionMap_CraftingSelectDown;
+    private readonly InputAction m_PlayerActionMap_Attack;
+    private readonly InputAction m_PlayerActionMap_Look;
     public struct PlayerActionMapActions
     {
         private @Controls m_Wrapper;
@@ -268,6 +367,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Slide => m_Wrapper.m_PlayerActionMap_Slide;
         public InputAction @CraftingSelectUp => m_Wrapper.m_PlayerActionMap_CraftingSelectUp;
         public InputAction @CraftingSelectDown => m_Wrapper.m_PlayerActionMap_CraftingSelectDown;
+        public InputAction @Attack => m_Wrapper.m_PlayerActionMap_Attack;
+        public InputAction @Look => m_Wrapper.m_PlayerActionMap_Look;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,6 +390,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @CraftingSelectDown.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
                 @CraftingSelectDown.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
                 @CraftingSelectDown.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
+                @Attack.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnAttack;
+                @Look.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLook;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -305,6 +412,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @CraftingSelectDown.started += instance.OnCraftingSelectDown;
                 @CraftingSelectDown.performed += instance.OnCraftingSelectDown;
                 @CraftingSelectDown.canceled += instance.OnCraftingSelectDown;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
             }
         }
     }
@@ -315,5 +428,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSlide(InputAction.CallbackContext context);
         void OnCraftingSelectUp(InputAction.CallbackContext context);
         void OnCraftingSelectDown(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
 }
