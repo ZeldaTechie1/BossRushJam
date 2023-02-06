@@ -8,13 +8,19 @@ public class ZombieBoss : Boss
     [SerializeField]
     private Shockwave _shockwavePrefab;
     [SerializeField]
+    private Tombstone _tombstonePrefab;
+    [SerializeField]
     private Transform _shockwaveStartLocation;
-    NavMeshAgent agent;
+    [SerializeField]
+    private Transform _throwStartLocation;
+
     public bool IsMoving { get { return _isMoving; } set { _isMoving = value; agent.isStopped = !value; _animator.SetBool("Walk", value); } }
     public bool IsAttacking;
     private int _attackRange = 5;
     private bool _isMoving;
-    string[] attackAnimations = {"Bite", "Slam", "Throw"};
+    private NavMeshAgent agent;
+
+    private string[] attackAnimations = {"Bite", "Slam", "Throw"};
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +36,7 @@ public class ZombieBoss : Boss
         }
         else if(IsAttacking)
         {
-            _animator.SetTrigger(attackAnimations[Random.Range(0, 2)]);
+            _animator.SetTrigger(attackAnimations[Random.Range(0, 3)]);
             IsAttacking = false;
         }
     }
@@ -74,8 +80,10 @@ public class ZombieBoss : Boss
         wave.Launch(_shockwaveStartLocation.position + transform.forward * 50);
     }
 
-    private void CoffinAttack()
+    public void ThrowAttack()
     {
-
+        Tombstone tombstone = Instantiate(_tombstonePrefab);
+        tombstone.transform.position = _throwStartLocation.position;
+        tombstone.Launch(_player.transform.position);
     }
 }
