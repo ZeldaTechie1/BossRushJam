@@ -7,11 +7,20 @@ using UnityEngine.InputSystem;
 public class CraftingSystem : Core.Singleton<CraftingSystem>
 {
     [System.Serializable]
-    public struct CraftingRecipe
+    public class CraftingRecipe
     {
         public string Name;
+        public bool Throwable;
         public List<ItemObject> Items;
+        [HideInInspector]
+        public bool Craftable { get { return _craftable; }  set { _craftable = value; } }
+        bool _craftable;
+        [HideInInspector]
+        public bool Crafted { get { return _crafted; } set { _crafted = value; } }
+        bool _crafted;
     }
+
+    public Action<CraftingRecipe> ItemCrafted;
 
     [SerializeField]
     public List<CraftingRecipe> CraftingRecipes;
@@ -23,6 +32,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
 
     public InputActionReference CraftingSelectUp;
     public InputActionReference CraftingSelectDown;
+    public InputActionReference CraftingButton;
 
     int _itemSelected = 0;
 
@@ -34,10 +44,13 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
 
         CraftingSelectDown.action.performed += SelectItemDown;
         CraftingSelectUp.action.performed += SelectItemUp;
+        CraftingButton.action.performed += Craft;
 
         for (int i = 0; i < CraftingRecipes.Count; i++)
         {
             CraftingUIs[i].Init(CraftingRecipes[i]);
+            CraftingRecipes[i].Craftable = false;
+            CraftingRecipes[i].Crafted = false;
         }
 
         CraftingUIs[_itemSelected].ShowCraftingItems(true);
@@ -83,9 +96,14 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
             }
             CraftingUIs[i].UpdateProgress((float)itemsHave / CraftingRecipes[i].Items.Count);
 
-            if(itemsHave == CraftingRecipes[i].Items.Count && AutoCrafting)
+            if(itemsHave == CraftingRecipes[i].Items.Count)
             {
-                //Craft
+                CraftingRecipes[i].Craftable = true;
+                if (AutoCrafting)
+                {
+                    //Craft
+                    CraftItem(CraftingRecipes[i]);
+                }
             }
         }
     }
@@ -102,6 +120,32 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
         CraftingUIs[_itemSelected].ShowCraftingItems(false);
         _itemSelected = (int)Mathf.Repeat(_itemSelected + 1, CraftingUIs.Count);
         CraftingUIs[_itemSelected].ShowCraftingItems(true);
+    }
+
+    void Craft(InputAction.CallbackContext callback)
+    {
+        CraftItem(CraftingRecipes[_itemSelected]);
+    }
+
+    void CraftItem(CraftingRecipe recipe)
+    {
+        if(recipe.Craftable && !recipe.Throwable)
+        {
+            foreach (ItemObject item in recipe.Items)
+            {
+                if (Inventory.ContainsKey(item) && Inventory[item] > 0)
+                {
+                    Inventory[item]--;
+                }
+            }
+
+            recipe.Craftable = false;
+            recipe.Crafted = true;
+
+            UpdateRecepies();
+
+            ItemCrafted?.Invoke(recipe);
+        }
     }
 
 
