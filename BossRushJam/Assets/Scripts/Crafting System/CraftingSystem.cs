@@ -95,6 +95,10 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
                     itemsHave++;
                     CraftingUIs[i].Crafting[j].GetComponent<CraftingBox>().ToggleDim(false);
                 }
+                else
+                {
+                    CraftingUIs[i].Crafting[j].GetComponent<CraftingBox>().ToggleDim(true);
+                }
             }
             CraftingUIs[i].UpdateProgress((float)itemsHave / CraftingRecipes[i].Items.Count);
 
@@ -138,6 +142,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
                 if (Inventory.ContainsKey(item) && Inventory[item] > 0)
                 {
                     Inventory[item]--;
+                    //undim Items
                 }
             }
 
