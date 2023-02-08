@@ -177,6 +177,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 67351451}
     m_Modifications:
+    - target: {fileID: 1595429371854712698, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a5a5c8e6fa0c8804d8288c6c7f8c7c68, type: 3}
+    - target: {fileID: 2111732875361361275, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a5a5c8e6fa0c8804d8288c6c7f8c7c68, type: 3}
     - target: {fileID: 2111732876336681568, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
       propertyPath: m_Name
       value: Sword
@@ -1323,6 +1331,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &570080320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 570080321}
+  - component: {fileID: 570080322}
+  m_Layer: 0
+  m_Name: Debug Item Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &570080321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570080320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 924136724}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &570080322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570080320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0616768188bb98345ae51f42829f52ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemObjects:
+  - {fileID: 11400000, guid: 0488edd2993b1444d98698a1f034ae55, type: 2}
+  - {fileID: 11400000, guid: d94a7f4623dfaac42a19ac3658c7fbef, type: 2}
+  - {fileID: 11400000, guid: 859745160c36ce8458d2f09d11dccfa0, type: 2}
+  - {fileID: 11400000, guid: 2e884463fa298f04ea37b62529649415, type: 2}
+  DroppableItems: {fileID: 1594288408531185291, guid: 115b30713525bd643bd05e1f4808084b, type: 3}
+  ItemSpawnRate: 5
 --- !u!1001 &593667357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2286,6 +2345,7 @@ Transform:
   - {fileID: 1467470075}
   - {fileID: 593667358}
   - {fileID: 1973229681}
+  - {fileID: 570080321}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5001,14 +5061,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CraftingRecipes:
   - Name: Sword
+    Throwable: 0
     Items:
     - {fileID: 11400000, guid: 0488edd2993b1444d98698a1f034ae55, type: 2}
     - {fileID: 11400000, guid: d94a7f4623dfaac42a19ac3658c7fbef, type: 2}
   - Name: Armor
+    Throwable: 0
     Items:
     - {fileID: 11400000, guid: 2e884463fa298f04ea37b62529649415, type: 2}
     - {fileID: 11400000, guid: 0488edd2993b1444d98698a1f034ae55, type: 2}
   - Name: Throwables
+    Throwable: 1
     Items:
     - {fileID: 11400000, guid: 0488edd2993b1444d98698a1f034ae55, type: 2}
     - {fileID: 11400000, guid: 859745160c36ce8458d2f09d11dccfa0, type: 2}
@@ -5020,6 +5083,7 @@ MonoBehaviour:
   AutoCrafting: 0
   CraftingSelectUp: {fileID: 809868201403281013, guid: 543567f32abfd2445bd43396f92e651f, type: 3}
   CraftingSelectDown: {fileID: 8585218173049529223, guid: 543567f32abfd2445bd43396f92e651f, type: 3}
+  CraftingButton: {fileID: -2227949966534863803, guid: 543567f32abfd2445bd43396f92e651f, type: 3}
 --- !u!1 &1974383209
 GameObject:
   m_ObjectHideFlags: 0

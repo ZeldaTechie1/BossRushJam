@@ -64,6 +64,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""CraftingButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""584908aa-21d7-499f-817d-9b20cca13a7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""c09a6762-6039-43f4-a66c-ac027bd60482"",
@@ -207,7 +216,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""af6a2f9c-62e1-42db-8507-17f8b0afb570"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -280,6 +289,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce6addcd-42e8-4761-b373-73cf197d1dde"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CraftingButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -292,6 +312,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_PlayerActionMap_Slide = m_PlayerActionMap.FindAction("Slide", throwIfNotFound: true);
         m_PlayerActionMap_CraftingSelectUp = m_PlayerActionMap.FindAction("CraftingSelectUp", throwIfNotFound: true);
         m_PlayerActionMap_CraftingSelectDown = m_PlayerActionMap.FindAction("CraftingSelectDown", throwIfNotFound: true);
+        m_PlayerActionMap_CraftingButton = m_PlayerActionMap.FindAction("CraftingButton", throwIfNotFound: true);
         m_PlayerActionMap_Attack = m_PlayerActionMap.FindAction("Attack", throwIfNotFound: true);
         m_PlayerActionMap_Look = m_PlayerActionMap.FindAction("Look", throwIfNotFound: true);
     }
@@ -357,6 +378,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_Slide;
     private readonly InputAction m_PlayerActionMap_CraftingSelectUp;
     private readonly InputAction m_PlayerActionMap_CraftingSelectDown;
+    private readonly InputAction m_PlayerActionMap_CraftingButton;
     private readonly InputAction m_PlayerActionMap_Attack;
     private readonly InputAction m_PlayerActionMap_Look;
     public struct PlayerActionMapActions
@@ -367,6 +389,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Slide => m_Wrapper.m_PlayerActionMap_Slide;
         public InputAction @CraftingSelectUp => m_Wrapper.m_PlayerActionMap_CraftingSelectUp;
         public InputAction @CraftingSelectDown => m_Wrapper.m_PlayerActionMap_CraftingSelectDown;
+        public InputAction @CraftingButton => m_Wrapper.m_PlayerActionMap_CraftingButton;
         public InputAction @Attack => m_Wrapper.m_PlayerActionMap_Attack;
         public InputAction @Look => m_Wrapper.m_PlayerActionMap_Look;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
@@ -390,6 +413,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @CraftingSelectDown.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
                 @CraftingSelectDown.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
                 @CraftingSelectDown.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingSelectDown;
+                @CraftingButton.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingButton;
+                @CraftingButton.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingButton;
+                @CraftingButton.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnCraftingButton;
                 @Attack.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnAttack;
@@ -412,6 +438,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @CraftingSelectDown.started += instance.OnCraftingSelectDown;
                 @CraftingSelectDown.performed += instance.OnCraftingSelectDown;
                 @CraftingSelectDown.canceled += instance.OnCraftingSelectDown;
+                @CraftingButton.started += instance.OnCraftingButton;
+                @CraftingButton.performed += instance.OnCraftingButton;
+                @CraftingButton.canceled += instance.OnCraftingButton;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -428,6 +457,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSlide(InputAction.CallbackContext context);
         void OnCraftingSelectUp(InputAction.CallbackContext context);
         void OnCraftingSelectDown(InputAction.CallbackContext context);
+        void OnCraftingButton(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
     }
