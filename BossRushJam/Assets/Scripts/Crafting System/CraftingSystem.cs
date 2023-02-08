@@ -60,12 +60,14 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
     {
         CraftingSelectUp.action.Enable();
         CraftingSelectDown.action.Enable();
+        CraftingButton.action.Enable();
     }
 
     public void DisableControls()
     {
         CraftingSelectUp.action.Disable();
         CraftingSelectDown.action.Disable();
+        CraftingButton.action.Disable();
     }
 
     public void ItemPickedUp(ItemObject item)
