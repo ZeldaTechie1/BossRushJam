@@ -18,7 +18,7 @@ public class DebugItemSpawner : MonoBehaviour
         DOTween.Sequence().AppendInterval(ItemSpawnRate).AppendCallback(() =>
         {
             GameObject a = Instantiate(DroppableItems, transform.position, transform.rotation);
-            a.transform.GetChild(0).GetComponent<DroppableItem>().Init(ItemObjects[Random.Range(0, ItemObjects.Count)]);
+            a.GetComponentInChildren<DroppableItem>().Init(ItemObjects[Random.Range(0, ItemObjects.Count)]);
         }).SetLoops(-1);
     }
 }
