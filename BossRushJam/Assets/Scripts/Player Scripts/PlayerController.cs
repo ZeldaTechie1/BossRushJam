@@ -29,11 +29,20 @@ public class PlayerController : MonoBehaviour
     private bool _isSliding;
     private bool _isAttacking;
     private bool _canSlide = true;
+    private float _attackTime = 0;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+        foreach (AnimationClip clip in _playerAnimator.runtimeAnimatorController.animationClips)
+        {
+            if(clip.name.Contains("Attack"))
+            {
+                _attackTime = clip.length / 2;
+                break;
+            }
+        }
     }
 
     //this gets called by the Player Input Component on this object
@@ -73,7 +82,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
-
+        if (_isAttacking)
+            return;
+        _isAttacking = true;
+        DOTween.Sequence().InsertCallback(_attackTime, () => _isAttacking = false);
     }
 
     private void FixedUpdate()
@@ -98,6 +110,7 @@ public class PlayerController : MonoBehaviour
         //animator updates
         _playerAnimator.SetFloat("Speed", _rb.velocity.magnitude);
         _playerAnimator.SetBool("isSliding", _isSliding);
+        _playerAnimator.SetBool("isAttacking", _isAttacking);
     }
 
 }
