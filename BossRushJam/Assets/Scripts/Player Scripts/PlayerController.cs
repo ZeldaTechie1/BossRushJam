@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _invincibilityLength;
     [SerializeField]private GameEvent _playerCanTakeDamageEvent;
     [SerializeField]private Animator _playerAnimator;
+    [SerializeField]private List<GameObject> _hitboxes;
+    [SerializeField]private float _baseDamage = 35;
 
     private Rigidbody _rb;
     private Vector2 _movementInput;
@@ -26,10 +28,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 _movementDirection;
     private Vector3 _cardinalMoveDirection;
     private Vector3 currentOrientation;
+    private int _lookDirectionIndex;
     private bool _isSliding;
     private bool _isAttacking;
     private bool _canSlide = true;
     private float _attackTime = 0;
+    
 
     private void Start()
     {
@@ -53,12 +57,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
-        if (_isSliding)
+        if (_isSliding || _isAttacking)
             return;
         _lookDirection = value.Get<Vector2>();
-        if(_lookDirection.magnitude > 0)
+        if (_lookDirection.magnitude > 0)
         {
-            _playerAnimator.SetInteger("LookDirection", (int)HelperFunctions.CardinalizeVector(_lookDirection));
+            _lookDirectionIndex = (int)HelperFunctions.CardinalizeVector(_lookDirection);
+            _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
         }
         
     }
@@ -77,15 +82,22 @@ public class PlayerController : MonoBehaviour
             .AppendCallback(() => _canSlide = true);//allows to slide again
         //adds an impulse force either in the current movement direction or if standing still, in the direction they are facing
         _rb.AddForce((_rb.velocity.magnitude > 0? _rb.velocity.normalized : _cardinalMoveDirection.normalized) * _slideSpeed, ForceMode.Impulse);
-        _playerAnimator.SetInteger("LookDirection", (int)HelperFunctions.CardinalizeVector(_rb.velocity));
+        _lookDirectionIndex = (int)HelperFunctions.CardinalizeVector(_rb.velocity);
+        _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
     }
 
     public void OnAttack()
     {
-        if (_isAttacking)
+        if (_isAttacking || _isSliding)
             return;
         _isAttacking = true;
-        DOTween.Sequence().InsertCallback(_attackTime, () => _isAttacking = false);
+        int hitboxIndex = _lookDirectionIndex;
+        _hitboxes[hitboxIndex].SetActive(true);
+        DOTween.Sequence().InsertCallback(_attackTime, () =>
+        {
+            _isAttacking = false;
+            _hitboxes[hitboxIndex].SetActive(false);
+        });
     }
 
     private void FixedUpdate()
@@ -113,4 +125,11 @@ public class PlayerController : MonoBehaviour
         _playerAnimator.SetBool("isAttacking", _isAttacking);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            other.GetComponent<Health>().AffectHealth(null, -_baseDamage);
+        }
+    }
 }

@@ -8,43 +8,41 @@ public class EnemyWaveController : MonoBehaviour
 
     [SerializeField]private List<GameObject> _enemiesToSpawn;//change this to have a more Generic Enemy type
     [SerializeField]private List<Transform> _spawnPoints;
-    [SerializeField]private List<int> _enemyCountPerWave;
+    [SerializeField]private List<int> _enemyCountPerPhase;
     [SerializeField]private float _enemySpawnInterval;
     [SerializeField]private float _maxIntervalDeviation;
     [SerializeField]private GameObject _player;//change this to take a Player object instead of Gameobject
 
-    [SerializeField] private List<GameObject> enemies;
-    private int _currentEnemiesAlive;
-    private int _currentWave;
-    private bool _stopSpawning;
-    private bool _waveActive;
+    [SerializeField] private List<GameObject> _currentEnemiesAlive;
+    private int _currentPhase;
 
     public void Update()
     {
         if(Input.GetKeyDown(KeyCode.End))
         {
-            StartWave();
+            StartPhase();
+        }
+        if(Input.GetKeyDown(KeyCode.Home))
+        {
+            StartNextPhase();
         }
     }
 
-    public void StartWave()
+    public void StartPhase()
     {
-        _waveActive = true;
         Sequence waveSequence = DOTween.Sequence();
-        for(int count = 0; count < _enemyCountPerWave[_currentWave]; count++)
+        for(int count = 0; count < _enemyCountPerPhase[_currentPhase]; count++)
         {
             float randomDeviation = Random.Range(0, _maxIntervalDeviation);
             waveSequence.AppendCallback(SpawnEnemy).AppendInterval(_enemySpawnInterval + randomDeviation);
         }
-        waveSequence.OnComplete(() => _stopSpawning = true);
     }
     
-    private void FinishedWave()
+    public void StartNextPhase()
     {
-        Debug.Log("Wave finished!");
-        _currentWave++;
-        _stopSpawning = false;
-        _waveActive = false;
+        Debug.Log("Next Phase!");
+        _currentPhase++;
+        StartPhase();
     }
 
     private void SpawnEnemy()
@@ -53,11 +51,10 @@ public class EnemyWaveController : MonoBehaviour
         {
             throw new System.Exception("EnemyWaveController is not properly setup and cannot spawn enemies!");
         }
-        if(_stopSpawning)
-            return;
         if (_player == null)
             return;
-
+        if (_currentEnemiesAlive.Count >= _enemyCountPerPhase[_currentPhase])
+            return;
         int randEnemy = Random.Range(0, _enemiesToSpawn.Count);
         int randSpawnPoint = Random.Range(0,_spawnPoints.Count);
         GameObject spawnedEnemy = Instantiate(_enemiesToSpawn[randEnemy], _spawnPoints[randSpawnPoint].position, Quaternion.identity,this.transform);
@@ -65,30 +62,27 @@ public class EnemyWaveController : MonoBehaviour
         {
             throw new System.Exception("Player is null! Waduhek");
         }
-        enemies.Add(spawnedEnemy);//testing for emotional damage
+        _currentEnemiesAlive.Add(spawnedEnemy);//testing for emotional damage
         spawnedEnemy.GetComponent<Enemy>().SetPlayer(_player);
-        _currentEnemiesAlive++;
     }
 
     public void EnemyDied(Component sender, object data)
     {
-        if (!_waveActive)
-            return;
-        enemies.RemoveAt(enemies.IndexOf(sender.gameObject));
+        _currentEnemiesAlive.RemoveAt(_currentEnemiesAlive.IndexOf(sender.gameObject));
         Destroy(sender.gameObject);
         Debug.Log("Enemy Died!");
-        _currentEnemiesAlive--;
-        if (_currentEnemiesAlive == 0)
+        if(_currentEnemiesAlive.Count < _enemyCountPerPhase[_currentPhase])
         {
-            FinishedWave();
+            float randomDeviation = Random.Range(0, _maxIntervalDeviation);
+            DOTween.Sequence().InsertCallback(_enemySpawnInterval + randomDeviation, SpawnEnemy);
         }
     }
 
     //TESTING PURPOSES PLEASE DO NOT USE, K THX!
-    public void HurtRandomEnemy()
+    /*public void HurtRandomEnemy()
     {
         Debug.Log("hurting random enemy");
-        int randEnemy = Random.Range(0,enemies.Count);
-        enemies[randEnemy].GetComponent<Health>()?.AffectHealth(null, data: 5f);
-    }
+        int randEnemy = Random.Range(0,_currentEnemiesAlive.Count);
+        _currentEnemiesAlive[randEnemy].GetComponent<Health>()?.AffectHealth(null, data: 5f);
+    }*/
 }

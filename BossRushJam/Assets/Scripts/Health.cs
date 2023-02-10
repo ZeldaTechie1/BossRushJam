@@ -46,7 +46,8 @@ public class Health : MonoBehaviour
             return;
         }
         _health += healthDelta;
-        _health = Mathf.Clamp(_health, 0, _maxHealth);
+        _health = Mathf.Clamp(_health, -1000, _maxHealth);
+        Debug.Log(_health);
         if (_health <= 0)
         {
             _deathEvent.Invoke(this);

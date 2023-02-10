@@ -72,6 +72,8 @@ public class Enemy : MonoBehaviour
         //TODO: this could definitely be done better but I just want it to work lol
         DOTween.Sequence().InsertCallback(_attackHurtCheck, () =>
         {
+            if (this == null)
+                return;
             _renderer.material.color = Color.red;
             Vector3 instancedPlayerPosition = _playerPosition;
             if(Vector3.Distance(instancedPlayerPosition, this.transform.position) <= _attackDistance)//if the player is still in range when this happens then we can hurt the player
