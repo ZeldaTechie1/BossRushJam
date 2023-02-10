@@ -13,12 +13,19 @@ public class ZombieBoss : Boss
     private Transform _shockwaveStartLocation;
     [SerializeField]
     private Transform _throwStartLocation;
+    [SerializeField]
+    private Transform[] _shockwaveWaypoints;
+    [SerializeField]
+    private Transform[] _throwWaypoints;
+    [SerializeField]
+    private float _waypointThreshold = 0.5f;
 
     public bool IsMoving { get { return _isMoving; } set { _isMoving = value; agent.isStopped = !value; _animator.SetBool("Walk", value); } }
     public bool IsAttacking;
     private int _attackRange = 5;
     private bool _isMoving;
     private NavMeshAgent agent;
+    private Transform _currentWaypoint;
 
     private string[] attackAnimations = {"Bite", "Slam", "Throw"};
     // Start is called before the first frame update
@@ -53,13 +60,24 @@ public class ZombieBoss : Boss
 
     public override void Move()
     {
-        if (Vector3.Distance(transform.position, _player.transform.position) < _attackRange)
+        if (_currentWaypoint == null)
         {
-            IsMoving = false;
-            agent.velocity = Vector3.zero;
-            return;
+            _currentWaypoint = _shockwaveWaypoints[Random.Range(0, _shockwaveWaypoints.Length)];
+            _currentWaypoint.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+            agent.SetDestination(_currentWaypoint.position);
         }
-        agent.destination = _player.transform.position;
+        if (agent.isStopped || agent.isPathStale || Vector3.Distance(transform.position, _currentWaypoint.position) <= _waypointThreshold)
+        {
+            _currentWaypoint.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+            _currentWaypoint = null;
+        }
+        //if (Vector3.Distance(transform.position, _player.transform.position) < _attackRange)
+        //{
+        //    IsMoving = false;
+        //    agent.velocity = Vector3.zero;
+        //    return;
+        //}
+        //agent.destination = _player.transform.position;
     }
 
     public override void Spawn()
