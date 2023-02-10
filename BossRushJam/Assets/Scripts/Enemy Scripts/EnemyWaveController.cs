@@ -12,6 +12,8 @@ public class EnemyWaveController : MonoBehaviour
     [SerializeField]private float _enemySpawnInterval;
     [SerializeField]private float _maxIntervalDeviation;
     [SerializeField]private GameObject _player;//change this to take a Player object instead of Gameobject
+    [SerializeField]private GameObject _droppableItemPrefab;
+    [SerializeField]private List<ItemObject> _itemsToDrop;
 
     [SerializeField] private List<GameObject> _currentEnemiesAlive;
     private int _currentPhase;
@@ -68,6 +70,8 @@ public class EnemyWaveController : MonoBehaviour
 
     public void EnemyDied(Component sender, object data)
     {
+        GameObject a = Instantiate(_droppableItemPrefab, sender.transform.position, Quaternion.identity);
+        a.GetComponentInChildren<DroppableItem>().Init(_itemsToDrop[Random.Range(0, _itemsToDrop.Count)]);
         _currentEnemiesAlive.RemoveAt(_currentEnemiesAlive.IndexOf(sender.gameObject));
         Destroy(sender.gameObject);
         Debug.Log("Enemy Died!");
@@ -84,5 +88,5 @@ public class EnemyWaveController : MonoBehaviour
         Debug.Log("hurting random enemy");
         int randEnemy = Random.Range(0,_currentEnemiesAlive.Count);
         _currentEnemiesAlive[randEnemy].GetComponent<Health>()?.AffectHealth(null, data: 5f);
-    }*/
+    }*/ 
 }

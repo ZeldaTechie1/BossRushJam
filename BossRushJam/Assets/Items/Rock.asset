@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed0f9949ae779f4bb746bab4fd536d3, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: 
-  ItemTexture: {fileID: 21300000, guid: 7f76ad3ef68595b4e9ce2bbcadcee0e3, type: 3}
+  ItemTexture: {fileID: 21300000, guid: b9040932387ee9344b50a34e19980975, type: 3}
   Name: Rock

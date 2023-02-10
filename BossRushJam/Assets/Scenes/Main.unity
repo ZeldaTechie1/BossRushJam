@@ -285,6 +285,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2388507182773872721, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388507182773872721, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723066312375955006, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 86.9928
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723066312375955006, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 66.67
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
 --- !u!224 &12604594 stripped
@@ -410,6 +426,22 @@ PrefabInstance:
     - target: {fileID: 2111732876336681569, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388507182773872721, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388507182773872721, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723066312375955006, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 130.5479
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723066312375955006, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 88.333725
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
@@ -1051,6 +1083,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2388507182773872721, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388507182773872721, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723066312375955006, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 86.9928
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723066312375955006, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 66.67
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5958fb5b00e9948931c6e6592fb80b, type: 3}
 --- !u!224 &355955199 stripped
@@ -1352,7 +1400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &570080321
 Transform:
   m_ObjectHideFlags: 0
@@ -1447,9 +1495,49 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 343750680}
     - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _droppableItemPrefab
+      value: 
+      objectReference: {fileID: 1594288408531185291, guid: 115b30713525bd643bd05e1f4808084b, type: 3}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
       propertyPath: _spawnPoints.Array.size
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0488edd2993b1444d98698a1f034ae55, type: 2}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e884463fa298f04ea37b62529649415, type: 2}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 859745160c36ce8458d2f09d11dccfa0, type: 2}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: d94a7f4623dfaac42a19ac3658c7fbef, type: 2}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0488edd2993b1444d98698a1f034ae55, type: 2}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e884463fa298f04ea37b62529649415, type: 2}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 859745160c36ce8458d2f09d11dccfa0, type: 2}
+    - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
+      propertyPath: _itemsToDrop.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: d94a7f4623dfaac42a19ac3658c7fbef, type: 2}
     - target: {fileID: 6521953867266214999, guid: 1e6803181aa04624a99a9a19feecd85b, type: 3}
       propertyPath: _spawnPoints.Array.data[0]
       value: 
