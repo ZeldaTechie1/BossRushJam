@@ -64,58 +64,67 @@ public class ZombieBoss : Boss
     public override void Move()
     {
         // Throw
-        if (_currentTarget == null)
+        if (_health.GetHealthPercentage() <= .5f)
         {
-            _currentTarget = _throwWaypoints[Random.Range(0, _throwWaypoints.Length)];
-            agent.SetDestination(_currentTarget.position);
-        }
-        if (agent.isStopped || agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
-        {
-            IsMoving = false;
-            _currentTarget = null;
-            _animator.SetBool(attackAnimations[2], true);
+            if (_currentTarget == null)
+            {
+                _currentTarget = _throwWaypoints[Random.Range(0, _throwWaypoints.Length)];
+                agent.SetDestination(_currentTarget.position);
+            }
+            if (agent.isStopped || agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
+            {
+                IsMoving = false;
+                _currentTarget = null;
+                _animator.SetBool(attackAnimations[2], true);
+            }
         }
         // Shockwave
-        //if (_currentTarget == null && IsMoving)
-        //{
-        //    bool left = Random.Range(0, 2) == 0;
-        //    int index = Random.Range(0, _shockwaveWaypointsLeft.Length);
-        //    if (left)
-        //    {
-        //        _currentTarget = _shockwaveWaypointsLeft[index];
-        //        _lookAtTarget = _shockwaveWaypointsRight[index];
-        //    }
-        //    else
-        //    {
-        //        _currentTarget = _shockwaveWaypointsRight[index];
-        //        _lookAtTarget = _shockwaveWaypointsLeft[index];
-        //    }
-        //    agent.SetDestination(_currentTarget.position);
-        //}
-        //if (agent.isStopped || agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
-        //{
-        //    IsMoving = false;
-        //    _currentTarget = null;
-        //    agent.ResetPath();
-        //    transform.DOLookAt(_lookAtTarget.position, 0.5f).OnComplete(() =>
-        //    {
-        //        _animator.SetTrigger(attackAnimations[1]);
-        //    });
-        //}
+        else if (_health.GetHealthPercentage() <= .75f)
+        {
+            if (_currentTarget == null && IsMoving)
+            {
+                bool left = Random.Range(0, 2) == 0;
+                int index = Random.Range(0, _shockwaveWaypointsLeft.Length);
+                if (left)
+                {
+                    _currentTarget = _shockwaveWaypointsLeft[index];
+                    _lookAtTarget = _shockwaveWaypointsRight[index];
+                }
+                else
+                {
+                    _currentTarget = _shockwaveWaypointsRight[index];
+                    _lookAtTarget = _shockwaveWaypointsLeft[index];
+                }
+                agent.SetDestination(_currentTarget.position);
+            }
+            if (agent.isStopped || agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
+            {
+                IsMoving = false;
+                _currentTarget = null;
+                agent.ResetPath();
+                transform.DOLookAt(_lookAtTarget.position, 0.5f).OnComplete(() =>
+                {
+                    _animator.SetTrigger(attackAnimations[1]);
+                });
+            }
+        }
         // Chase
-        //Vector3 directionToTarget = _player.transform.position - transform.position;
-        //if (directionToTarget.magnitude < _attackRange)
-        //{
+        else
+        {
+            Vector3 directionToTarget = _player.transform.position - transform.position;
+            if (directionToTarget.magnitude < _attackRange)
+            {
 
-        //    if (Mathf.Acos(Vector3.Dot(directionToTarget.normalized, transform.forward)) * Mathf.Rad2Deg < 25)
-        //    {
-        //        _animator.SetTrigger(attackAnimations[0]);
-        //        IsMoving = false;
-        //        agent.velocity = Vector3.zero;
-        //        return;
-        //    }
-        //}
-        //agent.destination = _player.transform.position;
+                if (Mathf.Acos(Vector3.Dot(directionToTarget.normalized, transform.forward)) * Mathf.Rad2Deg < 25)
+                {
+                    _animator.SetTrigger(attackAnimations[0]);
+                    IsMoving = false;
+                    agent.velocity = Vector3.zero;
+                    return;
+                }
+            }
+            agent.destination = _player.transform.position;
+        }
     }
 
     public override void Spawn()

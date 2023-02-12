@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _slideCoolDown;
     [SerializeField]private float _invincibilityLength;
     [SerializeField]private GameEvent _playerCanTakeDamageEvent;
-    [SerializeField]private Animator _playerAnimator;
+    [SerializeField]private List<Animator> _playerAnimators;
     [SerializeField]private List<GameObject> _hitboxes;
     [SerializeField]private float _baseDamage = 35;
     [SerializeField]private float _attackCoolDown;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
-        foreach (AnimationClip clip in _playerAnimator.runtimeAnimatorController.animationClips)
+        foreach (AnimationClip clip in _playerAnimators[0].runtimeAnimatorController.animationClips)
         {
             if(clip.name.Contains("Attack"))
             {
@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour
         if (_lookDirection.magnitude > 0)
         {
             _lookDirectionIndex = (int)HelperFunctions.CardinalizeVector(_lookDirection);
-            _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
+            foreach (Animator _playerAnimator in _playerAnimators)
+                _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
         }
         
     }
@@ -86,7 +87,8 @@ public class PlayerController : MonoBehaviour
         //adds an impulse force either in the current movement direction or if standing still, in the direction they are facing
         _rb.AddForce((_rb.velocity.magnitude > 0? _rb.velocity.normalized : _cardinalMoveDirection.normalized) * _slideSpeed, ForceMode.Impulse);
         _lookDirectionIndex = (int)HelperFunctions.CardinalizeVector(_rb.velocity);
-        _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
+        foreach(Animator _playerAnimator in _playerAnimators)
+            _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
     }
 
     public void OnAttack()
@@ -108,6 +110,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (health.IsStunned)
+            return;
         currentOrientation = _mainCamera.transform.forward;
         currentOrientation.y = 0;
         currentOrientation.Normalize();
@@ -117,7 +121,7 @@ public class PlayerController : MonoBehaviour
             _movementDirection.Normalize();
         }
         this.transform.forward = currentOrientation;
-        if(!_isSliding || health.IsStunned)
+        if(!_isSliding)
         {
             _rb.velocity = _movementDirection * _movementSpeed;
         }
@@ -126,9 +130,13 @@ public class PlayerController : MonoBehaviour
             _cardinalMoveDirection = HelperFunctions.VectorDirections[(int)HelperFunctions.CardinalizeVector(_rb.velocity)];
         }
         //animator updates
-        _playerAnimator.SetFloat("Speed", _rb.velocity.magnitude);
-        _playerAnimator.SetBool("isSliding", _isSliding);
-        _playerAnimator.SetBool("isAttacking", _isAttacking);
+        foreach(Animator _playerAnimator in _playerAnimators)
+        {
+            _playerAnimator.SetFloat("Speed", _rb.velocity.magnitude);
+            _playerAnimator.SetBool("isSliding", _isSliding);
+            _playerAnimator.SetBool("isAttacking", _isAttacking);
+        }
+        
     }
 
     public void OnTriggerEnter(Collider other)

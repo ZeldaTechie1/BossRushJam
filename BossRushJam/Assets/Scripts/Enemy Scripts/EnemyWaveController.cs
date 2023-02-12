@@ -16,21 +16,17 @@ public class EnemyWaveController : MonoBehaviour
     [SerializeField]private List<ItemObject> _itemsToDrop;
 
     [SerializeField] private List<GameObject> _currentEnemiesAlive;
-    private int _currentPhase;
+    private int _currentPhase = -1;
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.End))
-        {
-            StartPhase();
-        }
         if(Input.GetKeyDown(KeyCode.Home))
         {
             StartNextPhase();
         }
     }
 
-    public void StartPhase()
+    private void StartPhase()
     {
         Sequence waveSequence = DOTween.Sequence();
         for(int count = 0; count < _enemyCountPerPhase[_currentPhase]; count++)

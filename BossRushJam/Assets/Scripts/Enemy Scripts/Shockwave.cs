@@ -10,18 +10,17 @@ public class Shockwave : Projectile
     private List<Collider> _hitColliders = new List<Collider>();
     public override void HandleCollision(Collider other)
     {
+        Health health = other.GetComponent<Health>();
+        if (!health.CanTakeDamage) { return; }
         if (_hitColliders.Contains(other)) { return; }
         _hitColliders.Add(other);
         other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        if (other.tag == "Player")
-        { 
-            PlayerController player = other.GetComponent<PlayerController>();
-            player.GetComponent<PlayerInput>().enabled = false;
-            player.enabled = false;
-            DOTween.Sequence().SetDelay(0.5f + 1f - _moveSequence.ElapsedPercentage()).AppendCallback(() => { player.enabled = true; player.GetComponent<PlayerInput>().enabled = true; });
-        }
+        health.AffectHealth(null, -15f);
+        health.IsStunned = true;
+        DOTween.Sequence().SetDelay(0.5f + 1f - _moveSequence.ElapsedPercentage()).AppendCallback(() => { if (health == null) { return; } health.IsStunned = false; });
+
         other.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * (2 - _moveSequence.ElapsedPercentage()), ForceMode.Impulse);
-        DOTween.Sequence().SetDelay(0.5f + 1 - _moveSequence.ElapsedPercentage()).AppendCallback(() => { other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
+        DOTween.Sequence().SetDelay(0.5f + 1 - _moveSequence.ElapsedPercentage()).AppendCallback(() => { if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
     }
 
     public override void Launch(GameObject target)
