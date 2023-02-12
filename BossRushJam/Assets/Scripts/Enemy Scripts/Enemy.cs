@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]private GameEvent HurtPlayer;
     [SerializeField]private float _attackDistanceBuffer;
     [SerializeField]private Renderer _renderer;
+    [SerializeField]private Animator _spriteAnimator;
 
     private Rigidbody _rb;
     private GameObject _player;
@@ -37,9 +38,10 @@ public class Enemy : MonoBehaviour
         health = this.GetComponent<Health>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         MoveTowardsPlayer();
+        _spriteAnimator.SetBool("isAttacking", _isAttacking);
     }
 
     private void MoveTowardsPlayer()
