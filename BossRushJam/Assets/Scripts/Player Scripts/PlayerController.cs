@@ -1,6 +1,8 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _slideCoolDown;
     [SerializeField]private float _invincibilityLength;
     [SerializeField]private GameEvent _playerCanTakeDamageEvent;
+    [SerializeField]private List<SpriteRenderer> ItemsHeld;
     [SerializeField]private List<Animator> _playerAnimators;
     [SerializeField]private List<GameObject> _hitboxes;
     [SerializeField]private float _baseDamage = 35;
@@ -137,6 +140,29 @@ public class PlayerController : MonoBehaviour
             _playerAnimator.SetBool("isAttacking", _isAttacking);
         }
         
+    }
+
+    public void OnCraftingSelectUp()
+    {
+        UpdateItemHeld();
+    }
+    public void OnCraftingSelectDown()
+    {
+        UpdateItemHeld();
+    }
+
+    private void UpdateItemHeld()
+    {
+        foreach(SpriteRenderer item in ItemsHeld)
+        {
+            item.enabled = false;
+        }
+        if (    CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted 
+            ||  CraftingSystem.Instance.ItemSelected == 0 
+            || !CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable)
+        {
+            ItemsHeld[CraftingSystem.Instance.ItemSelected].enabled = true;
+        }
     }
 
     public void OnTriggerEnter(Collider other)

@@ -34,7 +34,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
     public InputActionReference CraftingSelectDown;
     public InputActionReference CraftingButton;
 
-    int _itemSelected = 0;
+    public int ItemSelected = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +53,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
             CraftingRecipes[i].Crafted = false;
         }
 
-        CraftingUIs[_itemSelected].ShowCraftingItems(true);
+        CraftingUIs[ItemSelected].ShowCraftingItems(true);
     }
 
     public void EnableControls()
@@ -80,10 +80,10 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
         {
             Inventory.Add(item, 1);
         }
-        UpdateRecepies();
+        UpdateRecipes();
     }
 
-    public void UpdateRecepies()
+    public void UpdateRecipes()
     {
         for (int i = 0; i < CraftingRecipes.Count; i++)
         {
@@ -116,21 +116,21 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
 
     void SelectItemUp(InputAction.CallbackContext callback)
     {
-        CraftingUIs[_itemSelected].ShowCraftingItems(false);
-        _itemSelected = (int)Mathf.Repeat(_itemSelected - 1, CraftingUIs.Count);
-        CraftingUIs[_itemSelected].ShowCraftingItems(true);
+        CraftingUIs[ItemSelected].ShowCraftingItems(false);
+        ItemSelected = (int)Mathf.Repeat(ItemSelected - 1, CraftingUIs.Count);
+        CraftingUIs[ItemSelected].ShowCraftingItems(true);
     }
 
     void SelectItemDown(InputAction.CallbackContext callback)
     {
-        CraftingUIs[_itemSelected].ShowCraftingItems(false);
-        _itemSelected = (int)Mathf.Repeat(_itemSelected + 1, CraftingUIs.Count);
-        CraftingUIs[_itemSelected].ShowCraftingItems(true);
+        CraftingUIs[ItemSelected].ShowCraftingItems(false);
+        ItemSelected = (int)Mathf.Repeat(ItemSelected + 1, CraftingUIs.Count);
+        CraftingUIs[ItemSelected].ShowCraftingItems(true);
     }
 
     void Craft(InputAction.CallbackContext callback)
     {
-        CraftItem(CraftingRecipes[_itemSelected]);
+        CraftItem(CraftingRecipes[ItemSelected]);
     }
 
     void CraftItem(CraftingRecipe recipe)
@@ -149,7 +149,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
             recipe.Craftable = false;
             recipe.Crafted = true;
 
-            UpdateRecepies();
+            UpdateRecipes();
 
             ItemCrafted?.Invoke(recipe);
         }

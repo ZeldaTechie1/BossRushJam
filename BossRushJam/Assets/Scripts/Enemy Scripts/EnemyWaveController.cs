@@ -1,9 +1,10 @@
+using Core;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWaveController : MonoBehaviour
+public class EnemyWaveController : Singleton<Enemy>
 {
 
     [SerializeField]private List<GameObject> _enemiesToSpawn;//change this to have a more Generic Enemy type
