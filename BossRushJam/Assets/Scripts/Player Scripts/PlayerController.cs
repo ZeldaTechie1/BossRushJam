@@ -10,7 +10,6 @@ using UnityEngine.Windows;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-
     [SerializeField]private Camera _mainCamera;
     [SerializeField]private float _movementSpeed;
     [SerializeField]private float _slideLength;
@@ -33,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool _isAttacking;
     private bool _canSlide = true;
     private float _attackTime = 0;
+    private Health health;
     
 
     private void Start()
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
                 break;
             }
         }
+        health = this.GetComponent<Health>();
     }
 
     //this gets called by the Player Input Component on this object
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSlide()
     {
-        if(!_canSlide)
+        if(!_canSlide || health.IsStunned)
             return;
         _playerCanTakeDamageEvent.Invoke(data: false);
         _isSliding = true;
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
-        if (_isAttacking || _isSliding)
+        if (_isAttacking || _isSliding || health.IsStunned)
             return;
         _isAttacking = true;
         int hitboxIndex = _lookDirectionIndex;
@@ -111,7 +112,7 @@ public class PlayerController : MonoBehaviour
             _movementDirection.Normalize();
         }
         this.transform.forward = currentOrientation;
-        if(!_isSliding)
+        if(!_isSliding || health.IsStunned)
         {
             _rb.velocity = _movementDirection * _movementSpeed;
         }

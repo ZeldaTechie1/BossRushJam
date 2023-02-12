@@ -6,17 +6,19 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public bool CanTakeDamage;
+    public bool IsStunned;
+
     [SerializeField]private float _maxHealth;
     [SerializeField]private GameEvent _deathEvent;
     [SerializeField]private float _health;
-    [SerializeField]private bool _canTakeDamage;
 
     private bool isDead;
 
     public void Start()
     {
         _health = _maxHealth;
-        _canTakeDamage = true;
+        CanTakeDamage = true;
     }
 
     public float GetHealthPercentage()
@@ -37,7 +39,7 @@ public class Health : MonoBehaviour
         
         float healthDelta = (float)data;
         Debug.Log($"Doing the health thingy {healthDelta}");
-        if (!_canTakeDamage)
+        if (!CanTakeDamage)
         {
             return;
         }
@@ -61,6 +63,6 @@ public class Health : MonoBehaviour
         {
             throw new System.Exception($"Wrong data when calling this function! Expecting boolean and received {data.GetType()}");
         }
-        _canTakeDamage = (bool)data;
+        CanTakeDamage = (bool)data;
     }
 }
