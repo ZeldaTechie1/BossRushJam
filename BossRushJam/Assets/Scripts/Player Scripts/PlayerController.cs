@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private Animator _playerAnimator;
     [SerializeField]private List<GameObject> _hitboxes;
     [SerializeField]private float _baseDamage = 35;
+    [SerializeField]private float _attackCoolDown;
 
     private Rigidbody _rb;
     private Vector2 _movementInput;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool _isSliding;
     private bool _isAttacking;
     private bool _canSlide = true;
+    private bool _canAttack = true;
     private float _attackTime = 0;
     private Health health;
     
@@ -89,16 +91,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
-        if (_isAttacking || _isSliding || health.IsStunned)
+        if (_isAttacking || _isSliding || health.IsStunned || !_canAttack)
             return;
         _isAttacking = true;
+        _canAttack = false;
         int hitboxIndex = _lookDirectionIndex;
         _hitboxes[hitboxIndex].SetActive(true);
-        DOTween.Sequence().InsertCallback(_attackTime, () =>
-        {
-            _isAttacking = false;
-            _hitboxes[hitboxIndex].SetActive(false);
-        });
+        DOTween.Sequence()
+            .InsertCallback(_attackTime, () =>
+            {
+                _isAttacking = false;
+                _hitboxes[hitboxIndex].SetActive(false);
+            })
+            .InsertCallback(_attackCoolDown, () => _canAttack = true);
     }
 
     private void FixedUpdate()
