@@ -17,7 +17,7 @@ public abstract class Projectile : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    public abstract void Launch(Vector3 target);
+    public abstract void Launch(GameObject target);
 
     public abstract void HandleCollision(Collider other);
 

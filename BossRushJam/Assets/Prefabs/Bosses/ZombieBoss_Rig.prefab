@@ -10620,29 +10620,18 @@ MonoBehaviour:
   _tombstonePrefab: {fileID: 8953335269097578198, guid: 2c6daf61cfbf26c42a98efc74352c377, type: 3}
   _shockwaveStartLocation: {fileID: 4124933985747221347}
   _throwStartLocation: {fileID: 975918141768732828}
-  _shockwaveWaypoints:
+  _shockwaveWaypointsLeft:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _shockwaveWaypointsRight:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _throwWaypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _throwWaypoints: []
   _waypointThreshold: 1
   IsAttacking: 0
 --- !u!114 &9026911900392142615
@@ -10671,10 +10660,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 3
-  m_Speed: 5.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 360
+  m_AngularSpeed: 90
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

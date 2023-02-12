@@ -21,7 +21,7 @@ public class Coffin : Projectile
         throw new System.NotImplementedException();
     }
 
-    public override void Launch(Vector3 target)
+    public override void Launch(GameObject target)
     {
         throw new System.NotImplementedException();
     }
