@@ -157,9 +157,9 @@ public class PlayerController : MonoBehaviour
         {
             item.enabled = false;
         }
-        if (    CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted 
-            ||  CraftingSystem.Instance.ItemSelected == 0 
-            || !CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable)
+        if (    (CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted 
+            && !CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable)
+            ||   CraftingSystem.Instance.ItemSelected == 0)
         {
             ItemsHeld[CraftingSystem.Instance.ItemSelected].enabled = true;
         }
