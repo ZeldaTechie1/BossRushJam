@@ -369,7 +369,7 @@
 			<value>7.2727272727272663</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>12</value>
+			<value>1</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{e1a2a11d-312e-4f41-8161-6671c27730b9}</destination>
