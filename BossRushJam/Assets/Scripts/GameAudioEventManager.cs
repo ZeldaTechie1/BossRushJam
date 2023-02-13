@@ -73,6 +73,6 @@ public class GameAudioEventManager : MonoBehaviour
 
     public void TransitionBossMusicPhase(int boss_phase)
     {
-        curr_bgm.setParameterByName("BossMusicPhase", boss_phase);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("BossMusicPhase", boss_phase);
     }
 }
