@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField]private float _health;
 
     private bool isDead;
+    public Action HealthAffected;
 
     public void Start()
     {
@@ -54,6 +55,10 @@ public class Health : MonoBehaviour
         {
             _deathEvent.Invoke(this);
             isDead = true;
+        }
+        else
+        {
+            HealthAffected?.Invoke();
         }
     }
     

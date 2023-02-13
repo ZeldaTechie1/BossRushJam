@@ -19,10 +19,13 @@ public class Tombstone : Projectile
 
     public override void HandleCollision(Collider other)
     {
+        Health health = GetComponent<Health>();
+        if (health == null || !health.CanTakeDamage) { return; }
         if (_hitColliders.Contains(other)) { return; }
         _hitColliders.Add(other);
+        health.AffectHealth(null, -25f);
         other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        DOTween.Sequence().SetDelay(1).AppendCallback(() => { other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
+        DOTween.Sequence().SetDelay(1).AppendCallback(() => {if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
     }
 
     public override void Launch(GameObject target)
@@ -34,8 +37,8 @@ public class Tombstone : Projectile
         {
             _tombstoneRenderer.transform.position = new Vector3(originalPos.x, _tombstoneRenderer.transform.position.y, originalPos.z);
             transform.position = target.transform.position;
-            _shadowRenderer.material.DOFade(0.75f, 2f);
-        }).AppendInterval(1f).Append(_tombstoneRenderer.transform.DOLocalMoveY(0, 0.5f)).AppendCallback(() =>
+            _shadowRenderer.material.DOFade(0.75f, 0.5f);
+        }).AppendInterval(0.25f).Append(_tombstoneRenderer.transform.DOLocalMoveY(0, 0.25f)).AppendCallback(() =>
         {
             _shadowRenderer.material.DOFade(0, 1f);
             _tombstoneRenderer.material.DOFade(0, 1f);

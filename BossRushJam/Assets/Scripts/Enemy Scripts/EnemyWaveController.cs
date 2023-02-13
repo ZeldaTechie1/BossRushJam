@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWaveController : Singleton<Enemy>
+public class EnemyWaveController : Singleton<EnemyWaveController>
 {
 
     [SerializeField]private List<GameObject> _enemiesToSpawn;//change this to have a more Generic Enemy type

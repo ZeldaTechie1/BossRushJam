@@ -11,14 +11,14 @@ public class Shockwave : Projectile
     public override void HandleCollision(Collider other)
     {
         Health health = other.GetComponent<Health>();
-        if (!health.CanTakeDamage) { return; }
+        if (health == null || !health.CanTakeDamage) { return; }
         if (_hitColliders.Contains(other)) { return; }
         _hitColliders.Add(other);
         other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         health.AffectHealth(null, -15f);
         health.IsStunned = true;
         DOTween.Sequence().SetDelay(0.5f + 1f - _moveSequence.ElapsedPercentage()).AppendCallback(() => { if (health == null) { return; } health.IsStunned = false; });
-
+        other.GetComponent<Rigidbody>().velocity = Vector3.zero;
         other.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * (2 - _moveSequence.ElapsedPercentage()), ForceMode.Impulse);
         DOTween.Sequence().SetDelay(0.5f + 1 - _moveSequence.ElapsedPercentage()).AppendCallback(() => { if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
     }
