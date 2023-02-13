@@ -68,11 +68,19 @@ public class CraftingUI : MonoBehaviour
         if(recipe == _currentRecipe)
         {
             GetComponent<Outline>().enabled = true;
+            SetOpacity(1);
         }
     }
 
     public void ItemBroke()
     {
         GetComponent<Outline>().enabled = false;
+    }
+
+    public void SetOpacity(float value)
+    {
+        Color color = GetComponent<Outline>().effectColor;
+        color.a = value;
+        GetComponent<Outline>().effectColor = color;
     }
 }

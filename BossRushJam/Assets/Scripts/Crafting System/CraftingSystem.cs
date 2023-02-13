@@ -13,6 +13,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
         public bool Throwable;
         public bool Wearable;
         public float Durability;
+        public float MaxDurability;
         public List<ItemObject> Items;
         [HideInInspector]
         public bool Craftable { get { return _craftable; }  set { _craftable = value; } }
@@ -150,6 +151,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
 
             recipe.Craftable = false;
             recipe.Crafted = true;
+            recipe.Durability = recipe.MaxDurability;
 
             UpdateRecipes();
 
@@ -159,6 +161,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
     public void RemoveDurability(int durabilityLoss)
     {
         CraftingRecipes[ItemSelected].Durability -= durabilityLoss;
+        CraftingUIs[ItemSelected].SetOpacity(CraftingRecipes[ItemSelected].Durability/ CraftingRecipes[ItemSelected].MaxDurability);
         if (CraftingRecipes[ItemSelected].Durability <= 0 && ItemSelected != 0)
         {
             CraftingRecipes[ItemSelected].Crafted = false;

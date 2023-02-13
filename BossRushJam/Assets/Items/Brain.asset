@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed0f9949ae779f4bb746bab4fd536d3, type: 3}
   m_Name: Brain
   m_EditorClassIdentifier: 
-  ItemTexture: {fileID: 0}
-  Name: 
+  ItemTexture: {fileID: 21300000, guid: d392aefc165352247bc082d70032aaf7, type: 3}
+  Name: Brain

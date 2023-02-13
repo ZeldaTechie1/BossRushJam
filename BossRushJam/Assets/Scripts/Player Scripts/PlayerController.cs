@@ -100,9 +100,9 @@ public class PlayerController : MonoBehaviour
             return;
         _isAttacking = true;
         _canAttack = false;
-        if(CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable)
+        if(CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable && CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted)
         {
-
+            CraftingSystem.Instance.RemoveDurability(1);
         }
         else
         {
@@ -149,6 +149,11 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void OnCraftingButton()
+    {
+        UpdateItemHeld();
+    }
+
     public void OnCraftingSelectUp()
     {
         UpdateItemHeld();
@@ -169,6 +174,10 @@ public class PlayerController : MonoBehaviour
             ||   CraftingSystem.Instance.ItemSelected == 0)
         {
             ItemsHeld[CraftingSystem.Instance.ItemSelected].enabled = true;
+        }
+        else
+        {
+            ItemsHeld[0].enabled = true;
         }
     }
 
