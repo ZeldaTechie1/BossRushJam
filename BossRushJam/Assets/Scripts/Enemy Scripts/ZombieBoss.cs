@@ -35,7 +35,7 @@ public class ZombieBoss : Boss
     private float _nextPhaseThreshold = 0.75f;
     private int _currentPhase = 0;
     private string[] attackAnimations = {"Bite", "Slam", "Throw"};
-    private float[] _phaseThresholds = { 0.75f, 0.5f };
+    private float[] _phaseThresholds = { 0.66f, 0.33f };
     private int _maxPhase;
     private int _currentAttack = -1;
 
@@ -50,6 +50,10 @@ public class ZombieBoss : Boss
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            CheckForPhaseChange(true);
+        }
         if (!IsMoving)
         {
             return;
@@ -130,29 +134,35 @@ public class ZombieBoss : Boss
             _lookAtTarget = null;
             agent.ResetPath();
         }
-
+        Color color = Color.white;
         if (_currentPhase == 1)
         {
+            color = Color.yellow;
             _animator.SetFloat("Speed", 1.25f);
             agent.speed = 5;
             agent.angularSpeed = 180;
         }
         if (_currentPhase == _maxPhase)
         {
+            color = Color.red;
             _animator.SetFloat("Speed", 1.5f);
             agent.speed = 10;
             agent.angularSpeed = 360;
             _animator.SetBool("CanTeleport", true);
         }
+        foreach(SkinnedMeshRenderer mr in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            mr.material.color = color;
+        }
     }
 
-    private void CheckForPhaseChange()
+    private void CheckForPhaseChange(bool force = false)
     {
         if (_currentPhase == _maxPhase)
         {
             return;
         }
-        if (_health.GetHealthPercentage() <= _nextPhaseThreshold)
+        if (_health.GetHealthPercentage() <= _nextPhaseThreshold || force)
         {
             EnemyWaveController.Instance.StartNextPhase();
             _currentPhase++;
@@ -162,6 +172,11 @@ public class ZombieBoss : Boss
                 _nextPhaseThreshold = _phaseThresholds[_currentPhase];
             }
         }
+    }
+
+    private void CheckForPhaseChange()
+    {
+        CheckForPhaseChange(false);
     }
 
     public void Teleport()
