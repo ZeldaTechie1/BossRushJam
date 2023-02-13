@@ -43,7 +43,7 @@ public class Tombstone : Projectile
             _shadowRenderer.material.DOFade(0, 1f);
             _tombstoneRenderer.material.DOFade(0, 1f);
             _collider.enabled = true;
-        }).AppendInterval(0.1f).AppendCallback(() => { _collider.enabled = false; }).AppendInterval(1f).OnComplete(() =>
+        }).AppendInterval(0.25f).AppendCallback(() => { _collider.enabled = false; }).AppendInterval(1f).OnComplete(() =>
         {
             Destroy(gameObject);
         }); 

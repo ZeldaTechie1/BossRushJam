@@ -17,7 +17,7 @@ TagManager:
   - Ghosts
   - BossAttacks
   - Boss
-  - 
+  - DroppedItem
   - 
   - 
   - 
@@ -39,8 +39,8 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: ground
-    uniqueID: 3671742875
+  - name: Ground
+    uniqueID: 1150099671
     locked: 0
   - name: Default
     uniqueID: 0

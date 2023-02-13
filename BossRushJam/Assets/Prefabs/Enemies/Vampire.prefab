@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -6453160979185147230}
   - component: {fileID: 6717408306350223367}
   - component: {fileID: 7431659037185856672}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Vampire
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -104,7 +104,8 @@ MonoBehaviour:
   _attackDistance: 3
   HurtPlayer: {fileID: 11400000, guid: 161e7a8b8b409ba48889a45acd6ddd45, type: 2}
   _attackDistanceBuffer: 1
-  _renderer: {fileID: 0}
+  _renderer: {fileID: 8033735964083402617}
+  _spriteAnimator: {fileID: 4712148722431631596}
 --- !u!114 &-6453160979185147230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1222be2502a380743a0dbabb01847f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteAnimator: {fileID: 0}
+  _spriteAnimator: {fileID: 4712148722431631596}
   _rb: {fileID: 1603977612642010769}
 --- !u!65 &7431659037185856672
 BoxCollider:
@@ -220,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: npcVampire
       objectReference: {fileID: 0}
+    - target: {fileID: 7903607976115110698, guid: 9e86cf2c17ac70f4c8e9d4b7d5b12081, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e86cf2c17ac70f4c8e9d4b7d5b12081, type: 3}
 --- !u!1 &1750933121373824451 stripped
@@ -243,5 +248,15 @@ MonoBehaviour:
 --- !u!4 &3566603082807702659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4944054547487789674, guid: 9e86cf2c17ac70f4c8e9d4b7d5b12081, type: 3}
+  m_PrefabInstance: {fileID: 8494864158938556137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4712148722431631596 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3785059698687067653, guid: 9e86cf2c17ac70f4c8e9d4b7d5b12081, type: 3}
+  m_PrefabInstance: {fileID: 8494864158938556137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8033735964083402617 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1918042760955449744, guid: 9e86cf2c17ac70f4c8e9d4b7d5b12081, type: 3}
   m_PrefabInstance: {fileID: 8494864158938556137}
   m_PrefabAsset: {fileID: 0}

@@ -11,6 +11,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
     {
         public string Name;
         public bool Throwable;
+        public bool Wearable;
         public List<ItemObject> Items;
         [HideInInspector]
         public bool Craftable { get { return _craftable; }  set { _craftable = value; } }
