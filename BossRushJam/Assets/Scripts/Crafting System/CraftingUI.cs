@@ -13,11 +13,12 @@ public class CraftingUI : MonoBehaviour
     public bool ShowItems;
     public Image CraftableItem;
 
+    private CraftingSystem.CraftingRecipe _currentRecipe;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CraftingSystem.Instance.ItemCrafted += SetItemCrafted;
     }
 
     public void Init(CraftingSystem.CraftingRecipe recipe)
@@ -33,6 +34,7 @@ public class CraftingUI : MonoBehaviour
         }
 
         ShowItems = false;
+        _currentRecipe = recipe;
     }
 
     public void UpdateProgress(float progress)
@@ -59,5 +61,18 @@ public class CraftingUI : MonoBehaviour
         {
             GetComponent<Image>().color = Color.white;
         }
+    }
+
+    public void SetItemCrafted(CraftingSystem.CraftingRecipe recipe)
+    {
+        if(recipe == _currentRecipe)
+        {
+            GetComponent<Outline>().enabled = true;
+        }
+    }
+
+    public void ItemBroke()
+    {
+        GetComponent<Outline>().enabled = false;
     }
 }

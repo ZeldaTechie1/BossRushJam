@@ -100,15 +100,22 @@ public class PlayerController : MonoBehaviour
             return;
         _isAttacking = true;
         _canAttack = false;
-        int hitboxIndex = _lookDirectionIndex;
-        _hitboxes[hitboxIndex].SetActive(true);
-        DOTween.Sequence()
-            .InsertCallback(_attackTime, () =>
-            {
-                _isAttacking = false;
-                _hitboxes[hitboxIndex].SetActive(false);
-            })
-            .InsertCallback(_attackCoolDown, () => _canAttack = true);
+        if(CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable)
+        {
+
+        }
+        else
+        {
+            int hitboxIndex = _lookDirectionIndex;
+            _hitboxes[hitboxIndex].SetActive(true);
+            DOTween.Sequence()
+                .InsertCallback(_attackTime, () =>
+                {
+                    _isAttacking = false;
+                    _hitboxes[hitboxIndex].SetActive(false);
+                })
+                .InsertCallback(_attackCoolDown, () => _canAttack = true);
+        }
     }
 
     private void FixedUpdate()
@@ -171,6 +178,7 @@ public class PlayerController : MonoBehaviour
         {
             other.GetComponent<Health>().AffectHealth(null, -_baseDamage);
             CraftingSystem.Instance.RemoveDurability(1);
+            UpdateItemHeld();
         }
     }
 }

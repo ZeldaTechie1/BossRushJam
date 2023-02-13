@@ -162,6 +162,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
         if (CraftingRecipes[ItemSelected].Durability <= 0 && ItemSelected != 0)
         {
             CraftingRecipes[ItemSelected].Crafted = false;
+            CraftingUIs[ItemSelected].ItemBroke();
         }
     }
 }
