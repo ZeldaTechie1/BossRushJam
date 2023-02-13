@@ -8,10 +8,10 @@ public class CraftingUI : MonoBehaviour
     public GameObject CraftingGroup;
     public List<GameObject> Crafting;
 
-    public GameObject ItemRecipieImage;
+    public GameObject ItemRecipeImage;
 
     public bool ShowItems;
-    public Image CrafatableItem;
+    public Image CraftableItem;
 
 
     // Start is called before the first frame update
@@ -24,10 +24,10 @@ public class CraftingUI : MonoBehaviour
     {
         foreach(ItemObject item in recipe.Items)
         {
-            GameObject a = Instantiate(ItemRecipieImage, CraftingGroup.transform);
+            GameObject a = Instantiate(ItemRecipeImage, CraftingGroup.transform);
             a.transform.GetChild(0).GetComponent<Image>().sprite = item.ItemTexture;
             a.GetComponent<CraftingBox>().ToggleDim(true);
-            CrafatableItem.fillAmount = 0;
+            CraftableItem.fillAmount = 0;
             a.SetActive(false);
             Crafting.Add(a);
         }
@@ -37,7 +37,7 @@ public class CraftingUI : MonoBehaviour
 
     public void UpdateProgress(float progress)
     {
-        CrafatableItem.fillAmount = progress;
+        CraftableItem.fillAmount = progress;
         if(progress >= 1)
         {
             //Blink or something idk
@@ -50,6 +50,14 @@ public class CraftingUI : MonoBehaviour
         for (int i = 0; i <  Crafting.Count; i++)
         {
             Crafting[i].SetActive(show);
+        }
+        if(!show)
+        {
+            GetComponent<Image>().color = Color.gray;
+        }
+        else
+        {
+            GetComponent<Image>().color = Color.white;
         }
     }
 }

@@ -12,6 +12,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
         public string Name;
         public bool Throwable;
         public bool Wearable;
+        public float Durability;
         public List<ItemObject> Items;
         [HideInInspector]
         public bool Craftable { get { return _craftable; }  set { _craftable = value; } }
@@ -155,6 +156,12 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
             ItemCrafted?.Invoke(recipe);
         }
     }
-
-
+    public void RemoveDurability(int durabilityLoss)
+    {
+        CraftingRecipes[ItemSelected].Durability -= durabilityLoss;
+        if (CraftingRecipes[ItemSelected].Durability <= 0 && ItemSelected != 0)
+        {
+            CraftingRecipes[ItemSelected].Crafted = false;
+        }
+    }
 }

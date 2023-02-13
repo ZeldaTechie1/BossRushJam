@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Enemy")
         {
             other.GetComponent<Health>().AffectHealth(null, -_baseDamage);
+            CraftingSystem.Instance.RemoveDurability(1);
         }
     }
 }
