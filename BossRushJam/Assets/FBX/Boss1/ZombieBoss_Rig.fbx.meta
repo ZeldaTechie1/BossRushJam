@@ -3,7 +3,12 @@ guid: bcc4904e731170c4d996d9334717964d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ZombieBoss
+    second: {fileID: 2100000, guid: 81b056e0aca40a44584a58a0ed026804, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

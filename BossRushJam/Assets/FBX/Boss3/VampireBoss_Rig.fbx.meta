@@ -3,7 +3,52 @@ guid: b12ed3c35c8e75b4b9904d37c2e4379f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes_T
+    second: {fileID: 2100000, guid: 5cf3268c61e1e314cbd6c1ba4453d9af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.025
+    second: {fileID: 2100000, guid: 5cf3268c61e1e314cbd6c1ba4453d9af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.029
+    second: {fileID: 2100000, guid: d76b0f6ff1fe4c1459441a5b6fcbfdff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.030
+    second: {fileID: 2100000, guid: d76b0f6ff1fe4c1459441a5b6fcbfdff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.031
+    second: {fileID: 2100000, guid: 5cf3268c61e1e314cbd6c1ba4453d9af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.032
+    second: {fileID: 2100000, guid: d76b0f6ff1fe4c1459441a5b6fcbfdff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.033
+    second: {fileID: 2100000, guid: d76b0f6ff1fe4c1459441a5b6fcbfdff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.034
+    second: {fileID: 2100000, guid: d76b0f6ff1fe4c1459441a5b6fcbfdff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoes_T
+    second: {fileID: 2100000, guid: d76b0f6ff1fe4c1459441a5b6fcbfdff, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
