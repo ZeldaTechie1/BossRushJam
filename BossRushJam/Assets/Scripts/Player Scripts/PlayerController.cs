@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private List<SpriteRenderer> ItemsHeld;
     [SerializeField]private List<Animator> _playerAnimators;
     [SerializeField]private List<GameObject> _hitboxes;
+    [SerializeField]private float _currentDamage = 35;
     [SerializeField]private float _baseDamage = 35;
+    [SerializeField]private float[] _additionalDamage;
     [SerializeField]private float _attackCoolDown;
     [SerializeField]private ParticleSystem DashLeftParticle;
     [SerializeField]private ParticleSystem DashRightParticle;
@@ -209,10 +211,12 @@ public class PlayerController : MonoBehaviour
             ||   CraftingSystem.Instance.ItemSelected == 0)
         {
             ItemsHeld[CraftingSystem.Instance.ItemSelected].enabled = true;
+            _currentDamage = _baseDamage + _additionalDamage[CraftingSystem.Instance.ItemSelected];
         }
         else
         {
             ItemsHeld[0].enabled = true;
+            _currentDamage = _baseDamage;
         }
     }
 
@@ -220,7 +224,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
-            other.GetComponent<Health>().AffectHealth(null, -_baseDamage);
+            other.GetComponent<Health>().AffectHealth(null, -_currentDamage);
             CraftingSystem.Instance.RemoveDurability(1);
             UpdateItemHeld();
         }

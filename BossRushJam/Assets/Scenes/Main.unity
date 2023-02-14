@@ -5499,6 +5499,26 @@ PrefabInstance:
       propertyPath: DashRightParticle
       value: 
       objectReference: {fileID: 1319156914}
+    - target: {fileID: 7237434184172503154, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: _additionalDamage.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503154, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: _additionalDamage.Array.data[1]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503154, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: _additionalDamage.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503154, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: _additionalDamage.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503154, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: _additionalDamage.Array.data[4]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7237434184172503159, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
       propertyPath: m_RootOrder
       value: 4
