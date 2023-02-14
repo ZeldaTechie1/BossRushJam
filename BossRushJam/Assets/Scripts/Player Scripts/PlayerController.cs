@@ -175,15 +175,14 @@ public class PlayerController : MonoBehaviour
         Vector2 scroll = value.Get<Vector2>();
         if(scroll.y > 0)
         {
-            OnCraftingSelectUp();
             CraftingSystem.Instance.SelectItemUp();
+            OnCraftingSelectUp();
         }
         else if(scroll.y < 0)
         {
-            OnCraftingSelectDown();
             CraftingSystem.Instance.SelectItemDown();
+            OnCraftingSelectDown();
         }
-
     }
 
     public void OnCraftingButton()
