@@ -19,7 +19,7 @@ public class Tombstone : Projectile
 
     public override void HandleCollision(Collider other)
     {
-        Health health = GetComponent<Health>();
+        Health health = other.GetComponent<Health>();
         if (health == null || !health.CanTakeDamage) { return; }
         if (_hitColliders.Contains(other)) { return; }
         _hitColliders.Add(other);
