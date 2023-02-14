@@ -23,8 +23,6 @@ public class SpriteAnimationController : MonoBehaviour
     {
         //calculate the movement of the sprite
         Vector3 movement = _rb.velocity;
-        _spriteAnimator.SetFloat("SpeedX", movement.x);
-        _spriteAnimator.SetFloat("SpeedY", movement.z);
-        _spriteAnimator.SetFloat("Speed", movement.magnitude);
+        _spriteAnimator.SetInteger("LookDirection", (int)HelperFunctions.CardinalizeVector(movement));
     }
 }

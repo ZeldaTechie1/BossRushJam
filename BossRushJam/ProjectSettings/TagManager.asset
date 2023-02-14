@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - Enemies
   - Tombstones
   - Ghosts
-  - 
-  - 
-  - 
+  - BossAttacks
+  - Boss
+  - DroppedItem
   - 
   - 
   - 
@@ -38,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 1150099671
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -15,11 +15,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]private GameEvent HurtPlayer;
     [SerializeField]private float _attackDistanceBuffer;
     [SerializeField]private Renderer _renderer;
+    [SerializeField]private Animator _spriteAnimator;
 
     private Rigidbody _rb;
     private GameObject _player;
     private bool _isAttacking;
     private Vector3 _playerPosition;
+    private Health health;
 
     private void Start()
     {
@@ -33,11 +35,13 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogWarning("Enemy speed is set to 0. Is this correct?");
         }
+        health = this.GetComponent<Health>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         MoveTowardsPlayer();
+        _spriteAnimator.SetBool("isAttacking", _isAttacking);
     }
 
     private void MoveTowardsPlayer()
@@ -48,7 +52,7 @@ public class Enemy : MonoBehaviour
         }
         _playerPosition = _player.transform.position;
         _playerPosition.y = this.transform.position.y;//this ensures that there are no height discrepancies between the player and enemy
-        if (_isAttacking)
+        if (_isAttacking || health.IsStunned)
         {
             return;
         }
@@ -66,12 +70,16 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
+        if (health.IsStunned)
+            return;
         _isAttacking = true;
         _renderer.material.color = Color.yellow;
         //check if the player is still in range after a certain amount of time
         //TODO: this could definitely be done better but I just want it to work lol
         DOTween.Sequence().InsertCallback(_attackHurtCheck, () =>
         {
+            if (this == null)
+                return;
             _renderer.material.color = Color.red;
             Vector3 instancedPlayerPosition = _playerPosition;
             if(Vector3.Distance(instancedPlayerPosition, this.transform.position) <= _attackDistance)//if the player is still in range when this happens then we can hurt the player

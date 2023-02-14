@@ -6,17 +6,25 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public bool CanTakeDamage;
+    public bool IsStunned;
+
     [SerializeField]private float _maxHealth;
     [SerializeField]private GameEvent _deathEvent;
     [SerializeField]private float _health;
-    [SerializeField]private bool _canTakeDamage;
 
     private bool isDead;
+    public Action HealthAffected;
 
     public void Start()
     {
         _health = _maxHealth;
-        _canTakeDamage = true;
+        CanTakeDamage = true;
+    }
+
+    public float GetHealthPercentage()
+    {
+        return _health / _maxHealth;
     }
 
     public void AffectHealth(Component objectToDamage, object data)
@@ -29,8 +37,10 @@ public class Health : MonoBehaviour
         {
             throw new System.Exception($"Wrong data when calling this function! Expecting float and received {data.GetType()}");
         }
+        
         float healthDelta = (float)data;
-        if((float)data < 0 && !_canTakeDamage)
+        Debug.Log($"Doing the health thingy {healthDelta}");
+        if (!CanTakeDamage)
         {
             return;
         }
@@ -38,12 +48,17 @@ public class Health : MonoBehaviour
         {
             return;
         }
-        _health -= healthDelta;
-        _health = Mathf.Clamp(_health, 0, _maxHealth);
-        if (_health < 0)
+        _health += healthDelta;
+        _health = Mathf.Clamp(_health, -1000, _maxHealth);
+        Debug.Log(_health);
+        if (_health <= 0)
         {
             _deathEvent.Invoke(this);
             isDead = true;
+        }
+        else
+        {
+            HealthAffected?.Invoke();
         }
     }
     
@@ -53,6 +68,6 @@ public class Health : MonoBehaviour
         {
             throw new System.Exception($"Wrong data when calling this function! Expecting boolean and received {data.GetType()}");
         }
-        _canTakeDamage = (bool)data;
+        CanTakeDamage = (bool)data;
     }
 }
