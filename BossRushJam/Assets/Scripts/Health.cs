@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField]private float _maxHealth;
     [SerializeField]private GameEvent _deathEvent;
     [SerializeField]private float _health;
+    [SerializeField]private ParticleSystem _bloodEffect;
 
     private bool isDead;
     public Action HealthAffected;
@@ -49,6 +50,11 @@ public class Health : MonoBehaviour
         }
         _health += healthDelta;
         _health = Mathf.Clamp(_health, -1000, _maxHealth);
+        if(healthDelta < 0 && _bloodEffect != null)
+        {
+            _bloodEffect.Stop();
+            _bloodEffect.Play();
+        }
         if (_health <= 0)
         {
             _deathEvent.Invoke(this);

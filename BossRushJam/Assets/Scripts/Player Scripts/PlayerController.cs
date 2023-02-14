@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private List<GameObject> _hitboxes;
     [SerializeField]private float _baseDamage = 35;
     [SerializeField]private float _attackCoolDown;
+    [SerializeField]private ParticleSystem DashLeftParticle;
+    [SerializeField]private ParticleSystem DashRightParticle;
 
     private Rigidbody _rb;
     private Vector2 _movementInput;
@@ -99,6 +101,14 @@ public class PlayerController : MonoBehaviour
         //adds an impulse force either in the current movement direction or if standing still, in the direction they are facing
         _rb.AddForce((_rb.velocity.magnitude > 0? _rb.velocity.normalized : _cardinalMoveDirection.normalized) * _slideSpeed, ForceMode.Impulse);
         _lookDirectionIndex = (int)HelperFunctions.CardinalizeVector(_rb.velocity);
+        if(_lookDirectionIndex == 0 || _lookDirectionIndex == 2)
+        {
+            DashRightParticle.Play();
+        }
+        else
+        {
+            DashLeftParticle.Play();
+        }
         foreach(Animator _playerAnimator in _playerAnimators)
             _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
     }
@@ -161,7 +171,6 @@ public class PlayerController : MonoBehaviour
     public void OnScrollWheel(InputValue value)
     {
         Vector2 scroll = value.Get<Vector2>();
-        Debug.Log(scroll);
         if(scroll.y > 0)
         {
             OnCraftingSelectUp();
