@@ -89,6 +89,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ScrollWheel"",
+                    ""type"": ""Value"",
+                    ""id"": ""e8ce15bd-95f4-49a4-b4c2-ab5b34f46e8e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -193,17 +202,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b3bd6297-54af-43fe-9de6-ea976113d142"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""CraftingSelectUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c5c21d6c-0ca1-495c-b10e-760ba96ee26d"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -278,6 +276,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""CraftingButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be3bd830-14b0-4adc-b814-8a1e6efeede8"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""CraftingButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""645ba3fb-0f22-44d2-916c-951a37abdf43"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -321,6 +341,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_PlayerActionMap_CraftingButton = m_PlayerActionMap.FindAction("CraftingButton", throwIfNotFound: true);
         m_PlayerActionMap_Attack = m_PlayerActionMap.FindAction("Attack", throwIfNotFound: true);
         m_PlayerActionMap_Look = m_PlayerActionMap.FindAction("Look", throwIfNotFound: true);
+        m_PlayerActionMap_ScrollWheel = m_PlayerActionMap.FindAction("ScrollWheel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -387,6 +408,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_CraftingButton;
     private readonly InputAction m_PlayerActionMap_Attack;
     private readonly InputAction m_PlayerActionMap_Look;
+    private readonly InputAction m_PlayerActionMap_ScrollWheel;
     public struct PlayerActionMapActions
     {
         private @Controls m_Wrapper;
@@ -398,6 +420,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @CraftingButton => m_Wrapper.m_PlayerActionMap_CraftingButton;
         public InputAction @Attack => m_Wrapper.m_PlayerActionMap_Attack;
         public InputAction @Look => m_Wrapper.m_PlayerActionMap_Look;
+        public InputAction @ScrollWheel => m_Wrapper.m_PlayerActionMap_ScrollWheel;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -428,6 +451,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLook;
+                @ScrollWheel.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnScrollWheel;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -453,6 +479,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @ScrollWheel.started += instance.OnScrollWheel;
+                @ScrollWheel.performed += instance.OnScrollWheel;
+                @ScrollWheel.canceled += instance.OnScrollWheel;
             }
         }
     }
@@ -484,5 +513,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnCraftingButton(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
     }
 }

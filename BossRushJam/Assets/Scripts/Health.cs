@@ -39,7 +39,6 @@ public class Health : MonoBehaviour
         }
         
         float healthDelta = (float)data;
-        Debug.Log($"Doing the health thingy {healthDelta}");
         if (!CanTakeDamage)
         {
             return;
@@ -50,7 +49,6 @@ public class Health : MonoBehaviour
         }
         _health += healthDelta;
         _health = Mathf.Clamp(_health, -1000, _maxHealth);
-        Debug.Log(_health);
         if (_health <= 0)
         {
             _deathEvent.Invoke(this);

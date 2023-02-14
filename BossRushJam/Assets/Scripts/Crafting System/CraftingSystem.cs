@@ -117,6 +117,16 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
         }
     }
 
+    public void SelectItemUp()
+    {
+        SelectItemUp(new InputAction.CallbackContext());
+    }
+
+    public void SelectItemDown()
+    {
+        SelectItemDown(new InputAction.CallbackContext());
+    }
+
     void SelectItemUp(InputAction.CallbackContext callback)
     {
         CraftingUIs[ItemSelected].ShowCraftingItems(false);

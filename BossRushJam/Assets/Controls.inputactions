@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ScrollWheel",
+                    "type": "Value",
+                    "id": "e8ce15bd-95f4-49a4-b4c2-ab5b34f46e8e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -171,17 +180,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b3bd6297-54af-43fe-9de6-ea976113d142",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "CraftingSelectUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c5c21d6c-0ca1-495c-b10e-760ba96ee26d",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -254,6 +252,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "CraftingButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be3bd830-14b0-4adc-b814-8a1e6efeede8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "CraftingButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "645ba3fb-0f22-44d2-916c-951a37abdf43",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

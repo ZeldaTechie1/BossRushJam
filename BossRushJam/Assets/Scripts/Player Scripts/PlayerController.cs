@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private bool _canAttack = true;
     private float _attackTime = 0;
     private Health health;
+    private PlayerInput _playerInput;
     
 
     private void Start()
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         health = this.GetComponent<Health>();
+        _playerInput = this.GetComponent<PlayerInput>();
     }
 
     //this gets called by the Player Input Component on this object
@@ -66,6 +69,12 @@ public class PlayerController : MonoBehaviour
         if (_isSliding || _isAttacking)
             return;
         _lookDirection = value.Get<Vector2>();
+        if(_playerInput.currentControlScheme == "Mouse and Keyboard")
+        {
+            Vector3 mousePosition = UnityEngine.Input.mousePosition;
+            Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
+            _lookDirection = mousePosition - playerPosition;
+        }
         if (_lookDirection.magnitude > 0)
         {
             _lookDirectionIndex = (int)HelperFunctions.CardinalizeVector(_lookDirection);
@@ -147,6 +156,23 @@ public class PlayerController : MonoBehaviour
             _playerAnimator.SetBool("isAttacking", _isAttacking);
         }
         
+    }
+
+    public void OnScrollWheel(InputValue value)
+    {
+        Vector2 scroll = value.Get<Vector2>();
+        Debug.Log(scroll);
+        if(scroll.y > 0)
+        {
+            OnCraftingSelectUp();
+            CraftingSystem.Instance.SelectItemUp();
+        }
+        else if(scroll.y < 0)
+        {
+            OnCraftingSelectDown();
+            CraftingSystem.Instance.SelectItemDown();
+        }
+
     }
 
     public void OnCraftingButton()

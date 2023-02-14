@@ -71,7 +71,6 @@ public class EnemyWaveController : Singleton<EnemyWaveController>
         a.GetComponentInChildren<DroppableItem>().Init(_itemsToDrop[Random.Range(0, _itemsToDrop.Count)]);
         _currentEnemiesAlive.RemoveAt(_currentEnemiesAlive.IndexOf(sender.gameObject));
         Destroy(sender.gameObject);
-        Debug.Log("Enemy Died!");
         if(_currentEnemiesAlive.Count < _enemyCountPerPhase[_currentPhase])
         {
             float randomDeviation = Random.Range(0, _maxIntervalDeviation);
