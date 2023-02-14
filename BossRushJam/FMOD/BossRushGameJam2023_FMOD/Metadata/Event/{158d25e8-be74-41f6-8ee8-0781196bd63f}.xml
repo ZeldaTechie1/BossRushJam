@@ -23,6 +23,7 @@
 			<destination>{2b87911e-71f6-423c-8754-3cd4a3a0142d}</destination>
 		</relationship>
 		<relationship name="markerTracks">
+			<destination>{d596c3f0-3753-4bf3-b05e-a646e1e590cd}</destination>
 			<destination>{b238a2e9-2482-4bb0-ab39-ea14a2e6a45a}</destination>
 			<destination>{7e325afc-89d4-470b-a568-357d9cbb7e30}</destination>
 			<destination>{dd75a725-74dd-4888-b128-da9c14707f39}</destination>
@@ -67,6 +68,7 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{2b87911e-71f6-423c-8754-3cd4a3a0142d}" />
+	<object class="MarkerTrack" id="{d596c3f0-3753-4bf3-b05e-a646e1e590cd}" />
 	<object class="MarkerTrack" id="{b238a2e9-2482-4bb0-ab39-ea14a2e6a45a}" />
 	<object class="MarkerTrack" id="{7e325afc-89d4-470b-a568-357d9cbb7e30}" />
 	<object class="MarkerTrack" id="{dd75a725-74dd-4888-b128-da9c14707f39}" />
@@ -301,7 +303,7 @@
 			<destination>{e1a2a11d-312e-4f41-8161-6671c27730b9}</destination>
 		</relationship>
 		<relationship name="markerTrack">
-			<destination>{b238a2e9-2482-4bb0-ab39-ea14a2e6a45a}</destination>
+			<destination>{d596c3f0-3753-4bf3-b05e-a646e1e590cd}</destination>
 		</relationship>
 	</object>
 	<object class="TransitionRegion" id="{fa63c9cd-2e9f-408f-9f74-b3a5925d5696}">
@@ -358,7 +360,7 @@
 			<destination>{e1a2a11d-312e-4f41-8161-6671c27730b9}</destination>
 		</relationship>
 		<relationship name="markerTrack">
-			<destination>{b238a2e9-2482-4bb0-ab39-ea14a2e6a45a}</destination>
+			<destination>{d596c3f0-3753-4bf3-b05e-a646e1e590cd}</destination>
 		</relationship>
 	</object>
 	<object class="TransitionRegion" id="{91eaf7b3-5dda-4c53-a972-3056c80110ae}">
@@ -415,7 +417,7 @@
 			<destination>{e1a2a11d-312e-4f41-8161-6671c27730b9}</destination>
 		</relationship>
 		<relationship name="markerTrack">
-			<destination>{b238a2e9-2482-4bb0-ab39-ea14a2e6a45a}</destination>
+			<destination>{d596c3f0-3753-4bf3-b05e-a646e1e590cd}</destination>
 		</relationship>
 	</object>
 	<object class="TempoMarker" id="{efb0fae7-bbe2-4be1-b94d-198d9a2fe337}">

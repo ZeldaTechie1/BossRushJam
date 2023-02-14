@@ -8,11 +8,11 @@ public class GameAudioEventManager : MonoBehaviour
     private bool bgm_paused = false;
 
     //MUSIC EVENTS
-    [FMODUnity.EventRef]
+    //[FMODUnity.EventRef]
     public string mus_menu_bgm = "event:/MUSIC/mus_graveyard_ambient_loop";
     public string mus_zombie_bgm = "event:/MUSIC/mus_zombie_bgm";
+    public string mus_skeleton_bgm = "event:/MUSIC/mus_skeleton_bgm";
     //public string mus_necromancer_boss_loop = "event:/MUSIC/mus_necromancer_boss_loop";
-    //public string mus_vampire_boss_loop = "event:/MUSIC/mus_vampire_boss_loop";
 
     private FMOD.Studio.EventInstance curr_bgm;
     private FMOD.Studio.EventInstance menu_bgm;
@@ -32,8 +32,9 @@ public class GameAudioEventManager : MonoBehaviour
     {
         menu_bgm = FMODUnity.RuntimeManager.CreateInstance(mus_menu_bgm);
         zombie_bgm = FMODUnity.RuntimeManager.CreateInstance(mus_zombie_bgm);
+        skeleton_bgm = FMODUnity.RuntimeManager.CreateInstance(mus_skeleton_bgm);
 
-        curr_bgm = zombie_bgm;
+        curr_bgm = skeleton_bgm;
         curr_bgm.setVolume(bgm_volume);
         curr_bgm.start();
     }
