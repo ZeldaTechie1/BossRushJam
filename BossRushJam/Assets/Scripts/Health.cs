@@ -6,15 +6,18 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [HideInInspector]
     public bool CanTakeDamage;
+    [HideInInspector]
     public bool IsStunned;
+    [HideInInspector]
+    public bool IsDead;
 
     [SerializeField]private float _maxHealth;
     [SerializeField]private GameEvent _deathEvent;
     [SerializeField]private float _health;
     [SerializeField]private ParticleSystem _bloodEffect;
 
-    private bool isDead;
     public Action HealthAffected;
 
     public void Start()
@@ -30,7 +33,7 @@ public class Health : MonoBehaviour
 
     public void AffectHealth(Component objectToDamage, object data)
     {
-        if(isDead)
+        if(IsDead)
         {
             return;
         }
@@ -58,7 +61,7 @@ public class Health : MonoBehaviour
         if (_health <= 0)
         {
             _deathEvent.Invoke(this);
-            isDead = true;
+            IsDead = true;
         }
         else
         {

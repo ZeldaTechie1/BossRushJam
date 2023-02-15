@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544cebfcee626374da4b74370093ecd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
+  _damage: 25
   _velocity: {x: 0, y: 0, z: 0}
   _shadowRenderer: {fileID: 7624733302323420765}
   _tombstoneRenderer: {fileID: 1847514043176825312}

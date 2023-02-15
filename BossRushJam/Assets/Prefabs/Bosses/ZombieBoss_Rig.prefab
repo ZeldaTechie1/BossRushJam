@@ -4725,7 +4725,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98a2d47c66ef66489f7fea26faaa328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
+  _phaseThresholds:
+  - 0.66
+  - 0.33
+  _waypointThreshold: 0.5
+  _attackAnimations:
+  - Bite
+  - Slam
+  - Throw
+  _phaseOneAttackWeights:
+  - 60
+  - 20
+  - 20
+  _phaseTwoAttackWeights:
+  - 30
+  - 50
+  - 20
+  _phaseThreeAttackWeights:
+  - 20
+  - 40
+  - 40
+  _nextBoss: {fileID: 0}
+  IsAttacking: 0
   _shockwavePrefab: {fileID: 1921536167489994683, guid: 1782f4bfee6339d46a6479abc5cb9f85, type: 3}
   _tombstonePrefab: {fileID: 8953335269097578198, guid: 2c6daf61cfbf26c42a98efc74352c377, type: 3}
   _shockwaveStartLocation: {fileID: 4124933985747221347}
@@ -4742,8 +4763,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _waypointThreshold: 1
-  IsAttacking: 0
 --- !u!114 &9026911900392142615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4758,6 +4777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanTakeDamage: 0
   IsStunned: 0
+  IsDead: 0
   _maxHealth: 1000
   _deathEvent: {fileID: 11400000, guid: 258c76e38266638429f2fe5be58be42b, type: 2}
   _health: 1000

@@ -23,7 +23,7 @@ public class Tombstone : Projectile
         if (health == null || !health.CanTakeDamage) { return; }
         if (_hitColliders.Contains(other)) { return; }
         _hitColliders.Add(other);
-        health.AffectHealth(null, -25f);
+        health.AffectHealth(null, -_damage);
         other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         DOTween.Sequence().SetDelay(1).AppendCallback(() => {if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
     }

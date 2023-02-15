@@ -1,8 +1,5 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ZombieBoss : Boss
 {
@@ -20,32 +17,9 @@ public class ZombieBoss : Boss
     private Transform[] _shockwaveWaypointsRight;
     [SerializeField]
     private Transform[] _throwWaypoints;
-    [SerializeField]
-    private float _waypointThreshold = 0.5f;
 
-    public bool IsMoving { get { return _isMoving; } set { _isMoving = value; agent.isStopped = !value; _animator.SetBool("Walk", value); } }
-    public bool IsAttacking;
-    private int _attackRange = 5;
-    private bool _isMoving;
-    private NavMeshAgent agent;
-    private Transform _currentTarget;
-    private Transform _lookAtTarget;
-    private bool _isTeleporting = false;
-    private int _throwCount = 0;
-    private float _nextPhaseThreshold = 0.75f;
-    private int _currentPhase = 0;
-    private string[] attackAnimations = {"Bite", "Slam", "Throw"};
-    private float[] _phaseThresholds = { 0.66f, 0.33f };
-    private int _maxPhase;
-    private int _currentAttack = -1;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        _health.HealthAffected += CheckForPhaseChange;
-        _maxPhase = _phaseThresholds.Length;
-    }
+    private int _attackCount = 0;
 
     // Update is called once per frame
     void Update()
@@ -54,13 +28,13 @@ public class ZombieBoss : Boss
         {
             CheckForPhaseChange(true);
         }
-        if (!IsMoving)
+        if (!IsMoving || _health.IsDead)
         {
             return;
         }
         if (_currentAttack < 0)
         {
-            DetermineAttack();
+            SetAttack();
         }
         if (_currentAttack == 0)
         {
@@ -76,117 +50,27 @@ public class ZombieBoss : Boss
         }
     }
 
-    public override void Attack()
+    public override void ChangePhase()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Die()
-    {
-        _animator.Play("Death");
-        IsMoving = false;
-        _currentAttack = -1;
-        _currentTarget = null;
-    }
-
-    public override void Move()
-    {
-
-    }
-
-    private void DetermineAttack()
-    {
-        int[] weights;
-        if (_currentPhase == 0)
-        {
-            weights = new int[3] { 60, 80, 100 };
-        }
-        else if (_currentPhase == 1)
-        {
-            weights = new int[3] { 30, 80, 100 };
-        }
-        else
-        {
-            weights = new int[3] { 20, 60, 100 };
-        }
-        int randomNum = Random.Range(0, 101);
-        if (randomNum < weights[0])
-        {
-            _currentAttack = 0;
-        }
-        else if (randomNum < weights[1]) 
-        {
-            _currentAttack = 1;
-        }
-        else if (randomNum < weights[2]) 
-        {
-            _currentAttack = 2;
-        }
-    }
-
-    private void ChangePhase()
-    {
-        if (IsMoving)
-        {
-            _currentAttack = -1;
-            IsMoving = true;
-            _currentTarget = null;
-            _lookAtTarget = null;
-            agent.ResetPath();
-        }
-        Color color = Color.white;
+        base.ChangePhase();
         if (_currentPhase == 1)
         {
-            color = Color.yellow;
             _animator.SetFloat("Speed", 1.25f);
-            agent.speed = 5;
-            agent.angularSpeed = 180;
+            _agent.speed = 5;
+            _agent.angularSpeed = 180;
         }
         if (_currentPhase == _maxPhase)
         {
-            color = Color.red;
             _animator.SetFloat("Speed", 1.5f);
-            agent.speed = 10;
-            agent.angularSpeed = 360;
+            _agent.speed = 10;
+            _agent.angularSpeed = 360;
             _animator.SetBool("CanTeleport", true);
         }
-        foreach(SkinnedMeshRenderer mr in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            mr.material.color = color;
-        }
     }
 
-    private void CheckForPhaseChange(bool force = false)
+    public override void Teleport()
     {
-        if (_currentPhase == _maxPhase)
-        {
-            return;
-        }
-        if (_health.GetHealthPercentage() <= _nextPhaseThreshold || force)
-        {
-            EnemyWaveController.Instance.StartNextPhase();
-            _currentPhase++;
-            ChangePhase();
-            if (_currentPhase != _maxPhase)
-            {
-                _nextPhaseThreshold = _phaseThresholds[_currentPhase];
-            }
-        }
-    }
-
-    private void CheckForPhaseChange()
-    {
-        CheckForPhaseChange(false);
-    }
-
-    public void Teleport()
-    {
-        if (_isTeleporting)
-        {
-            _currentTarget = null;
-            _isTeleporting = false;
-            return;
-        }
+        base.Teleport();
         if (_currentTarget == null)
         {
             _isTeleporting = true;
@@ -215,26 +99,17 @@ public class ZombieBoss : Boss
         }
     }
 
-    public override void Spawn()
-    {
-        EnemyWaveController.Instance.StartNextPhase();
-    }
-
     private void Bite()
     {
-        Vector3 directionToTarget = _player.transform.position - transform.position;
-        if (directionToTarget.magnitude < _attackRange)
-        {
-            if (Mathf.Acos(Vector3.Dot(directionToTarget.normalized, transform.forward)) * Mathf.Rad2Deg < 25)
-            {
-                _animator.SetTrigger(attackAnimations[_currentAttack]);
-                IsMoving = false;
-                _currentAttack = -1;
-                agent.velocity = Vector3.zero;
-                return;
-            }
+        if(PlayerInAttackRange() && PlayerInFront())
+        { 
+            _animator.SetTrigger(_attackAnimations[_currentAttack]);
+            IsMoving = false;
+            _currentAttack = -1;
+            _agent.velocity = Vector3.zero;
+            return;
         }
-        agent.destination = _player.transform.position;
+        _agent.destination = _player.transform.position;
     }
 
     private void Shockwave()
@@ -242,7 +117,7 @@ public class ZombieBoss : Boss
         if (_currentPhase == _maxPhase)
         {
             IsMoving = false;
-            _animator.SetBool(attackAnimations[_currentAttack], true);
+            _animator.SetBool(_attackAnimations[_currentAttack], true);
             return;
         }
         if (_currentTarget == null)
@@ -259,16 +134,16 @@ public class ZombieBoss : Boss
                 _currentTarget = _shockwaveWaypointsRight[index];
                 _lookAtTarget = _shockwaveWaypointsLeft[index];
             }
-            agent.SetDestination(_currentTarget.position);
+            _agent.SetDestination(_currentTarget.position);
         }
-        if (agent.isStopped || agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
+        if (_agent.isStopped || _agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
         {
             IsMoving = false;
             _currentTarget = null;
-            agent.ResetPath();
+            _agent.ResetPath();
             transform.DOLookAt(_lookAtTarget.position, 0.5f).OnComplete(() =>
             {
-                _animator.SetBool(attackAnimations[_currentAttack], true);
+                _animator.SetBool(_attackAnimations[_currentAttack], true);
             });
         }
     }
@@ -278,33 +153,33 @@ public class ZombieBoss : Boss
         if (_currentPhase == _maxPhase)
         {
             IsMoving = false;
-            _animator.SetBool(attackAnimations[_currentAttack], true);
+            _animator.SetBool(_attackAnimations[_currentAttack], true);
             return;
         }
         if (_currentTarget == null)
         {
             _currentTarget = _throwWaypoints[Random.Range(0, _throwWaypoints.Length)];
-            agent.SetDestination(_currentTarget.position);
+            _agent.SetDestination(_currentTarget.position);
         }
-        if (agent.isStopped || agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
+        if (_agent.isStopped || _agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
         {
             IsMoving = false;
             _currentTarget = null;
-            _animator.SetBool(attackAnimations[_currentAttack], true);
+            _animator.SetBool(_attackAnimations[_currentAttack], true);
         }
     }
 
     public void ShockwaveAttack()
     {
-        _throwCount++;
-        if (_throwCount == _currentPhase + 1)
+        _attackCount++;
+        if (_attackCount == _currentPhase + 1)
         {
-            _throwCount = 0;
-            _animator.SetBool(attackAnimations[1], false);
+            _attackCount = 0;
+            _animator.SetBool(_attackAnimations[1], false);
             _currentAttack = -1;
             if (_currentPhase == _maxPhase)
             {
-                _animator.SetBool(attackAnimations[2], true);
+                _animator.SetBool(_attackAnimations[2], true);
                 _currentAttack = 2;
             }
         }
@@ -316,11 +191,11 @@ public class ZombieBoss : Boss
 
     public void ThrowAttack()
     {
-        _throwCount++;
-        if (_throwCount == _currentPhase + 1)
+        _attackCount++;
+        if (_attackCount == _currentPhase + 1)
         {
-            _throwCount = 0;
-            _animator.SetBool(attackAnimations[2], false);
+            _attackCount = 0;
+            _animator.SetBool(_attackAnimations[2], false);
             _currentAttack = -1;
         }
         Tombstone tombstone = Instantiate(_tombstonePrefab);

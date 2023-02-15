@@ -15,7 +15,7 @@ public class Shockwave : Projectile
         if (_hitColliders.Contains(other)) { return; }
         _hitColliders.Add(other);
         other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        health.AffectHealth(null, -15f);
+        health.AffectHealth(null, -_damage);
         health.IsStunned = true;
         DOTween.Sequence().SetDelay(0.5f + 1f - _moveSequence.ElapsedPercentage()).AppendCallback(() => { if (health == null) { return; } health.IsStunned = false; });
         other.GetComponent<Rigidbody>().velocity = Vector3.zero;
