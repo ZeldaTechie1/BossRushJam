@@ -58,14 +58,12 @@ public class Health : MonoBehaviour
             _bloodEffect.Stop();
             _bloodEffect.Play();
         }
+        HealthAffected?.Invoke();
+
         if (_health <= 0)
         {
             _deathEvent.Invoke(this);
             IsDead = true;
-        }
-        else
-        {
-            HealthAffected?.Invoke();
         }
     }
     

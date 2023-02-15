@@ -4729,6 +4729,7 @@ MonoBehaviour:
   - 0.66
   - 0.33
   _waypointThreshold: 0.5
+  _attackRange: 5
   _attackAnimations:
   - Bite
   - Slam
@@ -4746,6 +4747,9 @@ MonoBehaviour:
   - 40
   - 40
   _nextBoss: {fileID: 0}
+  _minionsToSpawn:
+  - {fileID: -2754503476559272504, guid: c053aba7e54498c48ac3a430f6af807e, type: 3}
+  - {fileID: -2378148044884792359, guid: 877fd2dd0e324324391c000823593ce1, type: 3}
   IsAttacking: 0
   _shockwavePrefab: {fileID: 1921536167489994683, guid: 1782f4bfee6339d46a6479abc5cb9f85, type: 3}
   _tombstonePrefab: {fileID: 8953335269097578198, guid: 2c6daf61cfbf26c42a98efc74352c377, type: 3}

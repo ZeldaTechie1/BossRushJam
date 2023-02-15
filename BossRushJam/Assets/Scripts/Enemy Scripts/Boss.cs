@@ -1,5 +1,6 @@
 using DG.Tweening;
 using DG.Tweening.Plugins;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ public abstract class Boss : MonoBehaviour
     [SerializeField]
     protected float _waypointThreshold;
     [SerializeField]
+    protected int _attackRange = 5;
+    [SerializeField]
     protected string[] _attackAnimations;
     [SerializeField]
     protected List<float> _phaseOneAttackWeights = new List<float>();
@@ -28,17 +31,23 @@ public abstract class Boss : MonoBehaviour
     protected List<float> _phaseThreeAttackWeights = new List<float>();
     [SerializeField]
     protected Boss _nextBoss = null;
+    [SerializeField]
+    protected List<Enemy> _minionsToSpawn = new List<Enemy>();
 
     public bool IsMoving { get { return _isMoving; } set { _isMoving = value; _agent.isStopped = !value; _animator.SetBool("Walk", value); } }
     [HideInInspector]
     public bool IsAttacking;
+    public Boss NextBoss { get { return _nextBoss; } }
+    public List<Enemy> MinionsToSpawn { get { return _minionsToSpawn; } }
+
+    public static Action<Boss> BossSpawned;
+    public Action SpawnNextBoss;
 
     protected Health _health;
     protected Animator _animator;
     protected Rigidbody _rigidbody;
     protected GameObject _player;
     protected NavMeshAgent _agent;
-    protected int _attackRange = 5;
     protected bool _isMoving;
     protected Transform _currentTarget;
     protected Transform _lookAtTarget;
@@ -89,11 +98,12 @@ public abstract class Boss : MonoBehaviour
 
     public virtual void Spawn()
     {
+        BossSpawned?.Invoke(this);
         EnemyWaveController.Instance.StartNextPhase();
     }
     public virtual void SetAttack()
     {
-        float randomNum = Random.Range(0, _attackWeightsPerPhase[_currentPhase].Sum());
+        float randomNum = UnityEngine.Random.Range(0, _attackWeightsPerPhase[_currentPhase].Sum());
         float runningTotal = 0;
         for(int i = 0; i < _attackWeightsPerPhase[_currentPhase].Count; i++)
         {
@@ -113,16 +123,21 @@ public abstract class Boss : MonoBehaviour
         _agent.ResetPath();
         _currentAttack = -1;
         _currentTarget = null;
-        DOTween.Sequence().SetDelay(2f).Append(transform.DOLocalMoveY(-transform.up.y * 10, 5f).OnComplete(() =>
+        DOTween.Sequence().SetDelay(2f).AppendCallback(() => 
         {
+            transform.DOLocalMoveY(-transform.up.y * 2, 5f).OnComplete(() =>
+            {
+                gameObject.SetActive(false);
+            });
+        }).AppendInterval(2.5f).AppendCallback(() =>
+        {
+            SpawnNextBoss?.Invoke();
             if (_nextBoss)
             {
+                _nextBoss.transform.position = transform.position;
                 _nextBoss.gameObject.SetActive(true);
-                _nextBoss.Spawn();
             }
-            gameObject.SetActive(false);
-        }));
-
+        });
     }
 
     public virtual void Teleport()
