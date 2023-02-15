@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
             Rigidbody rb = newThrowable.GetComponent<Rigidbody>();
             if(rb != null)
             {
-                rb.velocity = HelperFunctions.VectorDirections[_lookDirectionIndex] * _throwSpeed;
+                rb.velocity = HelperFunctions.VectorDirections[_lookDirectionIndex] * _throwSpeed;  
             }
             CraftingSystem.Instance.RemoveDurability(1);
         }
