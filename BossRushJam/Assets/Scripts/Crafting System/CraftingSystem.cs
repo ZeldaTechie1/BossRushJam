@@ -148,7 +148,7 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
 
     void CraftItem(CraftingRecipe recipe)
     {
-        if(recipe.Craftable && !recipe.Throwable)
+        if(recipe.Craftable)
         {
             foreach (ItemObject item in recipe.Items)
             {

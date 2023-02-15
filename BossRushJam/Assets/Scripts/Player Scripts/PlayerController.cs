@@ -1,12 +1,7 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
@@ -19,14 +14,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float _slideSpeed;
     [SerializeField]private float _slideCoolDown;
     [SerializeField]private float _invincibilityLength;
+    [SerializeField]private float _throwSpeed = 5f;
     [SerializeField]private GameEvent _playerCanTakeDamageEvent;
     [SerializeField]private List<SpriteRenderer> ItemsHeld;
     [SerializeField]private List<Animator> _playerAnimators;
     [SerializeField]private List<GameObject> _hitboxes;
+    [SerializeField]private List<GameObject> _throwableObjects;
+    [SerializeField]private Transform _throwSpawnPoint;
     [SerializeField]private float _currentDamage = 35;
     [SerializeField]private float _baseDamage = 35;
     [SerializeField]private float[] _additionalDamage;
     [SerializeField]private float _attackCoolDown;
+
+    //Effects
     [SerializeField]private ParticleSystem DashLeftParticle;
     [SerializeField]private ParticleSystem DashRightParticle;
 
@@ -119,14 +119,21 @@ public class PlayerController : MonoBehaviour
     {
         if (_isAttacking || _isSliding || health.IsStunned || !_canAttack)
             return;
-        _isAttacking = true;
-        _canAttack = false;
         if(CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable && CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted)
         {
+            GameObject newThrowable = Instantiate(_throwableObjects[CraftingSystem.Instance.ItemSelected - 2], _throwSpawnPoint.position, Quaternion.identity);
+            newThrowable.transform.parent = null;
+            Rigidbody rb = newThrowable.GetComponent<Rigidbody>();
+            if(rb != null)
+            {
+                rb.velocity = HelperFunctions.VectorDirections[_lookDirectionIndex] * _throwSpeed;
+            }
             CraftingSystem.Instance.RemoveDurability(1);
         }
         else
         {
+            _isAttacking = true;
+            _canAttack = false;
             int hitboxIndex = _lookDirectionIndex;
             _hitboxes[hitboxIndex].SetActive(true);
             DOTween.Sequence()
@@ -205,12 +212,13 @@ public class PlayerController : MonoBehaviour
         {
             item.enabled = false;
         }
-        if (    (CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted 
-            && !CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable)
-            ||   CraftingSystem.Instance.ItemSelected == 0)
+        if (CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted && CraftingSystem.Instance.ItemSelected != 0)
         {
-            ItemsHeld[CraftingSystem.Instance.ItemSelected].enabled = true;
-            _currentDamage = _baseDamage + _additionalDamage[CraftingSystem.Instance.ItemSelected];
+            if(!CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable)
+            {
+                ItemsHeld[CraftingSystem.Instance.ItemSelected].enabled = true;
+                _currentDamage = _baseDamage + _additionalDamage[CraftingSystem.Instance.ItemSelected];
+            }
         }
         else
         {
@@ -224,7 +232,10 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Enemy")
         {
             other.GetComponent<Health>().AffectHealth(null, -_currentDamage);
-            CraftingSystem.Instance.RemoveDurability(1);
+            if(CraftingSystem.Instance.ItemSelected != 0)
+            {
+                CraftingSystem.Instance.RemoveDurability(1);
+            }
             UpdateItemHeld();
         }
     }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed0f9949ae779f4bb746bab4fd536d3, type: 3}
   m_Name: Bone
   m_EditorClassIdentifier: 
-  ItemTexture: {fileID: 21300000, guid: b1a39dc4cc0c6bb44a28520277b5db89, type: 3}
+  ItemTexture: {fileID: 21300000, guid: d477459e230f74b48a87d921898add88, type: 3}
   Name: Bone
