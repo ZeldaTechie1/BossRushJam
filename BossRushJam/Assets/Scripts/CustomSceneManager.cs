@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,8 @@ public class CustomSceneManager : MonoBehaviour
     public Image GameOverButton;
     public TMP_Text GameOverText;
 
+    List<Tweener> tweens = new List<Tweener>();
+
     public void LoadNextScene(int index)
     {
         if(isPaused)
@@ -22,6 +25,7 @@ public class CustomSceneManager : MonoBehaviour
         }
         Time.timeScale = 1;
         SceneManager.LoadScene(index);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }
 
     public void ExitGame()
@@ -54,8 +58,16 @@ public class CustomSceneManager : MonoBehaviour
     {
         Time.timeScale = .05f;
         GameOverScreen.SetActive(true);
-        GameOverBackdrop.DOColor(Color.black, 1f);
-        GameOverButton.DOColor(Color.white, 1f);
-        GameOverText.DOColor(Color.white, 1f);
+        tweens.Add(GameOverBackdrop.DOColor(Color.black, 1f));
+        tweens.Add(GameOverButton.DOColor(Color.white, 1f));
+        tweens.Add(GameOverText.DOColor(Color.white, 1f));
+    }
+
+    public void OnDestroy()
+    {
+        foreach(Tweener tween in tweens)
+        {
+            tween.Kill();
+        }
     }
 }
