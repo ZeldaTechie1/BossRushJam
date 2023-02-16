@@ -35,6 +35,8 @@ public abstract class Boss : MonoBehaviour
     protected Boss _nextBoss = null;
     [SerializeField]
     protected List<Enemy> _minionsToSpawn = new List<Enemy>();
+    [SerializeField]
+    protected GameAudioEventManager _gameAudioEventManager;
 
     public bool IsMoving { get { return _isMoving; } set { _isMoving = value; _agent.isStopped = !value; _animator.SetBool("Walk", value); } }
     [HideInInspector]
@@ -103,7 +105,10 @@ public abstract class Boss : MonoBehaviour
     {
         BossSpawned?.Invoke(this);
         EnemyWaveController.Instance.StartNextPhase();
+
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayBackgroundMusicByType(BossIndex);
     }
+
     public virtual void SetAttack()
     {
         float randomNum = UnityEngine.Random.Range(0, _attackWeightsPerPhase[_currentPhase].Sum());
@@ -126,6 +131,10 @@ public abstract class Boss : MonoBehaviour
         _agent.ResetPath();
         _currentAttack = -1;
         _currentTarget = null;
+
+        _currentPhase++;
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().TransitionBossMusicPhase(_currentPhase);
+
         DOTween.Sequence().SetDelay(2f).AppendCallback(() => 
         {
             transform.DOLocalMoveY(-transform.up.y * 2, 5f).OnComplete(() =>
@@ -165,6 +174,8 @@ public abstract class Boss : MonoBehaviour
             _lookAtTarget = null;
             _agent.ResetPath();
         }
+
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().TransitionBossMusicPhase(_currentPhase);
     }
 
     protected void CheckForPhaseChange(bool force = false)

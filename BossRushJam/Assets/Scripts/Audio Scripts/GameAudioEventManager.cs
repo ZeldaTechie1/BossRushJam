@@ -14,16 +14,16 @@ public class GameAudioEventManager : MonoBehaviour
     public string mus_skeleton_bgm = "event:/MUSIC/mus_skeleton_bgm";
     public string mus_necromancer_bgm = "event:/MUSIC/mus_necromancer_bgm";
 
-    private FMOD.Studio.EventInstance curr_bgm;
+    
     private FMOD.Studio.EventInstance menu_bgm;
     private FMOD.Studio.EventInstance zombie_bgm;
     private FMOD.Studio.EventInstance skeleton_bgm;
     private FMOD.Studio.EventInstance necromancer_bgm;
+    private FMOD.Studio.EventInstance curr_bgm;
 
 
-    private enum BGM_TYPE
+    private enum BOSS_TYPE
     {
-        MENU = 0,
         ZOMBIE = 1,
         SKELETON = 2,
         NECROMANCER = 3
@@ -38,14 +38,30 @@ public class GameAudioEventManager : MonoBehaviour
 
         curr_bgm = skeleton_bgm;
         curr_bgm.setVolume(bgm_volume);
-        curr_bgm.start();
     }
 
     //SFX EVENTS
 
     //Audio Functions
-    public void PlayBGM()
+    public void PlayBackgroundMusicByType(int bgm_type)
     {
+        switch ((BOSS_TYPE)bgm_type)
+        {
+            case BOSS_TYPE.ZOMBIE:
+                curr_bgm = zombie_bgm;
+                break;
+            case BOSS_TYPE.SKELETON:
+                curr_bgm = skeleton_bgm;
+                break;
+            case BOSS_TYPE.NECROMANCER:
+                curr_bgm = necromancer_bgm;
+                break;
+            default:
+                curr_bgm = zombie_bgm;
+                break;
+        }
+
+        curr_bgm.setVolume(bgm_volume);
         curr_bgm.start();
         bgm_paused = false;
     }
@@ -67,13 +83,6 @@ public class GameAudioEventManager : MonoBehaviour
         }
     }
 
-    public void StartBossMusic()
-    {
-        curr_bgm = zombie_bgm;
-        curr_bgm.setVolume(bgm_volume);
-        curr_bgm.start();
-    }
-
     public void TransitionBossMusicPhase(int boss_phase)
     {
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("BossMusicPhase", boss_phase);
@@ -81,8 +90,8 @@ public class GameAudioEventManager : MonoBehaviour
 }
 
 //Audio TODO:
-/*
- * 
- * 
- * 
+/* remove debug audio UI
+ * add volume slider
+ * set BGM players for each boss
+ * set BGM phase triggers
  */
