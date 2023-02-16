@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ public class Health : MonoBehaviour
     [SerializeField]private GameEvent _deathEvent;
     [SerializeField]private float _health;
     [SerializeField]private ParticleSystem _bloodEffect;
+    [SerializeField]private ParticleSystem _poof;
 
     public Action HealthAffected;
 
@@ -65,6 +67,12 @@ public class Health : MonoBehaviour
 
         if (_health <= 0)
         {
+            if(_poof != null)
+            {
+                GameObject poof = Instantiate(_poof.gameObject, _poof.transform.position, Quaternion.identity);
+                poof.transform.parent = null;
+                poof.GetComponent<ParticleSystem>().Play();
+            }
             _deathEvent.Invoke(this);
             IsDead = true;
         }
