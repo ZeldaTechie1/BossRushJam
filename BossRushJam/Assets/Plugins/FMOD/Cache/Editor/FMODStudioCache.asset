@@ -338,7 +338,7 @@ MonoBehaviour:
   Min: 0
   Max: 4
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5655442858364310404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +357,23 @@ MonoBehaviour:
   LoadResult: 13
   FileSizes: []
   Exists: 0
+--- !u!114 &-5567569889613263917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: BossMusicPhase
+  m_EditorClassIdentifier: 
+  Name: BossMusicPhase
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 1
 --- !u!114 &-5515957807275513063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +392,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-5473696270043382696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/SFX.bank
+  SubDir: 
+  lastModified: 638098974379588076
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-5374828758027070890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +516,7 @@ MonoBehaviour:
   lastModified: 638112447910000955
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4048836615240893636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,7 +592,7 @@ MonoBehaviour:
   lastModified: 638101933464025504
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-3022868822016053604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,6 +877,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-815836454575438293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/mus_necromancer_bgm
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/mus_necromancer_bgm
+  guid: 53396009da22594da6dd1fa8c6a911e4
+  Banks:
+  - {fileID: 7320873924696499782}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 150836
 --- !u!114 &-559492310510690990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,7 +1006,7 @@ MonoBehaviour:
   lastModified: 638120215561431852
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,20 +1021,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 8577998453638946557}
-  - {fileID: -4143864529635898784}
-  - {fileID: -168298542784089858}
-  - {fileID: -3697515785495552807}
+  - {fileID: 583162388386979037}
+  - {fileID: 7320873924696499782}
+  - {fileID: -5473696270043382696}
   EditorEvents:
   - {fileID: 5466664069972494395}
   - {fileID: 3905304635482455464}
   - {fileID: 1209180974960685911}
+  - {fileID: -815836454575438293}
   EditorParameters:
-  - {fileID: -5778424976755975604}
+  - {fileID: -5567569889613263917}
   MasterBanks:
-  - {fileID: -4143864529635898784}
+  - {fileID: 583162388386979037}
   StringsBanks:
   - {fileID: 8577998453638946557}
-  stringsBankWriteTime: 638120215561441901
+  stringsBankWriteTime: 638120839413523160
   cacheVersion: 3
 --- !u!114 &107680940413483565
 MonoBehaviour:
@@ -1054,6 +1113,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &583162388386979037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 638113123888091928
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &761254800251012621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,7 +1164,7 @@ MonoBehaviour:
   Path: event:/MUSIC/mus_zombie_bgm
   guid: e8258d1574bef6418ee80781196bd63f
   Banks:
-  - {fileID: -168298542784089858}
+  - {fileID: 7320873924696499782}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1545,7 +1622,7 @@ MonoBehaviour:
   Path: event:/MUSIC/mus_skeleton_bgm
   guid: e3fd809e11c6794aaf62622a914aed04
   Banks:
-  - {fileID: -168298542784089858}
+  - {fileID: 7320873924696499782}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1690,7 +1767,7 @@ MonoBehaviour:
   Path: event:/MUSIC/mus_graveyard_ambient_loop
   guid: 6e56ddf930393e4eb84197786f10ba75
   Banks:
-  - {fileID: -168298542784089858}
+  - {fileID: 7320873924696499782}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1877,6 +1954,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &7320873924696499782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MUSIC.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/MUSIC.bank
+  SubDir: 
+  lastModified: 638120839413508143
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &7340961541070526120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1979,11 +2074,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 638120215561441901
+  lastModified: 638120839413523160
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1002
+    Value: 1048
   Exists: 1
 --- !u!114 &8719453904537282204
 MonoBehaviour:

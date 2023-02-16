@@ -98,6 +98,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""99e2c190-2590-4820-8041-f2e6b70e73a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -298,6 +307,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""ScrollWheel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cc87511-37d8-4a7a-8cf4-d680879f0822"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20c5fd8a-8ea5-449c-a04a-2a9d3b1b4a35"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -342,6 +373,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_PlayerActionMap_Attack = m_PlayerActionMap.FindAction("Attack", throwIfNotFound: true);
         m_PlayerActionMap_Look = m_PlayerActionMap.FindAction("Look", throwIfNotFound: true);
         m_PlayerActionMap_ScrollWheel = m_PlayerActionMap.FindAction("ScrollWheel", throwIfNotFound: true);
+        m_PlayerActionMap_Pause = m_PlayerActionMap.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -409,6 +441,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_Attack;
     private readonly InputAction m_PlayerActionMap_Look;
     private readonly InputAction m_PlayerActionMap_ScrollWheel;
+    private readonly InputAction m_PlayerActionMap_Pause;
     public struct PlayerActionMapActions
     {
         private @Controls m_Wrapper;
@@ -421,6 +454,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_PlayerActionMap_Attack;
         public InputAction @Look => m_Wrapper.m_PlayerActionMap_Look;
         public InputAction @ScrollWheel => m_Wrapper.m_PlayerActionMap_ScrollWheel;
+        public InputAction @Pause => m_Wrapper.m_PlayerActionMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -454,6 +488,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ScrollWheel.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnScrollWheel;
                 @ScrollWheel.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnScrollWheel;
                 @ScrollWheel.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnScrollWheel;
+                @Pause.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -482,6 +519,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ScrollWheel.started += instance.OnScrollWheel;
                 @ScrollWheel.performed += instance.OnScrollWheel;
                 @ScrollWheel.canceled += instance.OnScrollWheel;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -514,5 +554,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

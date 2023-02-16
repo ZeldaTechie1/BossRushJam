@@ -65,11 +65,15 @@ public class PlayerController : MonoBehaviour
     //this gets called by the Player Input Component on this object
     public void OnLocomotion(InputValue value)
     {
-       _movementInput = value.Get<Vector2>();
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
+        _movementInput = value.Get<Vector2>();
     }
 
     public void OnLook(InputValue value)
     {
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
         if (_isSliding || _isAttacking)
             return;
         _lookDirection = value.Get<Vector2>();
@@ -90,7 +94,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnSlide()
     {
-        if(!_canSlide || health.IsStunned)
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
+        if (!_canSlide || health.IsStunned)
             return;
         _playerCanTakeDamageEvent.Invoke(data: false);
         _isSliding = true;
@@ -117,6 +123,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
         if (_isAttacking || _isSliding || health.IsStunned || !_canAttack)
             return;
         if(CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Throwable && CraftingSystem.Instance.CraftingRecipes[CraftingSystem.Instance.ItemSelected].Crafted)
@@ -148,6 +156,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
         if (health.IsStunned)
             return;
         currentOrientation = _mainCamera.transform.forward;
@@ -179,6 +189,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnScrollWheel(InputValue value)
     {
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
         Vector2 scroll = value.Get<Vector2>();
         if(scroll.y > 0)
         {
@@ -194,21 +206,34 @@ public class PlayerController : MonoBehaviour
 
     public void OnCraftingButton()
     {
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
         UpdateItemHeld();
     }
 
     public void OnCraftingSelectUp()
     {
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
         UpdateItemHeld();
     }
     public void OnCraftingSelectDown()
     {
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
         UpdateItemHeld();
+    }
+
+    public void OnPause()
+    {
+        _mainCamera.GetComponent<CustomSceneManager>().TogglePause();
     }
 
     private void UpdateItemHeld()
     {
-        foreach(SpriteRenderer item in ItemsHeld)
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
+        foreach (SpriteRenderer item in ItemsHeld)
         {
             item.enabled = false;
         }
@@ -229,7 +254,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (_mainCamera.GetComponent<CustomSceneManager>().isPaused)
+            return;
+        if (other.tag == "Enemy")
         {
             other.GetComponent<Health>().AffectHealth(null, -_currentDamage);
             if(CraftingSystem.Instance.ItemSelected != 0)
