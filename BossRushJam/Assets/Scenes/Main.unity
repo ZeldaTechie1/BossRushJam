@@ -980,6 +980,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1728537923}
+        m_TargetAssemblyTypeName: GameAudioEventManager, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 937423785}
         m_TargetAssemblyTypeName: CustomSceneManager, Assembly-CSharp
         m_MethodName: TogglePause
@@ -1467,6 +1479,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1728537923}
+        m_TargetAssemblyTypeName: GameAudioEventManager, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 937423785}
         m_TargetAssemblyTypeName: CustomSceneManager, Assembly-CSharp
         m_MethodName: LoadNextScene
@@ -2251,6 +2275,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1728537923}
+        m_TargetAssemblyTypeName: GameAudioEventManager, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 937423785}
         m_TargetAssemblyTypeName: CustomSceneManager, Assembly-CSharp
         m_MethodName: LoadNextScene
@@ -7112,10 +7148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36597ffb2d2fca428025575bea1d1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mus_menu_bgm: event:/MUSIC/mus_graveyard_ambient_loop
-  mus_zombie_bgm: event:/MUSIC/mus_zombie_bgm
-  mus_skeleton_bgm: event:/MUSIC/mus_skeleton_bgm
-  mus_necromancer_bgm: event:/MUSIC/mus_necromancer_bgm
 --- !u!1001 &1757211442
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,20 +8,44 @@ public class GameAudioEventManager : MonoBehaviour
     private bool bgm_paused = false;
 
     //MUSIC EVENTS
-    //[FMODUnity.EventRef]
-    public string mus_menu_bgm = "event:/MUSIC/mus_graveyard_ambient_loop";
-    public string mus_zombie_bgm = "event:/MUSIC/mus_zombie_bgm";
-    public string mus_skeleton_bgm = "event:/MUSIC/mus_skeleton_bgm";
-    public string mus_necromancer_bgm = "event:/MUSIC/mus_necromancer_bgm";
-
-    
+    private string menu_bgm_path = "event:/MUSIC/mus_graveyard_ambient_loop";
+    private string zombie_bgm_path = "event:/MUSIC/mus_zombie_bgm";
+    private string skeleton_bgm_path = "event:/MUSIC/mus_skeleton_bgm";
+    private string necromancer_bgm_path = "event:/MUSIC/mus_necromancer_bgm";
     private FMOD.Studio.EventInstance menu_bgm;
     private FMOD.Studio.EventInstance zombie_bgm;
     private FMOD.Studio.EventInstance skeleton_bgm;
     private FMOD.Studio.EventInstance necromancer_bgm;
     private FMOD.Studio.EventInstance curr_bgm;
 
-
+    //SFX EVENTS
+    private string sfx_button_click_path = "event:/SFX/sfx_button_click";
+    private string sfx_change_equipped_item_path = "event:/SFX/sfx_change_equipped_item";
+    private string sfx_enemy_damaged_path = "event:/SFX/sfx_enemy_damaged";
+    private string sfx_enemy_die_path = "event:/SFX/sfx_enemy_die";
+    private string sfx_item_broken_path = "event:/SFX/sfx_item_broken";
+    private string sfx_item_crafted_path = "event:/SFX/sfx_item_crafted";
+    private string sfx_player_damaged_path = "event:/SFX/sfx_player_damaged";
+    private string sfx_player_dash_path = "event:/SFX/sfx_player_dash";
+    private string sfx_player_weapon_slash_path = "event:/SFX/sfx_player_weapon_slash";
+    private string sfx_projectile_collision_path = "event:/SFX/sfx_projectile_collision";
+    private string sfx_zombie_bite_path = "event:/SFX/sfx_zombie_bite";
+    private string sfx_zombie_smash_wave_path = "event:/SFX/sfx_zombie_smash_wave";
+    private string sfx_zombie_tombstone_toss_land_path = "event:/SFX/sfx_zombie_tombstone_toss_land";
+    private FMOD.Studio.EventInstance sfx_button_click;
+    private FMOD.Studio.EventInstance sfx_change_equipped_item;
+    private FMOD.Studio.EventInstance sfx_enemy_damaged;
+    private FMOD.Studio.EventInstance sfx_enemy_die;
+    private FMOD.Studio.EventInstance sfx_item_broken;
+    private FMOD.Studio.EventInstance sfx_item_crafted;
+    private FMOD.Studio.EventInstance sfx_player_damaged;
+    private FMOD.Studio.EventInstance sfx_player_dash;
+    private FMOD.Studio.EventInstance sfx_player_weapon_slash;
+    private FMOD.Studio.EventInstance sfx_projectile_collision;
+    private FMOD.Studio.EventInstance sfx_zombie_bite;
+    private FMOD.Studio.EventInstance sfx_zombie_smash_wave;
+    private FMOD.Studio.EventInstance sfx_zombie_tombstone_toss_land;
+    
     private enum BOSS_TYPE
     {
         ZOMBIE = 1,
@@ -31,17 +55,32 @@ public class GameAudioEventManager : MonoBehaviour
 
     public void Start()
     {
-        menu_bgm = FMODUnity.RuntimeManager.CreateInstance(mus_menu_bgm);
-        zombie_bgm = FMODUnity.RuntimeManager.CreateInstance(mus_zombie_bgm);
-        skeleton_bgm = FMODUnity.RuntimeManager.CreateInstance(mus_skeleton_bgm);
-        necromancer_bgm = FMODUnity.RuntimeManager.CreateInstance(mus_necromancer_bgm);
-
-        curr_bgm = skeleton_bgm;
+        InitializeAudioInstances();
         curr_bgm.setVolume(bgm_volume);
         bgm_paused = false;
     }
 
-    //SFX EVENTS
+    public void InitializeAudioInstances()
+    {
+        menu_bgm = FMODUnity.RuntimeManager.CreateInstance(menu_bgm_path);
+        zombie_bgm = FMODUnity.RuntimeManager.CreateInstance(zombie_bgm_path);
+        skeleton_bgm = FMODUnity.RuntimeManager.CreateInstance(skeleton_bgm_path);
+        necromancer_bgm = FMODUnity.RuntimeManager.CreateInstance(necromancer_bgm_path);
+
+        sfx_button_click = FMODUnity.RuntimeManager.CreateInstance(sfx_button_click_path);
+        sfx_change_equipped_item = FMODUnity.RuntimeManager.CreateInstance(sfx_change_equipped_item_path);
+        sfx_enemy_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_damaged_path);
+        sfx_enemy_die = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_die_path);
+        sfx_item_broken = FMODUnity.RuntimeManager.CreateInstance(sfx_item_broken_path);
+        sfx_item_crafted = FMODUnity.RuntimeManager.CreateInstance(sfx_item_crafted_path);
+        sfx_player_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_player_damaged_path);
+        sfx_player_dash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_dash_path);
+        sfx_player_weapon_slash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_weapon_slash_path);
+        sfx_projectile_collision = FMODUnity.RuntimeManager.CreateInstance(sfx_projectile_collision_path);
+        sfx_zombie_bite = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_bite_path);
+        sfx_zombie_smash_wave = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_smash_wave_path);
+        sfx_zombie_tombstone_toss_land = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_tombstone_toss_land_path);
+    }
 
     //Audio Functions
     public void PlayBackgroundMusicByType(int bgm_type)
@@ -94,11 +133,19 @@ public class GameAudioEventManager : MonoBehaviour
     {
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("BossMusicPhase", boss_phase);
     }
+
+    //SFX Play Functions
+    public void PlayButtonClick()
+    {
+        sfx_button_click.start();
+    }
 }
 
 //Audio TODO:
-/* remove debug audio UI
+/* add zombie SFX
+ * add player SFX
+ * add regular enemy SFX
  * add volume slider
  * set BGM players for each boss
- * set BGM phase triggers
+ * fix FMOD WebGL build
  */

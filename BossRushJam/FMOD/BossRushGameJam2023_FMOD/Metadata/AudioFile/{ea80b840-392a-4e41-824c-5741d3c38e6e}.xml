@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{ea80b840-392a-4e41-824c-5741d3c38e6e}">
+		<property name="assetPath">
+			<value>SFX/sfx_enemy_damaged.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.36011337868480725</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c829cb1b-5a47-46ed-aee1-16543825d689}</destination>
+		</relationship>
+	</object>
+</objects>

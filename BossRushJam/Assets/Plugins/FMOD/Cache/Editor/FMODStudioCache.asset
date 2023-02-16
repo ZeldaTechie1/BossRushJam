@@ -36,6 +36,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-8783085052897872828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_change_equipped_item
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_change_equipped_item
+  guid: b28affd77a4f6c4fb998fc58f54d583e
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 500
 --- !u!114 &-8769456211732628872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +94,23 @@ MonoBehaviour:
   lastModified: 638110761780000000
   LoadResult: 0
   FileSizes: []
+  Exists: 0
+--- !u!114 &-8474878225705384535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: BossMusicPhase
+  m_EditorClassIdentifier: 
+  Name: BossMusicPhase
+  Min: 0
+  Max: 4
+  Default: 0
   Exists: 0
 --- !u!114 &-7899815925171915941
 MonoBehaviour:
@@ -198,6 +238,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-6836154318658488192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_projectile_collision
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_projectile_collision
+  guid: 65ec762165cb8044ab950604bae4ae28
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 244
 --- !u!114 &-6758776874335965198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +473,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-5411146886170468882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: BossMusicPhase
+  m_EditorClassIdentifier: 
+  Name: BossMusicPhase
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 0
 --- !u!114 &-5374828758027070890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +561,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-4847949057562293720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_enemy_damaged
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_enemy_damaged
+  guid: 018196cd3f53a44792053678777d85c7
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 360
 --- !u!114 &-4781831415209676993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +620,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-4075157942031976533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_player_weapon_slash
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_player_weapon_slash
+  guid: 47bb79ebe15de5499dc015a6cf523fe3
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 287
 --- !u!114 &-4048836615240893636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,6 +701,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-3740023222414549478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_item_crafted
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_item_crafted
+  guid: d354307c28b27c459a87120f10b82d15
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 317
 --- !u!114 &-3697515785495552807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +742,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-3212410925409163795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MUSIC.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/MUSIC.bank
+  SubDir: 
+  lastModified: 638121103880000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-3022868822016053604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,6 +778,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-2965253986813436386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_player_dash
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_player_dash
+  guid: 7b1802a9942aec45b9759f74ffe3da08
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 387
 --- !u!114 &-2786528511513006074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +888,24 @@ MonoBehaviour:
   Max: 4
   Default: 0
   Exists: 0
+--- !u!114 &-2136805141145666072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 638120963280000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-2117738247871169243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +959,29 @@ MonoBehaviour:
   Max: 4
   Default: 0
   Exists: 0
+--- !u!114 &-1770462302417009606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_player_damaged
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_player_damaged
+  guid: 29cb68006cc2d14e8f92837bfbc53296
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 495
 --- !u!114 &-1716765758405164139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,6 +1090,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-867757970502388408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_item_broken
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_item_broken
+  guid: aa4e4196a6fe4140813336c489eeb762
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 173
 --- !u!114 &-822802012368431482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +1146,7 @@ MonoBehaviour:
   Path: event:/MUSIC/mus_necromancer_bgm
   guid: 53396009da22594da6dd1fa8c6a911e4
   Banks:
-  - {fileID: 942728522764633592}
+  - {fileID: -3212410925409163795}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -971,6 +1225,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-287000408940060897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_zombie_smash_wave
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_zombie_smash_wave
+  guid: 364d1d7e571177478fc8ae55c77ca1f3
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 607
 --- !u!114 &-244443601098153881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,21 +1298,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 8577998453638946557}
-  - {fileID: 2837443066253381073}
-  - {fileID: 942728522764633592}
-  - {fileID: 8003084825127671271}
+  - {fileID: 9199251608870101182}
+  - {fileID: 7410806497857970940}
+  - {fileID: -3212410925409163795}
   EditorEvents:
   - {fileID: 5466664069972494395}
   - {fileID: 3905304635482455464}
   - {fileID: 1209180974960685911}
   - {fileID: -815836454575438293}
+  - {fileID: -4847949057562293720}
+  - {fileID: 1253604728976743304}
+  - {fileID: 7843682961956046562}
+  - {fileID: -1770462302417009606}
+  - {fileID: -287000408940060897}
+  - {fileID: -4075157942031976533}
+  - {fileID: -6836154318658488192}
+  - {fileID: 5843327575882548838}
+  - {fileID: -2965253986813436386}
+  - {fileID: -867757970502388408}
+  - {fileID: -8783085052897872828}
+  - {fileID: 1817205560659212562}
+  - {fileID: -3740023222414549478}
   EditorParameters:
-  - {fileID: 5711754328706183398}
+  - {fileID: 4084701277088710381}
   MasterBanks:
-  - {fileID: 2837443066253381073}
+  - {fileID: 9199251608870101182}
   StringsBanks:
   - {fileID: 8577998453638946557}
-  stringsBankWriteTime: 638120950269110917
+  stringsBankWriteTime: 638121103880000000
   cacheVersion: 3
 --- !u!114 &107680940413483565
 MonoBehaviour:
@@ -1052,6 +1342,24 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
   SubDir: 
   lastModified: 638118272600000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &114109326360444034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/SFX.bank
+  SubDir: 
+  lastModified: 638120968460000000
   LoadResult: 0
   FileSizes: []
   Exists: 0
@@ -1149,6 +1457,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &779431258605256412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MUSIC.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/MUSIC.bank
+  SubDir: 
+  lastModified: 638120968460000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &942728522764633592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,7 +1508,7 @@ MonoBehaviour:
   Path: event:/MUSIC/mus_zombie_bgm
   guid: e8258d1574bef6418ee80781196bd63f
   Banks:
-  - {fileID: 942728522764633592}
+  - {fileID: -3212410925409163795}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1190,6 +1516,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 155000
+--- !u!114 &1253604728976743304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_enemy_die
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_enemy_die
+  guid: 08cc9e54061d7041a69ecf869a168cc0
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 581
 --- !u!114 &1273180097115282816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,6 +1579,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 57000
+--- !u!114 &1361571975818395314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: BossMusicPhase
+  m_EditorClassIdentifier: 
+  Name: BossMusicPhase
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 0
 --- !u!114 &1510601705139726861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1320,6 +1686,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &1817205560659212562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_zombie_tombstone_toss_land
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_zombie_tombstone_toss_land
+  guid: c2a3d1bf53c6814d849efb72dd4bb838
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2738
 --- !u!114 &1838587741737954537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,7 +2047,7 @@ MonoBehaviour:
   Path: event:/MUSIC/mus_skeleton_bgm
   guid: e3fd809e11c6794aaf62622a914aed04
   Banks:
-  - {fileID: 942728522764633592}
+  - {fileID: -3212410925409163795}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1683,6 +2072,23 @@ MonoBehaviour:
   Max: 4
   Default: 0
   Exists: 0
+--- !u!114 &4084701277088710381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: BossMusicPhase
+  m_EditorClassIdentifier: 
+  Name: BossMusicPhase
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 1
 --- !u!114 &4276747649525900316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1753,6 +2159,60 @@ MonoBehaviour:
   Max: 4
   Default: 0
   Exists: 1
+--- !u!114 &4394720373759464199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MUSIC.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/MUSIC.bank
+  SubDir: 
+  lastModified: 638120963320000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &4461694187174005147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MUSIC.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/MUSIC.bank
+  SubDir: 
+  lastModified: 638120867800000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &4704960075721379118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/SFX.bank
+  SubDir: 
+  lastModified: 638120699820000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &5316959732770406205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1803,7 +2263,7 @@ MonoBehaviour:
   Path: event:/MUSIC/mus_graveyard_ambient_loop
   guid: 6e56ddf930393e4eb84197786f10ba75
   Banks:
-  - {fileID: 942728522764633592}
+  - {fileID: -3212410925409163795}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1865,6 +2325,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &5681239029782101014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 638120968460000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &5711754328706183398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,6 +2378,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &5843327575882548838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_zombie_bite
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_zombie_bite
+  guid: 762e5010a74a184d888620138ba2e9a9
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 166
 --- !u!114 &6190284738092224008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1936,6 +2437,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &6465624495102156798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/SFX.bank
+  SubDir: 
+  lastModified: 638120963320000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &6514680168963747255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,6 +2526,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &6921429962695339712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 638120699800000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &7320873924696499782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,6 +2580,47 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &7410806497857970940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/SFX.bank
+  SubDir: 
+  lastModified: 638121103880000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &7843682961956046562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_button_click
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_button_click
+  guid: 0b0b390c0b3e974c91b203871761616c
+  Banks:
+  - {fileID: 7410806497857970940}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 244
 --- !u!114 &8003084825127671271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2145,11 +2723,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 638120950269110917
+  lastModified: 638121103880000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1048
+    Value: 1708
   Exists: 1
 --- !u!114 &8719453904537282204
 MonoBehaviour:
@@ -2205,3 +2783,21 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &9199251608870101182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 638121103880000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
