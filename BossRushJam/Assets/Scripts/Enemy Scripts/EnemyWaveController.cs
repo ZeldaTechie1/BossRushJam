@@ -12,6 +12,7 @@ public class EnemyWaveController : Singleton<EnemyWaveController>
     [SerializeField]private float _maxIntervalDeviation;
     [SerializeField]private GameObject _droppableItemPrefab;
     [SerializeField]private List<ItemObject> _itemsToDrop;
+    [SerializeField]protected GameAudioEventManager _gameAudioEventManager;
 
     private GameObject _player;
     private List<Enemy> _enemiesToSpawn;
@@ -81,6 +82,8 @@ public class EnemyWaveController : Singleton<EnemyWaveController>
 
     public void EnemyDied(Component sender, object data)
     {
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayEnemyDie();
+
         GameObject a = Instantiate(_droppableItemPrefab, sender.transform.position, Quaternion.identity);
         a.GetComponentInChildren<DroppableItem>().Init(_itemsToDrop[Random.Range(0, _itemsToDrop.Count)]);
         _currentEnemiesAlive.RemoveAt(_currentEnemiesAlive.IndexOf(sender.gameObject.GetComponent<Enemy>()));

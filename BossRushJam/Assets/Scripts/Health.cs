@@ -23,6 +23,8 @@ public class Health : MonoBehaviour
     [SerializeField]private ParticleSystem _bloodEffect;
     [SerializeField]private ParticleSystem _poof;
 
+    [SerializeField]protected GameAudioEventManager _gameAudioEventManager;
+
     public Action HealthAffected;
 
     public void Start()
@@ -62,6 +64,16 @@ public class Health : MonoBehaviour
         {
             _bloodEffect.Stop();
             _bloodEffect.Play();
+
+            if (this.name == "Player")
+            {
+                _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerDamaged();
+            } else {
+                string sfx_enemy_damaged_path = "event:/SFX/sfx_enemy_damaged";
+                FMOD.Studio.EventInstance sfx_enemy_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_damaged_path);
+                sfx_enemy_damaged.start();
+                //_gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayEnemyDamaged();
+            }
         }
         HealthAffected?.Invoke();
 
@@ -73,6 +85,7 @@ public class Health : MonoBehaviour
                 poof.transform.parent = null;
                 poof.GetComponent<ParticleSystem>().Play();
             }
+
             _deathEvent.Invoke(this);
             IsDead = true;
         }

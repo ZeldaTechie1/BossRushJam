@@ -68,18 +68,15 @@ public class GameAudioEventManager : MonoBehaviour
         necromancer_bgm = FMODUnity.RuntimeManager.CreateInstance(necromancer_bgm_path);
 
         sfx_button_click = FMODUnity.RuntimeManager.CreateInstance(sfx_button_click_path);
-        sfx_change_equipped_item = FMODUnity.RuntimeManager.CreateInstance(sfx_change_equipped_item_path);
-        sfx_enemy_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_damaged_path);
+        sfx_change_equipped_item = FMODUnity.RuntimeManager.CreateInstance(sfx_change_equipped_item_path); //TODO
+        sfx_enemy_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_damaged_path); //TODO
         sfx_enemy_die = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_die_path);
-        sfx_item_broken = FMODUnity.RuntimeManager.CreateInstance(sfx_item_broken_path);
-        sfx_item_crafted = FMODUnity.RuntimeManager.CreateInstance(sfx_item_crafted_path);
+        sfx_item_broken = FMODUnity.RuntimeManager.CreateInstance(sfx_item_broken_path); //TODO
+        sfx_item_crafted = FMODUnity.RuntimeManager.CreateInstance(sfx_item_crafted_path); //TODO
         sfx_player_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_player_damaged_path);
         sfx_player_dash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_dash_path);
         sfx_player_weapon_slash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_weapon_slash_path);
-        sfx_projectile_collision = FMODUnity.RuntimeManager.CreateInstance(sfx_projectile_collision_path);
-        sfx_zombie_bite = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_bite_path);
-        sfx_zombie_smash_wave = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_smash_wave_path);
-        sfx_zombie_tombstone_toss_land = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_tombstone_toss_land_path);
+        sfx_projectile_collision = FMODUnity.RuntimeManager.CreateInstance(sfx_projectile_collision_path); //TODO
     }
 
     //Audio Functions
@@ -138,6 +135,49 @@ public class GameAudioEventManager : MonoBehaviour
     public void PlayButtonClick()
     {
         sfx_button_click.start();
+    }
+
+    public void PlayZombieBite()
+    {
+        sfx_zombie_bite = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_bite_path);
+        sfx_zombie_bite.start();
+    }
+
+    public void PlayZombieShockwave()
+    {
+        sfx_zombie_smash_wave = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_smash_wave_path);
+        sfx_zombie_smash_wave.start();
+    }
+
+    public void PlayZombieTomstoneToss()
+    {
+        sfx_zombie_tombstone_toss_land = FMODUnity.RuntimeManager.CreateInstance(sfx_zombie_tombstone_toss_land_path);
+        sfx_zombie_tombstone_toss_land.start();
+    }
+
+    public void PlayPlayerDash()
+    {
+        sfx_player_dash.start();
+    }
+
+    public void PlayPlayerWeaponSlash()
+    {
+        sfx_player_weapon_slash.start();
+    }
+
+    public void PlayPlayerDamaged()
+    {
+        sfx_player_damaged.start();
+    }
+
+    public void PlayEnemyDamaged()
+    {
+        sfx_enemy_damaged.start();
+    }
+
+    public void PlayEnemyDie()
+    {
+        sfx_enemy_die.start();
     }
 }
 

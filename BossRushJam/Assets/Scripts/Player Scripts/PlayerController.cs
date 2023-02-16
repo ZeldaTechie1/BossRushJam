@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float[] _additionalDamage;
     [SerializeField]private float _attackCoolDown;
 
+    [SerializeField] protected GameAudioEventManager _gameAudioEventManager;
+
     //Effects
     [SerializeField]private ParticleSystem DashLeftParticle;
     [SerializeField]private ParticleSystem DashRightParticle;
@@ -106,6 +108,9 @@ public class PlayerController : MonoBehaviour
             return;
         if (!_canSlide || health.IsStunned)
             return;
+
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerDash();
+
         _playerCanTakeDamageEvent.Invoke(data: false);
         _isSliding = true;
         _canSlide = false;
@@ -127,6 +132,7 @@ public class PlayerController : MonoBehaviour
         }
         foreach(Animator _playerAnimator in _playerAnimators)
             _playerAnimator.SetInteger("LookDirection", _lookDirectionIndex);
+
     }
 
     public void OnAttack()
@@ -148,6 +154,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerWeaponSlash();
+
             _isAttacking = true;
             _canAttack = false;
             int hitboxIndex = _lookDirectionIndex;

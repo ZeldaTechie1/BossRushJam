@@ -84,6 +84,7 @@ public class Enemy : MonoBehaviour
             Vector3 instancedPlayerPosition = _playerPosition;
             if(Vector3.Distance(instancedPlayerPosition, this.transform.position) <= _attackDistance)//if the player is still in range when this happens then we can hurt the player
             {
+
                 HurtPlayer.Invoke(data: -_attackPower);
             }
         });

@@ -102,11 +102,13 @@ MonoBehaviour:
   CanTakeDamage: 0
   IsStunned: 0
   IsDead: 0
+  IsInvincible: 0
   _maxHealth: 30
   _deathEvent: {fileID: 11400000, guid: 3fa6f5b56f87ddf428d2b89c4621c6a0, type: 2}
   _health: 0
   _bloodEffect: {fileID: 4931119579301839097}
   _poof: {fileID: 7204388452494247548}
+  _gameAudioEventManager: {fileID: 3004600415804181229, guid: 671fda2bd7c82b040950387be46f95f6, type: 3}
 --- !u!114 &5876966971958611839
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -104,6 +104,7 @@ public class ZombieBoss : Boss
             IsMoving = false;
             _currentAttack = -1;
             _agent.velocity = Vector3.zero;
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayZombieBite();
             return;
         }
         _agent.destination = _player.transform.position;
@@ -168,6 +169,7 @@ public class ZombieBoss : Boss
 
     public void ShockwaveAttack()
     {
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayZombieShockwave();
         _attackCount++;
         if (_attackCount == _currentPhase + 1)
         {
@@ -188,6 +190,7 @@ public class ZombieBoss : Boss
 
     public void ThrowAttack()
     {
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayZombieTomstoneToss();
         _attackCount++;
         if (_attackCount == _currentPhase + 1)
         {
