@@ -518,6 +518,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -102934930
+      Data2: 1312700720
+      Data3: 2023178680
+      Data4: 1975128175
+    Path: event:/MUSIC/mus_graveyard_ambient_loop
   Event: event:/MUSIC/mus_graveyard_ambient_loop
   PlayEvent: 1
   StopEvent: 2
@@ -908,7 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ListenerNumber: -1
+  attenuationObject: {fileID: 892613077}
 --- !u!1 &1049418148
 GameObject:
   m_ObjectHideFlags: 0

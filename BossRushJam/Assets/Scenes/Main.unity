@@ -3677,9 +3677,9 @@ GameObject:
   m_Component:
   - component: {fileID: 937423782}
   - component: {fileID: 937423784}
-  - component: {fileID: 937423783}
   - component: {fileID: 937423785}
   - component: {fileID: 937423786}
+  - component: {fileID: 937423787}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3702,14 +3702,6 @@ Transform:
   m_Father: {fileID: 804749619}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!81 &937423783
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937423781}
-  m_Enabled: 1
 --- !u!20 &937423784
 Camera:
   m_ObjectHideFlags: 0
@@ -3801,6 +3793,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &937423787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937423781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &946270492
 GameObject:
   m_ObjectHideFlags: 0
@@ -10527,6 +10532,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameAudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3004600415804181231, guid: 671fda2bd7c82b040950387be46f95f6, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 3004600415804181230, guid: 671fda2bd7c82b040950387be46f95f6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 671fda2bd7c82b040950387be46f95f6, type: 3}
 --- !u!1001 &4160134007530187997
