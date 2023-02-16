@@ -18,9 +18,6 @@ public class ZombieBoss : Boss
     [SerializeField]
     private Transform[] _throwWaypoints;
 
-
-    private int _attackCount = 0;
-
     // Update is called once per frame
     void Update()
     {

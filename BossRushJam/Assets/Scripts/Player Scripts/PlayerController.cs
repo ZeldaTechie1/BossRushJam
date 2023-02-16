@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,7 +45,14 @@ public class PlayerController : MonoBehaviour
     private float _attackTime = 0;
     private Health health;
     private PlayerInput _playerInput;
-    
+
+
+    private List<Boss> _debugBosses;
+
+    private void Awake()
+    {
+        _debugBosses = FindObjectsOfType<Boss>().ToList();
+    }
 
     private void Start()
     {
@@ -264,6 +272,42 @@ public class PlayerController : MonoBehaviour
                 CraftingSystem.Instance.RemoveDurability(1);
             }
             UpdateItemHeld();
+        }
+    }
+
+    // DEBUG COMMANDS TO SWAP BOSSES
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            DebugBoss(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            DebugBoss(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            DebugBoss(3);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            health.IsInvincible = !health.IsInvincible;
+        }
+    }
+
+    private void DebugBoss(int bossIndex)
+    {
+        foreach (Boss boss in _debugBosses)
+        {
+            if (boss.BossIndex == bossIndex)
+            {
+                boss.gameObject.SetActive(true);
+            }
+            else
+            {
+                boss.gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -13,6 +13,9 @@ public class Health : MonoBehaviour
     [HideInInspector]
     public bool IsDead;
 
+    [HideInInspector]
+    public bool IsInvincible;
+
     [SerializeField]private float _maxHealth;
     [SerializeField]private GameEvent _deathEvent;
     [SerializeField]private float _health;
@@ -33,7 +36,7 @@ public class Health : MonoBehaviour
 
     public void AffectHealth(Component objectToDamage, object data)
     {
-        if(IsDead)
+        if(IsDead || IsInvincible)
         {
             return;
         }

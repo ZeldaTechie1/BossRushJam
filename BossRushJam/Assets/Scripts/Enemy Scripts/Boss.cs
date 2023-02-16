@@ -16,6 +16,8 @@ using UnityEngine.AI;
 public abstract class Boss : MonoBehaviour
 {
     [SerializeField]
+    protected int _bossIndex;
+    [SerializeField]
     protected float[] _phaseThresholds;
     [SerializeField]
     protected float _waypointThreshold;
@@ -38,6 +40,7 @@ public abstract class Boss : MonoBehaviour
     [HideInInspector]
     public bool IsAttacking;
     public Boss NextBoss { get { return _nextBoss; } }
+    public int BossIndex { get { return _bossIndex; } }
     public List<Enemy> MinionsToSpawn { get { return _minionsToSpawn; } }
 
     public static Action<Boss> BossSpawned;
@@ -57,7 +60,7 @@ public abstract class Boss : MonoBehaviour
     protected int _currentPhase = 0;
     protected int _maxPhase;
     protected List<List<float>> _attackWeightsPerPhase = new List<List<float>>();
-
+    protected int _attackCount = 0;
     private void Awake()
     {
         _health = GetComponent<Health>();
@@ -85,13 +88,13 @@ public abstract class Boss : MonoBehaviour
 
         if (_attackWeightsPerPhase.Count != _phaseThresholds.Length + 1)
         {
-            Debug.LogError("Attack Weights Per Phase count didn't match the amount of phases given");
+            //Debug.LogError("Attack Weights Per Phase count didn't match the amount of phases given");
         }
         foreach (List<float> weights in _attackWeightsPerPhase)
         {
             if (weights.Count != _attackAnimations.Length)
             {
-                Debug.LogError("The amount of weights per phase doesn't match the amount of attack animations");
+                //Debug.LogError("The amount of weights per phase doesn't match the amount of attack animations");
             }
         }
     }
