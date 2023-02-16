@@ -38,6 +38,7 @@ public class GameAudioEventManager : MonoBehaviour
 
         curr_bgm = skeleton_bgm;
         curr_bgm.setVolume(bgm_volume);
+        bgm_paused = false;
     }
 
     //SFX EVENTS
@@ -70,6 +71,12 @@ public class GameAudioEventManager : MonoBehaviour
     {
         bgm_volume = (bgm_volume == 0.0f) ? 1.0f : 0.0f;
         curr_bgm.setVolume(bgm_volume);
+    }
+
+    public void StopBGM()
+    {
+        bgm_paused = true;
+        curr_bgm.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     public void PauseBGM()

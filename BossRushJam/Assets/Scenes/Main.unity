@@ -3731,6 +3731,7 @@ MonoBehaviour:
   GameOverBackdrop: {fileID: 1456778789}
   GameOverButton: {fileID: 307239492}
   GameOverText: {fileID: 2107664421}
+  gameAudioEventManager: {fileID: 1728537923}
 --- !u!114 &937423786
 MonoBehaviour:
   m_ObjectHideFlags: 0

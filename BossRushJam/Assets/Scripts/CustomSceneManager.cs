@@ -14,6 +14,7 @@ public class CustomSceneManager : MonoBehaviour
     public Image GameOverBackdrop;
     public Image GameOverButton;
     public TMP_Text GameOverText;
+    public GameAudioEventManager gameAudioEventManager;
 
     List<Tweener> tweens = new List<Tweener>();
 
@@ -23,6 +24,7 @@ public class CustomSceneManager : MonoBehaviour
         {
             TogglePause();
         }
+        gameAudioEventManager.StopBGM();
         Time.timeScale = 1;
         SceneManager.LoadScene(index);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
@@ -35,7 +37,8 @@ public class CustomSceneManager : MonoBehaviour
 
     public void TogglePause()
     {
-        if(isPaused)
+        gameAudioEventManager.PauseBGM();
+        if (isPaused)
         {
             Time.timeScale = 1;
             if(PauseScreen != null)
@@ -61,6 +64,8 @@ public class CustomSceneManager : MonoBehaviour
         tweens.Add(GameOverBackdrop.DOColor(Color.black, 1f));
         tweens.Add(GameOverButton.DOColor(Color.white, 1f));
         tweens.Add(GameOverText.DOColor(Color.white, 1f));
+
+        gameAudioEventManager.StopBGM();
     }
 
     public void OnDestroy()
