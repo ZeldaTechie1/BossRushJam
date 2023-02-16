@@ -78,3 +78,4 @@ BossRushJam/[Aa]ssets/StreamingAssets/**/*.bank.meta
 BossRushJam/fmod_editor.log
 BossRushJam/UserSettings/Layouts/default-2021.dwlt
 *.dwlt
+BossRushJam/Assets/Scenes/Main.unity
