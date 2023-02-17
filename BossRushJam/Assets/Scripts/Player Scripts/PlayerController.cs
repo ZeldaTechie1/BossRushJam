@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
     // DEBUG COMMANDS TO SWAP BOSSES
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        /*if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             DebugBoss(1);
         }
@@ -314,7 +314,7 @@ public class PlayerController : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Alpha0))
         {
             health.IsInvincible = !health.IsInvincible;
-        }
+        }*/
     }
 
     private void DebugBoss(int bossIndex)
