@@ -82,6 +82,8 @@ public class GameAudioEventManager : MonoBehaviour
     //Audio Functions
     public void PlayBackgroundMusicByType(int bgm_type)
     {
+        StopBGM();
+
         switch ((BOSS_TYPE)bgm_type)
         {
             case BOSS_TYPE.ZOMBIE:

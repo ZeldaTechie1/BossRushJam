@@ -8157,6 +8157,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3429359135369071370, guid: e094a4159f0bc25478e4496476409a73, type: 3}
+      propertyPath: _gameAudioEventManager
+      value: 
+      objectReference: {fileID: 1728537923}
+    - target: {fileID: 6339435026397682064, guid: e094a4159f0bc25478e4496476409a73, type: 3}
+      propertyPath: _gameAudioEventManager
+      value: 
+      objectReference: {fileID: 1728537923}
     - target: {fileID: 8588835307633894072, guid: e094a4159f0bc25478e4496476409a73, type: 3}
       propertyPath: m_RootOrder
       value: 7
