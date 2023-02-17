@@ -79,3 +79,5 @@ BossRushJam/fmod_editor.log
 BossRushJam/UserSettings/Layouts/default-2021.dwlt
 *.dwlt
 BossRushJam/Assets/Scenes/Main.unity
+BossRushJam/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+BossRushJam/ProjectSettings/EditorBuildSettings.asset

@@ -33,7 +33,7 @@ public class EnemyWaveController : Singleton<EnemyWaveController>
         }
     }
 
-    private void UpdateEnemyList(Boss boss)
+    public void UpdateEnemyList(Boss boss)
     {
         _enemiesToSpawn = boss.MinionsToSpawn;
     }
@@ -63,6 +63,8 @@ public class EnemyWaveController : Singleton<EnemyWaveController>
     {
         if(_enemiesToSpawn == null || _spawnPoints == null)
         {
+            Debug.Log(_enemiesToSpawn);
+            Debug.Log(_spawnPoints);
             throw new System.Exception("EnemyWaveController is not properly setup and cannot spawn enemies!");
         }
         if (_player == null)

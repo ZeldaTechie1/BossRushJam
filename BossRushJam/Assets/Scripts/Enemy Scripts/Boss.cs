@@ -37,6 +37,7 @@ public abstract class Boss : MonoBehaviour
     protected List<Enemy> _minionsToSpawn = new List<Enemy>();
     [SerializeField]
     protected GameAudioEventManager _gameAudioEventManager;
+    public CustomSceneManager SceneManager;
 
     public bool IsMoving { get { return _isMoving; } set { _isMoving = value; _agent.isStopped = !value; _animator.SetBool("Walk", value); } }
     [HideInInspector]
@@ -104,6 +105,7 @@ public abstract class Boss : MonoBehaviour
     public virtual void Spawn()
     {
         BossSpawned?.Invoke(this);
+        EnemyWaveController.Instance.UpdateEnemyList(this);
         EnemyWaveController.Instance.StartNextPhase();
 
         _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayBackgroundMusicByType(BossIndex);
@@ -145,13 +147,17 @@ public abstract class Boss : MonoBehaviour
             {
                 gameObject.SetActive(false);
             });
-        }).AppendInterval(2.5f).AppendCallback(() =>
+        }).AppendInterval(10f).AppendCallback(() =>
         {
             SpawnNextBoss?.Invoke();
             if (_nextBoss)
             {
                 _nextBoss.transform.position = transform.position;
                 _nextBoss.gameObject.SetActive(true);
+            }
+            else
+            {
+                SceneManager.GameBeat();
             }
         });
     }

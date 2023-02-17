@@ -19,11 +19,20 @@ public class VampireBoss : Boss
     [SerializeField]
     private MeshRenderer _beamRenderer;
 
+    private Dictionary<string, float> _damageValues = new Dictionary<string, float>()
+    {
+        { "Swipe", -15f},
+        { "BackHand", -15f },
+        { "Beam", -20f },
+        { "Bat", -35f }
+    };
+    private string _currentAttackName = "";
+
     private Vector3 _originalBatPosition;
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
         _originalBatPosition = _batSprite.transform.localPosition;
     }
 
@@ -35,6 +44,8 @@ public class VampireBoss : Boss
     // Update is called once per frame
     void Update()
     {
+        if (_health.IsDead)
+            return;
         if (Input.GetKeyDown(KeyCode.F1))
         {
             CheckForPhaseChange(true);
@@ -48,9 +59,17 @@ public class VampireBoss : Boss
             ResetAttackBools();
             SetAttack();
         }
-        else
+        switch (_currentAttack)
         {
-            BeamAttack();
+            case 0:
+                Swipe();
+                break;
+            case 1:
+                BeamAttack();
+                break;
+            case 2:
+                BatTransformation();
+                break;
         }
     }
 
@@ -86,10 +105,18 @@ public class VampireBoss : Boss
         Transform(true, true);
         List<Transform> waypoints = _batWaypoints.ToList();
         Sequence sequence = DOTween.Sequence();
+        Transform prevWaypoint = null;
         for(int i = 0; i < _batWaypoints.Length; i++)
         {
-            Transform waypoint = waypoints[Random.Range(0, waypoints.Count)];
-            
+            Transform waypoint = null;
+            if (prevWaypoint == null)
+            {
+                waypoint = waypoints[Random.Range(0, waypoints.Count)];
+            }
+            else
+            {
+                waypoint = waypoints.OrderBy(x => Vector3.Distance(x.position, prevWaypoint.position) + Random.Range(-30f,30f)).ToList().Last();
+            }
             sequence.AppendCallback(() => 
             {
                 Vector3 direction = (_batSprite.transform.position - waypoint.position).normalized;
@@ -103,7 +130,7 @@ public class VampireBoss : Boss
                 }
                 _batSprite.transform.DOMove(waypoint.position, 1f); 
             }).AppendInterval(1f);
-            waypoints.Remove(waypoint);
+            prevWaypoint = waypoint;
         }
         sequence.Append(_batSprite.transform.DOLocalMove(_originalBatPosition, 1f)).AppendCallback(() =>
         {
@@ -112,6 +139,7 @@ public class VampireBoss : Boss
         {
             IsMoving = true;
         });
+        _currentAttackName = "Bat";
     }
 
     private void Swipe()
@@ -120,10 +148,11 @@ public class VampireBoss : Boss
         {
             IsMoving = false;
             _animator.SetBool(_attackAnimations[_currentAttack], true);
+            _currentAttackName = "Swipe";
             if (_currentPhase >= 1)
             {
-                _currentAttack++;
-                _animator.SetBool(_attackAnimations[_currentAttack], true);
+                _animator.SetBool("BackHand", true);
+                _currentAttackName = "BackHand";
             }
             _currentAttack = -1;
             _agent.velocity = Vector3.zero;
@@ -168,6 +197,7 @@ public class VampireBoss : Boss
                 });
                 _beamRenderer.GetComponent<Collider>().enabled = false;
             });
+        _currentAttackName = "Beam";
     }
 
     private void Transform(bool bat, bool enableBatCollider = false)
@@ -175,7 +205,14 @@ public class VampireBoss : Boss
         _batSprite.enabled = bat;
         _batSprite.GetComponent<Collider>().enabled = enableBatCollider;
         GetComponent<Collider>().enabled = !bat;
-        _animator.speed = 0;
+        if(bat)
+        {
+            _animator.speed = 0;
+        }
+        else
+        {
+            _animator.speed = 1;
+        }
         foreach (SkinnedMeshRenderer smr in GetComponentsInChildren<SkinnedMeshRenderer>())
         {
             smr.enabled = !bat;
@@ -187,7 +224,7 @@ public class VampireBoss : Boss
         Health health = other.GetComponent<Health>();
 
         if (health == null || !health.CanTakeDamage) { return; }
-        health.AffectHealth(null, -10f);
+        health.AffectHealth(null, _damageValues[_currentAttackName]);
         other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         DOTween.Sequence().SetDelay(1).AppendCallback(() => { if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
     }

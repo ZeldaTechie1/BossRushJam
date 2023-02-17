@@ -70,6 +70,14 @@ public class CustomSceneManager : MonoBehaviour
         gameAudioEventManager.StopBGM();
     }
 
+    public void GameBeat()
+    {
+        Time.timeScale = .1f;
+        GameOverScreen.SetActive(true);
+        GameOverButton.gameObject.SetActive(false);
+        tweens.Add(GameOverBackdrop.DOColor(Color.black, .25f).OnComplete(()=>LoadNextScene(2)));
+    }
+
     public void OnDestroy()
     {
         foreach(Tweener tween in tweens)

@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
             throw new System.Exception($"Wrong data when calling this function! Expecting float and received {data.GetType()}");
         }
         
-        float healthDelta = (float)data;
+        float healthDelta = (float)data;    
         if (!CanTakeDamage)
         {
             return;
@@ -98,5 +98,11 @@ public class Health : MonoBehaviour
             throw new System.Exception($"Wrong data when calling this function! Expecting boolean and received {data.GetType()}");
         }
         CanTakeDamage = (bool)data;
+    }
+
+    public void GimmeHealth()
+    {
+        _health = _maxHealth;
+        AffectHealth(null, 0f);
     }
 }

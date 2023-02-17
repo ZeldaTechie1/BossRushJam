@@ -20,7 +20,7 @@ public class ZombieBoss : Boss
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     // Update is called once per frame

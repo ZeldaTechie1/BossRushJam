@@ -25,7 +25,7 @@ public class SkeletonBoss : Boss
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
         foreach (AnimationClip clip in _animator.runtimeAnimatorController.animationClips)
         {
             switch(clip.name)
@@ -49,6 +49,8 @@ public class SkeletonBoss : Boss
     // Update is called once per frame
     void Update()
     {
+        if (_health.IsDead)
+            return;
         if (Input.GetKeyDown(KeyCode.F1))
         {
             CheckForPhaseChange(true);

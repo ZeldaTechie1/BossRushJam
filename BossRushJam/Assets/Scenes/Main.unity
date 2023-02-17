@@ -4698,6 +4698,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1728537923}
     - target: {fileID: 6335083790245211131, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
+      propertyPath: _health
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335083790245211131, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
+      propertyPath: _maxHealth
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335083790245211131, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _gameAudioEventManager
       value: 
       objectReference: {fileID: 1728537923}
@@ -5011,13 +5019,25 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3429359135369071370, guid: e094a4159f0bc25478e4496476409a73, type: 3}
+      propertyPath: _health
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429359135369071370, guid: e094a4159f0bc25478e4496476409a73, type: 3}
+      propertyPath: _maxHealth
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429359135369071370, guid: e094a4159f0bc25478e4496476409a73, type: 3}
       propertyPath: _gameAudioEventManager
       value: 
       objectReference: {fileID: 1728537923}
     - target: {fileID: 6339435026397682064, guid: e094a4159f0bc25478e4496476409a73, type: 3}
       propertyPath: _nextBoss
       value: 
-      objectReference: {fileID: 1252535710}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339435026397682064, guid: e094a4159f0bc25478e4496476409a73, type: 3}
+      propertyPath: SceneManager
+      value: 
+      objectReference: {fileID: 937423785}
     - target: {fileID: 6339435026397682064, guid: e094a4159f0bc25478e4496476409a73, type: 3}
       propertyPath: _gameAudioEventManager
       value: 
@@ -6171,6 +6191,42 @@ PrefabInstance:
       propertyPath: _throwableObjects.Array.data[2]
       value: 
       objectReference: {fileID: 1594288408531185291, guid: c4ca11769c5b21f46b0c95bc37724f5d, type: 3}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].gameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 258c76e38266638429f2fe5be58be42b, type: 2}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 343750686}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].response.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GimmeHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Health, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237434184172503156, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
+      propertyPath: gameEvents.Array.data[3].response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7237434184172503157, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
       propertyPath: _gameAudioEventManager
       value: 
@@ -8045,6 +8101,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2101569391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
+  m_PrefabInstance: {fileID: 1112895919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4499bef58dc964b86310721a7fa972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2102115303
 GameObject:
   m_ObjectHideFlags: 0
@@ -10528,7 +10595,7 @@ PrefabInstance:
     - target: {fileID: 9026911900392142613, guid: 09601acdf8b967f4e82dff6ccb184a41, type: 3}
       propertyPath: _nextBoss
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2101569391}
     - target: {fileID: 9026911900392142613, guid: 09601acdf8b967f4e82dff6ccb184a41, type: 3}
       propertyPath: gameAudioEventManager
       value: 
