@@ -70,12 +70,12 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638121976180000000
+  lastModified: 638122104480000000
   FileSizes:
   - Name: Desktop
-    Value: 1744
+    Value: 1930
   - Name: Mobile
-    Value: 1744
+    Value: 1930
   Exists: 1
 --- !u!114 &-7357843246110967738
 MonoBehaviour:
@@ -209,6 +209,33 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1957
+--- !u!114 &-3906945444894124082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_boss_die
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_boss_die
+  Guid:
+    Data1: -206691839
+    Data2: 1179831430
+    Data3: -1947120221
+    Data4: 1752016805
+  Banks:
+  - {fileID: 511271798476717921}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3000
 --- !u!114 &-2675463652863113221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,10 +250,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/sfx_player_weapon_slash
   Guid:
-    Data1: -344343737
-    Data2: 1239768545
-    Data3: -1508523875
-    Data4: -482389297
+    Data1: -1531134400
+    Data2: 1250279610
+    Data3: -986535517
+    Data4: -263982037
   Banks:
   - {fileID: 511271798476717921}
   IsStream: 0
@@ -353,13 +380,17 @@ MonoBehaviour:
   - {fileID: 5309742378575189469}
   - {fileID: 389270903163637078}
   - {fileID: -2667649034143893460}
+  - {fileID: -3906945444894124082}
+  - {fileID: 6726176343298437950}
+  - {fileID: 1291246099997630343}
+  - {fileID: 5690750968208701096}
   EditorParameters:
   - {fileID: -6660815753776218319}
   MasterBanks:
   - {fileID: 8374879456956380725}
   StringsBanks:
   - {fileID: -7670478627577672780}
-  cacheTime: 638121976180000000
+  cacheTime: 638122104480000000
   cacheVersion: 131601
 --- !u!114 &389270903163637078
 MonoBehaviour:
@@ -404,11 +435,38 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638121976180000000
+  lastModified: 638122104480000000
   FileSizes:
   - Name: Desktop
-    Value: 104640
+    Value: 196064
   Exists: 1
+--- !u!114 &1291246099997630343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_player_die
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_player_die
+  Guid:
+    Data1: 1800608873
+    Data2: 1128048594
+    Data3: -1067779155
+    Data4: -606526741
+  Banks:
+  - {fileID: 511271798476717921}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2500
 --- !u!114 &1518036877768249173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +611,7 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/MUSIC.bank
   Name: MUSIC
   StudioPath: bank:/MUSIC
-  lastModified: 638121976180000000
+  lastModified: 638122104480000000
   FileSizes:
   - Name: Desktop
     Value: 6289184
@@ -585,6 +643,60 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 57000
+--- !u!114 &5690750968208701096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_win_game
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_win_game
+  Guid:
+    Data1: -2083680526
+    Data2: 1222127101
+    Data3: 291947705
+    Data4: -705791879
+  Banks:
+  - {fileID: 511271798476717921}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3500
+--- !u!114 &6726176343298437950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sfx_skeleton_slash_sword
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sfx_skeleton_slash_sword
+  Guid:
+    Data1: 1480892459
+    Data2: 1248490091
+    Data3: 1542311092
+    Data4: -1308783018
+  Banks:
+  - {fileID: 511271798476717921}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 166
 --- !u!114 &7457267289605989616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +763,7 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638121976180000000
+  lastModified: 638122104480000000
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -670,10 +782,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/sfx_player_dash
   Guid:
-    Data1: -1459480453
-    Data2: 1173105300
-    Data3: 1956607417
-    Data4: 148562943
+    Data1: 544467872
+    Data2: 1130158635
+    Data3: -505289816
+    Data4: 1636833316
   Banks:
   - {fileID: 511271798476717921}
   IsStream: 0

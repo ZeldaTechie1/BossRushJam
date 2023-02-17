@@ -6174,7 +6174,7 @@ PrefabInstance:
     - target: {fileID: 7237434184172503154, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
       propertyPath: _gameAudioEventManager
       value: 
-      objectReference: {fileID: 1728537923}
+      objectReference: {fileID: 3004600415804181229, guid: 671fda2bd7c82b040950387be46f95f6, type: 3}
     - target: {fileID: 7237434184172503154, guid: 6e2bd375956db6c4693b8c0e0f36ca52, type: 3}
       propertyPath: _throwableObjects.Array.size
       value: 3

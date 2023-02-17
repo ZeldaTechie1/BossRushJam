@@ -109,7 +109,10 @@ public class PlayerController : MonoBehaviour
         if (!_canSlide || health.IsStunned)
             return;
 
-        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerDash();
+        //_gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerDash();
+        string sfx_player_dash_path = "event:/SFX/sfx_player_dash";
+        FMOD.Studio.EventInstance sfx_player_dash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_dash_path);
+        sfx_player_dash.start();
 
         _playerCanTakeDamageEvent.Invoke(data: false);
         _isSliding = true;
@@ -152,11 +155,17 @@ public class PlayerController : MonoBehaviour
             }
             CraftingSystem.Instance.RemoveDurability(1);
 
-            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayProjectileCollision();
+            //_gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayProjectileCollision();
+            string sfx_projectile_collision_path = "event:/SFX/sfx_projectile_collision";
+            FMOD.Studio.EventInstance sfx_projectile_collision = FMODUnity.RuntimeManager.CreateInstance(sfx_projectile_collision_path);
+            sfx_projectile_collision.start();
         }
         else
         {
-            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerWeaponSlash();
+            //_gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerWeaponSlash();
+            string sfx_player_weapon_slash_path = "event:/SFX/sfx_player_weapon_slash";
+            FMOD.Studio.EventInstance sfx_player_weapon_slash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_weapon_slash_path);
+            sfx_player_weapon_slash.start();
 
             _isAttacking = true;
             _canAttack = false;

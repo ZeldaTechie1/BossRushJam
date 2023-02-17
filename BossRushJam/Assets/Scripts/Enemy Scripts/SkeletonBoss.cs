@@ -112,6 +112,7 @@ public class SkeletonBoss : Boss
         }
         if (PlayerInAttackRange() && PlayerInFront())
         {
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlaySkeletonVampireAttack();
             _animator.SetBool("Stab2H", true);
             IsMoving = false;
             _agent.velocity = Vector3.zero;
@@ -129,6 +130,7 @@ public class SkeletonBoss : Boss
     {
         if (PlayerInAttackRange() && PlayerInFront())
         {
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlaySkeletonVampireAttack();
             _animator.SetBool("Swipe2H", true);
             IsMoving = false;
             _agent.velocity = Vector3.zero;
@@ -146,6 +148,7 @@ public class SkeletonBoss : Boss
     {
         if (PlayerInAttackRange() && PlayerInFront())
         {
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlaySkeletonVampireAttack();
             _animator.SetBool("Stab4H", true);
             IsMoving = false;
             _agent.velocity = Vector3.zero;
@@ -163,6 +166,7 @@ public class SkeletonBoss : Boss
     {
         if (PlayerInAttackRange() && PlayerInFront())
         {
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlaySkeletonVampireAttack();
             _animator.SetBool("Swipe4H", true);
             IsMoving = false;
             _agent.velocity = Vector3.zero;
@@ -180,6 +184,7 @@ public class SkeletonBoss : Boss
     {
         if (PlayerInAttackRange() && PlayerInFront())
         {
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlaySkeletonVampireAttack();
             IsMoving = false;
             _agent.velocity = Vector3.zero;
             if (_currentPhase != _maxPhase)
@@ -210,6 +215,7 @@ public class SkeletonBoss : Boss
             
     private void SpinAttack()
     {
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlaySkeletonVampireAttack();
         Tweener tween = transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y + 360, transform.rotation.z), .2f, RotateMode.WorldAxisAdd).SetLoops(5);
         _animator.SetBool("SpinAttack", true);
         DOTween.Sequence()

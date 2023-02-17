@@ -141,10 +141,13 @@ public abstract class Boss : MonoBehaviour
         _currentPhase++;
         _gameAudioEventManager.GetComponent<GameAudioEventManager>().TransitionBossMusicPhase(_currentPhase);
 
+        _player.GetComponent<Health>().GimmeHealth();
+
         DOTween.Sequence().SetDelay(2f).AppendCallback(() => 
         {
             transform.DOLocalMoveY(-transform.up.y * 2, 5f).OnComplete(() =>
             {
+                _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayBossDie();
                 gameObject.SetActive(false);
             });
         }).AppendInterval(10f).AppendCallback(() =>

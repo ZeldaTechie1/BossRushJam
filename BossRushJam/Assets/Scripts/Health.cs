@@ -88,6 +88,11 @@ public class Health : MonoBehaviour
 
             _deathEvent.Invoke(this);
             IsDead = true;
+
+            if (this.name == "Player")
+            {
+                _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerDie();
+            }
         }
     }
     

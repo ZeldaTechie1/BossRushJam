@@ -270,13 +270,13 @@
 	</object>
 	<object class="TransitionRegion" id="{ed52e61c-e25e-4796-8340-7531dc39d84c}">
 		<property name="position">
-			<value>72.72727272727272</value>
+			<value>58.18181818181818</value>
 		</property>
 		<property name="length">
-			<value>29.092027720178955</value>
+			<value>43.637482265633494</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>12</value>
+			<value>8</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{a8a8194c-76f4-4664-aeff-20149d436310}</destination>

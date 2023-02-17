@@ -19,6 +19,7 @@ public class GameAudioEventManager : MonoBehaviour
     private FMOD.Studio.EventInstance curr_bgm;
 
     //SFX EVENTS
+    private string sfx_boss_die_path = "event:/SFX/sfx_boss_die";
     private string sfx_button_click_path = "event:/SFX/sfx_button_click";
     private string sfx_change_equipped_item_path = "event:/SFX/sfx_change_equipped_item";
     private string sfx_enemy_damaged_path = "event:/SFX/sfx_enemy_damaged";
@@ -27,11 +28,15 @@ public class GameAudioEventManager : MonoBehaviour
     private string sfx_item_crafted_path = "event:/SFX/sfx_item_crafted";
     private string sfx_player_damaged_path = "event:/SFX/sfx_player_damaged";
     private string sfx_player_dash_path = "event:/SFX/sfx_player_dash";
+    private string sfx_player_die_path = "event:/SFX/sfx_player_die";
     private string sfx_player_weapon_slash_path = "event:/SFX/sfx_player_weapon_slash";
     private string sfx_projectile_collision_path = "event:/SFX/sfx_projectile_collision";
+    private string sfx_skeleton_vampire_attack_path = "event:/SFX/sfx_skeleton_slash_sword";
+    private string sfx_win_game_path = "event:/SFX/sfx_win_game";
     private string sfx_zombie_bite_path = "event:/SFX/sfx_zombie_bite";
     private string sfx_zombie_smash_wave_path = "event:/SFX/sfx_zombie_smash_wave";
     private string sfx_zombie_tombstone_toss_land_path = "event:/SFX/sfx_zombie_tombstone_toss_land";
+    private FMOD.Studio.EventInstance sfx_boss_die;
     private FMOD.Studio.EventInstance sfx_button_click;
     private FMOD.Studio.EventInstance sfx_change_equipped_item;
     private FMOD.Studio.EventInstance sfx_enemy_damaged;
@@ -40,8 +45,11 @@ public class GameAudioEventManager : MonoBehaviour
     private FMOD.Studio.EventInstance sfx_item_crafted;
     private FMOD.Studio.EventInstance sfx_player_damaged;
     private FMOD.Studio.EventInstance sfx_player_dash;
+    private FMOD.Studio.EventInstance sfx_player_die;
     private FMOD.Studio.EventInstance sfx_player_weapon_slash;
     private FMOD.Studio.EventInstance sfx_projectile_collision;
+    private FMOD.Studio.EventInstance sfx_skeleton_vampire_attack;
+    private FMOD.Studio.EventInstance sfx_win_game;
     private FMOD.Studio.EventInstance sfx_zombie_bite;
     private FMOD.Studio.EventInstance sfx_zombie_smash_wave;
     private FMOD.Studio.EventInstance sfx_zombie_tombstone_toss_land;
@@ -67,6 +75,7 @@ public class GameAudioEventManager : MonoBehaviour
         skeleton_bgm = FMODUnity.RuntimeManager.CreateInstance(skeleton_bgm_path);
         necromancer_bgm = FMODUnity.RuntimeManager.CreateInstance(necromancer_bgm_path);
 
+        sfx_boss_die = FMODUnity.RuntimeManager.CreateInstance(sfx_boss_die_path);
         sfx_button_click = FMODUnity.RuntimeManager.CreateInstance(sfx_button_click_path);
         sfx_change_equipped_item = FMODUnity.RuntimeManager.CreateInstance(sfx_change_equipped_item_path);
         sfx_enemy_die = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_die_path);
@@ -75,7 +84,10 @@ public class GameAudioEventManager : MonoBehaviour
         sfx_player_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_player_damaged_path);
         sfx_player_dash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_dash_path);
         sfx_player_weapon_slash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_weapon_slash_path);
-        sfx_projectile_collision = FMODUnity.RuntimeManager.CreateInstance(sfx_projectile_collision_path); //TODO
+        sfx_projectile_collision = FMODUnity.RuntimeManager.CreateInstance(sfx_projectile_collision_path);
+        sfx_player_die = FMODUnity.RuntimeManager.CreateInstance(sfx_player_die_path);
+        sfx_skeleton_vampire_attack = FMODUnity.RuntimeManager.CreateInstance(sfx_skeleton_vampire_attack_path);
+        sfx_win_game = FMODUnity.RuntimeManager.CreateInstance(sfx_win_game_path);
     }
 
     //Audio Functions
@@ -200,6 +212,25 @@ public class GameAudioEventManager : MonoBehaviour
     public void PlayProjectileCollision()
     {
         sfx_projectile_collision.start();
+    }
+    public void PlayBossDie()
+    {
+        sfx_boss_die.start();
+    }
+
+    public void PlayPlayerDie()
+    {
+        sfx_player_die.start();
+    }
+
+    public void PlaySkeletonVampireAttack()
+    {
+        sfx_skeleton_vampire_attack.start();
+    }
+
+    public void PlayWinGame()
+    {
+        sfx_win_game.start();
     }
 }
 

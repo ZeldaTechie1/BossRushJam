@@ -62,9 +62,11 @@ public class VampireBoss : Boss
         switch (_currentAttack)
         {
             case 0:
+                //_gameAudioEventManager.GetComponent<GameAudioEventManager>().PlaySkeletonVampireAttack();
                 Swipe();
                 break;
             case 1:
+                //_gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayZombieShockwave();
                 BeamAttack();
                 break;
             case 2:
