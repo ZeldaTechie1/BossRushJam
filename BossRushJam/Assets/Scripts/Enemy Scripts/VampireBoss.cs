@@ -14,14 +14,22 @@ public class VampireBoss : Boss
     private SkeletonBoss _skeletonBoss;
     [SerializeField]
     private SpriteRenderer _batSprite;
+    [SerializeField]
+    private Transform _beamWaypoint;
+    [SerializeField]
+    private MeshRenderer _beamRenderer;
 
     private Vector3 _originalBatPosition;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         _originalBatPosition = _batSprite.transform.localPosition;
-        //IsMoving = true;
+    }
+
+    private void OnEnable()
+    {
+        Spawn();
     }
 
     // Update is called once per frame
@@ -37,9 +45,21 @@ public class VampireBoss : Boss
         }
         if (_currentAttack < 0)
         {
-            //SetAttack();
+            ResetAttackBools();
+            SetAttack();
         }
-        BatTransformation();
+        else
+        {
+            BeamAttack();
+        }
+    }
+
+    private void ResetAttackBools()
+    {
+        foreach(string attack in _attackAnimations)
+        {
+            _animator.SetBool(attack, false);
+        }
     }
 
     public override void ChangePhase()
@@ -63,14 +83,7 @@ public class VampireBoss : Boss
     {
         //TODO Play poof particle
         IsMoving = false;
-        _batSprite.enabled = true;
-        _batSprite.GetComponent<Collider>().enabled = true;
-        GetComponent<Collider>().enabled = false;
-        _animator.speed = 0;
-        foreach(SkinnedMeshRenderer smr in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            smr.enabled = false;
-        }
+        Transform(true, true);
         List<Transform> waypoints = _batWaypoints.ToList();
         Sequence sequence = DOTween.Sequence();
         for(int i = 0; i < _batWaypoints.Length; i++)
@@ -82,11 +95,11 @@ public class VampireBoss : Boss
                 Vector3 direction = (_batSprite.transform.position - waypoint.position).normalized;
                 if (direction.x > 0)
                 {
-                    _batSprite.flipY = true;
+                    _batSprite.flipX = true;
                 }
                 else
                 {
-                    _batSprite.flipY = false;
+                    _batSprite.flipX = false;
                 }
                 _batSprite.transform.DOMove(waypoint.position, 1f); 
             }).AppendInterval(1f);
@@ -94,14 +107,7 @@ public class VampireBoss : Boss
         }
         sequence.Append(_batSprite.transform.DOLocalMove(_originalBatPosition, 1f)).AppendCallback(() =>
         {
-            _batSprite.enabled = false;
-            _batSprite.GetComponent<Collider>().enabled = false;
-            GetComponent<Collider>().enabled = true;
-            _animator.speed = 1;
-            foreach (SkinnedMeshRenderer smr in GetComponentsInChildren<SkinnedMeshRenderer>())
-            {
-                smr.enabled = true;
-            }
+            Transform(false, false);
         }).AppendInterval(2f).AppendCallback(() =>
         {
             IsMoving = true;
@@ -110,19 +116,81 @@ public class VampireBoss : Boss
 
     private void Swipe()
     {
-
-    }
-
-    private void Backhand()
-    {
-
+        if (PlayerInAttackRange() && PlayerInFront())
+        {
+            IsMoving = false;
+            _animator.SetBool(_attackAnimations[_currentAttack], true);
+            if (_currentPhase >= 1)
+            {
+                _currentAttack++;
+                _animator.SetBool(_attackAnimations[_currentAttack], true);
+            }
+            _currentAttack = -1;
+            _agent.velocity = Vector3.zero;
+            return;
+        }
+        _agent.destination = _player.transform.position;
     }
 
     private void BeamAttack()
     {
-
+        if (_currentTarget == null)
+        {
+            _currentTarget = _beamWaypoint;
+            _agent.SetDestination(_currentTarget.position);
+        }
+        if (_agent.isStopped || _agent.isPathStale || Vector3.Distance(transform.position, _currentTarget.position) <= _waypointThreshold)
+        {
+            IsMoving = false;
+            _agent.ResetPath();
+            Beam();
+        }
     }
 
+    public void Beam()
+    {
+        IsMoving = false;
+        Transform(true);
+        _beamRenderer.GetComponent<Collider>().enabled = true;
+        Vector3 originalPos = _batSprite.transform.localPosition;
+        _batSprite.transform.localPosition = new Vector3(originalPos.x, 2, originalPos.z);
+        DOTween.Sequence().Append(_beamRenderer.transform.DOScaleZ(0.25f, 0.5f).SetEase(Ease.InSine)).
+            Append(transform.DOLocalMoveZ(10, 3f)).Append(transform.DOLocalMoveZ(-10, 3f)).Append(_beamRenderer.transform.DOScaleZ(0, 0.5f).SetEase(Ease.OutSine)).
+            AppendCallback(() =>
+            {
+                transform.DOMove(_currentTarget.transform.position, 1f).OnComplete(() =>
+                {
+                    _currentTarget = null;
+                    IsMoving = true;
+                    Transform(false);
+                    _batSprite.transform.localPosition = originalPos;
+                    _currentAttack = -1;
+                });
+                _beamRenderer.GetComponent<Collider>().enabled = false;
+            });
+    }
+
+    private void Transform(bool bat, bool enableBatCollider = false)
+    {
+        _batSprite.enabled = bat;
+        _batSprite.GetComponent<Collider>().enabled = enableBatCollider;
+        GetComponent<Collider>().enabled = !bat;
+        _animator.speed = 0;
+        foreach (SkinnedMeshRenderer smr in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            smr.enabled = !bat;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Health health = other.GetComponent<Health>();
+
+        if (health == null || !health.CanTakeDamage) { return; }
+        health.AffectHealth(null, -10f);
+        other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        DOTween.Sequence().SetDelay(1).AppendCallback(() => { if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
+    }
     private void SummonZombie()
     {
 

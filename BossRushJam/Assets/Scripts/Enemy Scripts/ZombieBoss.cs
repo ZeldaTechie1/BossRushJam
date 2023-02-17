@@ -18,7 +18,7 @@ public class ZombieBoss : Boss
     [SerializeField]
     private Transform[] _throwWaypoints;
 
-    void Start()
+    private void Start()
     {
         gameObject.SetActive(false);
     }
