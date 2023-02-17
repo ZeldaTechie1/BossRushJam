@@ -68,10 +68,10 @@ public class GameAudioEventManager : MonoBehaviour
         necromancer_bgm = FMODUnity.RuntimeManager.CreateInstance(necromancer_bgm_path);
 
         sfx_button_click = FMODUnity.RuntimeManager.CreateInstance(sfx_button_click_path);
-        sfx_change_equipped_item = FMODUnity.RuntimeManager.CreateInstance(sfx_change_equipped_item_path); //TODO
+        sfx_change_equipped_item = FMODUnity.RuntimeManager.CreateInstance(sfx_change_equipped_item_path);
         sfx_enemy_die = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_die_path);
-        sfx_item_broken = FMODUnity.RuntimeManager.CreateInstance(sfx_item_broken_path); //TODO
-        sfx_item_crafted = FMODUnity.RuntimeManager.CreateInstance(sfx_item_crafted_path); //TODO
+        sfx_item_broken = FMODUnity.RuntimeManager.CreateInstance(sfx_item_broken_path);
+        sfx_item_crafted = FMODUnity.RuntimeManager.CreateInstance(sfx_item_crafted_path);
         sfx_player_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_player_damaged_path);
         sfx_player_dash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_dash_path);
         sfx_player_weapon_slash = FMODUnity.RuntimeManager.CreateInstance(sfx_player_weapon_slash_path);
