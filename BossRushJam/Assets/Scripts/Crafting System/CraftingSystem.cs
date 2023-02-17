@@ -38,7 +38,6 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
     public InputActionReference CraftingButton;
 
     public int ItemSelected = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -161,8 +160,14 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
 
             recipe.Craftable = false;
             recipe.Crafted = true;
-            recipe.Durability = recipe.MaxDurability;
-
+            if(recipe.Throwable)
+            {
+                recipe.Durability++;
+            }
+            else
+            {
+                recipe.Durability = recipe.MaxDurability;
+            }
             UpdateRecipes();
 
             ItemCrafted?.Invoke(recipe);
@@ -171,11 +176,15 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
     public void RemoveDurability(int durabilityLoss)
     {
         CraftingRecipes[ItemSelected].Durability -= durabilityLoss;
-        CraftingUIs[ItemSelected].SetOpacity(CraftingRecipes[ItemSelected].Durability/ CraftingRecipes[ItemSelected].MaxDurability);
+        if(!CraftingRecipes[ItemSelected].Throwable)
+        {
+            CraftingUIs[ItemSelected].SetOpacity(CraftingRecipes[ItemSelected].Durability / CraftingRecipes[ItemSelected].MaxDurability);
+        }
         if (CraftingRecipes[ItemSelected].Durability <= 0 && ItemSelected != 0)
         {
             CraftingRecipes[ItemSelected].Crafted = false;
             CraftingUIs[ItemSelected].ItemBroke();
-        }
+            
+        }   
     }
 }
