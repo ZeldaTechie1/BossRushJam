@@ -7,7 +7,7 @@ public class BossMovingState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<ZombieBoss>().IsMoving = true;
+        animator.GetComponent<Boss>().IsMoving = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,8 +19,8 @@ public class BossMovingState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<ZombieBoss>().IsMoving = false;
-        animator.GetComponent<ZombieBoss>().IsAttacking = true;
+        animator.GetComponent<Boss>().IsMoving = false;
+        animator.GetComponent<Boss>().IsAttacking = true;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

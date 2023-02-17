@@ -115,6 +115,10 @@ public abstract class Boss : MonoBehaviour
         float runningTotal = 0;
         for(int i = 0; i < _attackWeightsPerPhase[_currentPhase].Count; i++)
         {
+            if (_attackWeightsPerPhase[_currentPhase][i] <= 0)
+            {
+                continue;
+            }
             if (randomNum < _attackWeightsPerPhase[_currentPhase][i] + runningTotal)
             {
                 _currentAttack = i;

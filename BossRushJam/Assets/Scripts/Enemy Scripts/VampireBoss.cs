@@ -21,7 +21,7 @@ public class VampireBoss : Boss
     {
         gameObject.SetActive(false);
         _originalBatPosition = _batSprite.transform.localPosition;
-        IsMoving = true;
+        //IsMoving = true;
     }
 
     // Update is called once per frame

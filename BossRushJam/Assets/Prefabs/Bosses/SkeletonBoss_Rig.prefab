@@ -5320,6 +5320,7 @@ MonoBehaviour:
   _health: 20
   _bloodEffect: {fileID: 0}
   _poof: {fileID: 0}
+  _gameAudioEventManager: {fileID: 0}
 --- !u!95 &8178096251658679692
 Animator:
   serializedVersion: 5
