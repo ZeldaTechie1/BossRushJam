@@ -1,11 +1,12 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class SkeletonBoss : Boss
 {
-
+    [SerializeField]private GameObject spinAttackCollider;
     private float _stab2HAnimationLength = 0;
     private float _swipe2HAnimationLength = 0;
     private float _stab4HAnimationLength = 0;
@@ -19,6 +20,7 @@ public class SkeletonBoss : Boss
         { "SwipeStab", -5f },
         { "SpinAttack", -10f }
     };
+    private string _currentAttackName = "";
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +84,6 @@ public class SkeletonBoss : Boss
                 break;
         }
         _agent.destination = _player.transform.position;
-        
     }
 
     public override void ChangePhase()
@@ -96,6 +97,7 @@ public class SkeletonBoss : Boss
         {
             IsMoving = false;
             _animator.SetTrigger("4ArmMode");
+            _currentAttack = -1;
         }
     }
 
@@ -112,6 +114,8 @@ public class SkeletonBoss : Boss
             IsMoving = false;
             _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_stab2HAnimationLength, () => _animator.SetBool("Stab2H", false));
+            _currentAttack = -1;
+            _currentAttackName = "Stab2H";
         }
         else
         {
@@ -128,6 +132,7 @@ public class SkeletonBoss : Boss
             _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_swipe2HAnimationLength, () => _animator.SetBool("Swipe2H", false));
             _currentAttack = -1;
+            _currentAttackName = "Swipe2H";
         }
         else
         {
@@ -144,6 +149,7 @@ public class SkeletonBoss : Boss
             _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_stab4HAnimationLength, () => _animator.SetBool("Stab4H", false));
             _currentAttack = -1;
+            _currentAttackName = "Stab4H";
         }
         else
         {
@@ -160,6 +166,7 @@ public class SkeletonBoss : Boss
             _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_swipe4HAnimationLength, () => _animator.SetBool("Swipe4H", false));
             _currentAttack = -1;
+            _currentAttackName = "Swipe4H";
         }
         else
         {
@@ -191,6 +198,7 @@ public class SkeletonBoss : Boss
                 _animator.SetBool("Swipe4H", false);
             });
             _currentAttack = -1;
+            _currentAttackName = "SwipeStab";
         }
         else
         {
@@ -200,6 +208,27 @@ public class SkeletonBoss : Boss
             
     private void SpinAttack()
     {
+        Tweener tween = transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y + 360, transform.rotation.z), .2f, RotateMode.WorldAxisAdd).SetLoops(5);
+        _animator.SetBool("SpinAttack", true);
+        DOTween.Sequence()
+            .AppendInterval(_stab2HAnimationLength)
+            .AppendCallback(() =>
+            {
+                _agent.updateRotation = false;
+                _agent.speed = 7f;
+                spinAttackCollider.SetActive(true);
+            })
+            .Append(tween)
+            .AppendCallback(() =>
+            {
+                _animator.SetBool("SpinAttack", false);
+                tween.Kill(true);
+                _agent.updateRotation = true;
+                _agent.speed = 3.5f;
+                spinAttackCollider.SetActive(false);
+            });
+        _currentAttack = -1;
+        _currentAttackName = "SpinAttack";
     }
 
     private void OnTriggerEnter(Collider other)
@@ -207,7 +236,7 @@ public class SkeletonBoss : Boss
         Health health = other.GetComponent<Health>();
 
         if (health == null || !health.CanTakeDamage) { return; }
-        health.AffectHealth(null, _damageValues[_attackAnimations[_currentAttack]]);
+        health.AffectHealth(null, _damageValues[_currentAttackName]);
         other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         DOTween.Sequence().SetDelay(1).AppendCallback(() => { if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
     }

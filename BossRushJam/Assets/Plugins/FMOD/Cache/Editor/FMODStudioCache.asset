@@ -70,11 +70,9 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638121796400000000
+  lastModified: 638121837800273869
   FileSizes:
   - Name: Desktop
-    Value: 1744
-  - Name: Mobile
     Value: 1744
   Exists: 1
 --- !u!114 &-7357843246110967738
@@ -359,7 +357,7 @@ MonoBehaviour:
   - {fileID: 8374879456956380725}
   StringsBanks:
   - {fileID: -7670478627577672780}
-  cacheTime: 638121796400000000
+  cacheTime: 638121837800328923
   cacheVersion: 131601
 --- !u!114 &389270903163637078
 MonoBehaviour:
@@ -404,7 +402,7 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638121796400000000
+  lastModified: 638121837800328923
   FileSizes:
   - Name: Desktop
     Value: 104640
@@ -553,7 +551,7 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/MUSIC.bank
   Name: MUSIC
   StudioPath: bank:/MUSIC
-  lastModified: 638121796400000000
+  lastModified: 638121837800183787
   FileSizes:
   - Name: Desktop
     Value: 6289184
@@ -651,7 +649,7 @@ MonoBehaviour:
   Path: FMOD/BossRushGameJam2023_FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638121796400000000
+  lastModified: 638121837800228828
   FileSizes:
   - Name: Desktop
     Value: 1340
