@@ -276,10 +276,10 @@
 	</object>
 	<object class="TransitionRegion" id="{1eaeb470-af1b-45ec-8021-f3c28efab8e8}">
 		<property name="position">
-			<value>34.909090909090907</value>
+			<value>17.454545454545453</value>
 		</property>
 		<property name="length">
-			<value>17.454545454545453</value>
+			<value>34.909090909090907</value>
 		</property>
 		<property name="quantizationInterval">
 			<value>8</value>
@@ -336,13 +336,13 @@
 	</object>
 	<object class="TransitionRegion" id="{4174474b-edfb-4eda-9394-594367ce435c}">
 		<property name="position">
-			<value>87.272727272727266</value>
+			<value>69.818181818181813</value>
 		</property>
 		<property name="length">
-			<value>17.45454545454546</value>
+			<value>34.909090909090914</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>12</value>
+			<value>8</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{c22f5c93-3cfc-4468-9a4d-49c1ee0dd17e}</destination>
@@ -421,10 +421,10 @@
 	</object>
 	<object class="TransitionRegion" id="{e3c14094-4fd9-450d-9917-551a608446f5}">
 		<property name="position">
-			<value>148.36363636363635</value>
+			<value>130.90909090909091</value>
 		</property>
 		<property name="length">
-			<value>8.7272727272727266</value>
+			<value>26.181818181818166</value>
 		</property>
 		<property name="quantizationInterval">
 			<value>8</value>
