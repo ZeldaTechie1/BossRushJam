@@ -6431,6 +6431,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1252535710}
     - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
+      propertyPath: spinAttackCollider
+      value: 
+      objectReference: {fileID: 1794428845}
+    - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _gameAudioEventManager
       value: 
       objectReference: {fileID: 1728537923}
@@ -6524,11 +6528,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _phaseThreeAttackWeights.Array.data[0]
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _phaseThreeAttackWeights.Array.data[1]
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _phaseThreeAttackWeights.Array.data[2]
@@ -6536,11 +6540,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _phaseThreeAttackWeights.Array.data[3]
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _phaseThreeAttackWeights.Array.data[4]
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5923290734631050142, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: _phaseThreeAttackWeights.Array.data[5]
@@ -10400,6 +10404,60 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789476708}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1794428845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794428848}
+  - component: {fileID: 1794428847}
+  - component: {fileID: 1794428846}
+  m_Layer: 0
+  m_Name: SpinAttackHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!65 &1794428846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794428845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.569207, y: 8.232464, z: 4.3626714}
+  m_Center: {x: 0, y: 3.616232, z: -1.3719511}
+--- !u!33 &1794428847
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794428845}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1794428848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794428845}
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.00000031292436}
+  m_LocalPosition: {x: 0, y: 0.84, z: -2.31}
+  m_LocalScale: {x: 1, y: 1, z: -1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1280026906}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1811088310
 GameObject:
   m_ObjectHideFlags: 0
