@@ -189,5 +189,4 @@ public class GameAudioEventManager : MonoBehaviour
  * add regular enemy SFX
  * add volume slider
  * set BGM players for each boss
- * fix FMOD WebGL build
  */
