@@ -26,6 +26,8 @@ public class CustomSceneManager : MonoBehaviour
         }
         gameAudioEventManager.StopBGM();
         Time.timeScale = 1;
+
+        Destroy(gameAudioEventManager);
         SceneManager.LoadScene(index);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }
