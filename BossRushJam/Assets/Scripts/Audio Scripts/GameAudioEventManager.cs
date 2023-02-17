@@ -185,8 +185,10 @@ public class GameAudioEventManager : MonoBehaviour
 
 //Audio TODO:
 /* add zombie SFX
+ * add boss damage SFX
+ * add boss death SFX
+ * add player death SFX
  * add player SFX
  * add regular enemy SFX
- * add volume slider
  * set BGM players for each boss
  */

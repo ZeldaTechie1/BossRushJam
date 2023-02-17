@@ -7019,6 +7019,10 @@ PrefabInstance:
       propertyPath: _maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6335083790245211131, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
+      propertyPath: _gameAudioEventManager
+      value: 
+      objectReference: {fileID: 1728537923}
     - target: {fileID: 6336496423023416614, guid: e24cefe35d79192428f90d30dca8dd0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.018130949
@@ -8540,6 +8544,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3429359135369071370, guid: e094a4159f0bc25478e4496476409a73, type: 3}
+      propertyPath: _gameAudioEventManager
+      value: 
+      objectReference: {fileID: 1728537923}
     - target: {fileID: 8588835307633894072, guid: e094a4159f0bc25478e4496476409a73, type: 3}
       propertyPath: m_RootOrder
       value: 7
