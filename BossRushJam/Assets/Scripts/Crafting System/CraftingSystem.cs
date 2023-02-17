@@ -171,6 +171,10 @@ public class CraftingSystem : Core.Singleton<CraftingSystem>
             UpdateRecipes();
 
             ItemCrafted?.Invoke(recipe);
+
+            string sfx_item_crafted_path = "event:/SFX/sfx_item_crafted";
+            FMOD.Studio.EventInstance sfx_item_crafted = FMODUnity.RuntimeManager.CreateInstance(sfx_item_crafted_path);
+            sfx_item_crafted.start();
         }
     }
     public void RemoveDurability(int durabilityLoss)

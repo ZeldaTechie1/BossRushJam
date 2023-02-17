@@ -74,6 +74,10 @@ public class CraftingUI : MonoBehaviour
 
     public void ItemBroke()
     {
+        string sfx_item_broken_path = "event:/SFX/sfx_item_broken";
+        FMOD.Studio.EventInstance sfx_item_broken = FMODUnity.RuntimeManager.CreateInstance(sfx_item_broken_path);
+        sfx_item_broken.start();
+
         GetComponent<Outline>().enabled = false;
     }
 

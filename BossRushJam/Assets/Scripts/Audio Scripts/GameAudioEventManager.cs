@@ -69,7 +69,6 @@ public class GameAudioEventManager : MonoBehaviour
 
         sfx_button_click = FMODUnity.RuntimeManager.CreateInstance(sfx_button_click_path);
         sfx_change_equipped_item = FMODUnity.RuntimeManager.CreateInstance(sfx_change_equipped_item_path); //TODO
-        sfx_enemy_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_damaged_path); //TODO
         sfx_enemy_die = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_die_path);
         sfx_item_broken = FMODUnity.RuntimeManager.CreateInstance(sfx_item_broken_path); //TODO
         sfx_item_crafted = FMODUnity.RuntimeManager.CreateInstance(sfx_item_crafted_path); //TODO
@@ -174,6 +173,7 @@ public class GameAudioEventManager : MonoBehaviour
 
     public void PlayEnemyDamaged()
     {
+        sfx_enemy_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_damaged_path);
         sfx_enemy_damaged.start();
     }
 
@@ -181,14 +181,34 @@ public class GameAudioEventManager : MonoBehaviour
     {
         sfx_enemy_die.start();
     }
+
+    public void PlayChangeEquippedItem()
+    {
+        sfx_change_equipped_item.start();
+    }
+
+    public void PlayItemBroken()
+    {
+        sfx_item_broken.start();
+    }
+
+    public void PlayItemCrafted()
+    {
+        sfx_item_crafted.start();
+    }
+
+    public void PlayProjectileCollision()
+    {
+        sfx_projectile_collision.start();
+    }
 }
 
 //Audio TODO:
-/* add zombie SFX
- * add boss damage SFX
+/*
+ * add Skeleton attacks
+ * Add vampire attacks
  * add boss death SFX
  * add player death SFX
- * add player SFX
- * add regular enemy SFX
  * set BGM players for each boss
+ * add win/lose music
  */

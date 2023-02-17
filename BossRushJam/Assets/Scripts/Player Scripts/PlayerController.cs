@@ -151,6 +151,8 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = HelperFunctions.VectorDirections[_lookDirectionIndex] * _throwSpeed;  
             }
             CraftingSystem.Instance.RemoveDurability(1);
+
+            _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayProjectileCollision();
         }
         else
         {
@@ -259,6 +261,8 @@ public class PlayerController : MonoBehaviour
             {
                 ItemsHeld[CraftingSystem.Instance.ItemSelected].enabled = true;
                 _currentDamage = _baseDamage + _additionalDamage[CraftingSystem.Instance.ItemSelected];
+
+                _gameAudioEventManager.PlayChangeEquippedItem();
             }
         }
         else

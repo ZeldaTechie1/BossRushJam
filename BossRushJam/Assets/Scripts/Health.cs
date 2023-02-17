@@ -69,12 +69,12 @@ public class Health : MonoBehaviour
         if (this.name == "Player")
         {
             _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayPlayerDamaged();
-        } else
-        {
+        } else {
             string sfx_enemy_damaged_path = "event:/SFX/sfx_enemy_damaged";
             FMOD.Studio.EventInstance sfx_enemy_damaged = FMODUnity.RuntimeManager.CreateInstance(sfx_enemy_damaged_path);
             sfx_enemy_damaged.start();
         }
+
         HealthAffected?.Invoke();
 
         if (_health <= 0)

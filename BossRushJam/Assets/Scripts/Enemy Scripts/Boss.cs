@@ -106,7 +106,7 @@ public abstract class Boss : MonoBehaviour
         BossSpawned?.Invoke(this);
         EnemyWaveController.Instance.StartNextPhase();
 
-        //_gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayBackgroundMusicByType(BossIndex);
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().PlayBackgroundMusicByType(BossIndex);
     }
 
     public virtual void SetAttack()
@@ -179,7 +179,7 @@ public abstract class Boss : MonoBehaviour
             _agent.ResetPath();
         }
 
-        //_gameAudioEventManager.GetComponent<GameAudioEventManager>().TransitionBossMusicPhase(_currentPhase);
+        _gameAudioEventManager.GetComponent<GameAudioEventManager>().TransitionBossMusicPhase(_currentPhase);
     }
 
     protected void CheckForPhaseChange(bool force = false)
