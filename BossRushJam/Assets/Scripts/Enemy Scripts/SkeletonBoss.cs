@@ -10,6 +10,15 @@ public class SkeletonBoss : Boss
     private float _swipe2HAnimationLength = 0;
     private float _stab4HAnimationLength = 0;
     private float _swipe4HAnimationLength = 0;
+    private Dictionary<string, float> _damageValues = new Dictionary<string, float>()
+    {
+        { "Stab2H", -5f},
+        { "Swipe2H", -5f },
+        { "Stab4H", -10f },
+        { "Swipe4H", -10f },
+        { "SwipeStab", -5f },
+        { "SpinAttack", -10f }
+    };
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +82,7 @@ public class SkeletonBoss : Boss
                 break;
         }
         _agent.destination = _player.transform.position;
+        
     }
 
     public override void ChangePhase()
@@ -84,16 +94,28 @@ public class SkeletonBoss : Boss
         }
         if (_currentPhase == _maxPhase)
         {
+            IsMoving = false;
             _animator.SetTrigger("4ArmMode");
         }
     }
 
     private void Stab2H()
     {
-        if(PlayerInAttackRange() && PlayerInFront())
+        if(_currentPhase == _maxPhase)
+        {
+            Stab4H();
+            return;
+        }
+        if (PlayerInAttackRange() && PlayerInFront())
         {
             _animator.SetBool("Stab2H", true);
+            IsMoving = false;
+            _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_stab2HAnimationLength, () => _animator.SetBool("Stab2H", false));
+        }
+        else
+        {
+            IsMoving = true;
         }
     }
 
@@ -102,8 +124,15 @@ public class SkeletonBoss : Boss
         if (PlayerInAttackRange() && PlayerInFront())
         {
             _animator.SetBool("Swipe2H", true);
+            IsMoving = false;
+            _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_swipe2HAnimationLength, () => _animator.SetBool("Swipe2H", false));
-        } 
+            _currentAttack = -1;
+        }
+        else
+        {
+            IsMoving = true;
+        }
     }
 
     private void Stab4H()
@@ -111,7 +140,14 @@ public class SkeletonBoss : Boss
         if (PlayerInAttackRange() && PlayerInFront())
         {
             _animator.SetBool("Stab4H", true);
+            IsMoving = false;
+            _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_stab4HAnimationLength, () => _animator.SetBool("Stab4H", false));
+            _currentAttack = -1;
+        }
+        else
+        {
+            IsMoving = true;
         }
     }
 
@@ -120,7 +156,14 @@ public class SkeletonBoss : Boss
         if (PlayerInAttackRange() && PlayerInFront())
         {
             _animator.SetBool("Swipe4H", true);
+            IsMoving = false;
+            _agent.velocity = Vector3.zero;
             DOTween.Sequence().InsertCallback(_swipe4HAnimationLength, () => _animator.SetBool("Swipe4H", false));
+            _currentAttack = -1;
+        }
+        else
+        {
+            IsMoving = true;
         }
     }
 
@@ -128,19 +171,44 @@ public class SkeletonBoss : Boss
     {
         if (PlayerInAttackRange() && PlayerInFront())
         {
-            _animator.SetBool("SwipeStab", true);
-            if (_currentPhase == _maxPhase)
+            IsMoving = false;
+            _agent.velocity = Vector3.zero;
+            if (_currentPhase != _maxPhase)
             {
-                DOTween.Sequence().InsertCallback(_swipe2HAnimationLength + _stab2HAnimationLength, () => _animator.SetBool("SwipeStab", false));
+                _animator.SetBool("Stab2H", true);
+                _animator.SetBool("Swipe2H", true);
             }
             else
             {
-                DOTween.Sequence().InsertCallback(_swipe4HAnimationLength + _stab4HAnimationLength, () => _animator.SetBool("SwipeStab", false));
+                _animator.SetBool("Stab4H", true);
+                _animator.SetBool("Swipe4H", true);
             }
+            DOTween.Sequence().InsertCallback(_swipe2HAnimationLength + _stab2HAnimationLength, () =>
+            {
+                _animator.SetBool("Stab2H", false);
+                _animator.SetBool("Swipe2H", false);
+                _animator.SetBool("Stab4H", false);
+                _animator.SetBool("Swipe4H", false);
+            });
+            _currentAttack = -1;
+        }
+        else
+        {
+            IsMoving = true;
         }
     }
-
+            
     private void SpinAttack()
     {
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Health health = other.GetComponent<Health>();
+
+        if (health == null || !health.CanTakeDamage) { return; }
+        health.AffectHealth(null, _damageValues[_attackAnimations[_currentAttack]]);
+        other.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        DOTween.Sequence().SetDelay(1).AppendCallback(() => { if (other == null) { return; } other.GetComponentInChildren<SpriteRenderer>().color = Color.white; });
     }
 }
